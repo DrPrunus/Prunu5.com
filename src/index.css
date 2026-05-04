@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand-primary: #E21D1D; /* Constructivist Red */
+  --color-brand-accent: #FFC700;  /* Constructivist Yellow */
+  --color-brand-bg: #F4F1EA;       /* Newsprint / Paper White */
+  --color-brand-black: #0F0F0F;
+  --color-brand-card: #FFFFFF;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-black font-sans antialiased;
+  }
+}
+
+.brutalist-border {
+  @apply border-2 border-brand-black shadow-[4px_4px_0px_0px_rgba(15,15,15,1)];
+}
+
+.brutalist-shadow {
+  @apply shadow-[8px_8px_0px_0px_rgba(15,15,15,1)];
+}
+
+.collage-rotate-left {
+  transform: rotate(-1deg) skew(-1deg);
+}
+
+.collage-rotate-right {
+  transform: rotate(1deg) skew(1deg);
+}
+
+.diagonal-line {
+  background: linear-gradient(45deg, transparent 49.5%, var(--color-brand-black) 49.5%, var(--color-brand-black) 50.5%, transparent 50.5%);
+}
