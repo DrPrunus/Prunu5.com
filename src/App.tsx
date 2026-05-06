@@ -45,9 +45,51 @@ const PROJECTS: Project[] = [
       en: 'HD2D Exploration Puzzle Game developed in Unity for 2025 TapTap Spotlight GameJam 21-day challenge. A meta-narrative adventure about a hero fixing system bugs to find a non-existent princess. Roles: Design, Dev, Music.',
       ja: 'Unityで制作されたHD2D探索パズルゲーム。2025 TapTap Spotlight GameJam 21日間チャレンジ参加作品。勇者がバグを修正しながら存在しない王女を探すメタフィクション。役割：企画、開発、音楽。'
     },
-    image: 'https://storage.googleapis.com/static-assets-public/ais-dev-axbs6h3ajy54zeu7bnu77p-370257112311.us-east1.run.app/attachments/2d93e1af-011f-4428-9418-28956e174092/1746517006815.jpg',
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
     tags: ['策划', '程序开发', '音乐', 'Unity'],
     link: 'https://www.taptap.cn/app/779210?os=pc',
+    github: '#'
+  },
+  {
+    id: '5',
+    title: '《杀戮尖塔》核心模块拆解',
+    category: '游戏拆解',
+    description: {
+      zh: '该拆解案聚焦《杀戮尖塔》的战斗、卡牌、关卡三大核心系统，深度解析其“可控随机性+卡组构筑成长+风险收益选择”的核心设计逻辑。',
+      en: 'Focusing on the combat, card, and level systems of Slay the Spire, deeply analyzing its core design logic of "controlled randomness + deck construction growth + risk-reward choice."',
+      ja: '「Slay the Spire」の戦闘、カード、ステージの3大コアシステムに焦点を当て、「コントロールされたランダム性＋デッキ構築の成長＋リスク・リターンの選択」というコアな設計ロジックを深く解析。'
+    },
+    image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=800',
+    tags: ['系统设计', '卡牌构筑', '数值平衡'],
+    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/VZLQfKfxhlBxHkdw3ykcwPCwn7g',
+    github: '#'
+  },
+  {
+    id: '6',
+    title: '《深岩银河》赛季通行证系统拆解',
+    category: '游戏拆解',
+    description: {
+      zh: '该拆解案聚焦《深岩银河》通行证 “可自由切换任意永久赛季 + 线性进度 + 非线性奖励树” 的核心设计，剖析其如何通过去时间压力、高自主解锁机制，实现长期友好的玩家体验与正向社群效应。',
+      en: 'Focuses on Deep Rock Galactic\'s "switchable permanent seasons + linear progress + non-linear reward tree" design, analyzing how it achieves long-term player friendly experience through high autonomy.',
+      ja: '「Deep Rock Galactic」の「いつでも切り替え可能な永久シーズン＋線形進捗＋非線形報酬ツリー」のコア設計に焦点を当て、時間制約の排除と高い自主性による長期的なプレイヤー体験を分析。'
+    },
+    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800',
+    tags: ['通行证设计', '系统分析', '数值构架'],
+    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/BnVjfi28ulUhZkdw4NIcoFimnid',
+    github: '#'
+  },
+  {
+    id: '7',
+    title: '《光·遇》社交系统拆解案',
+    category: '游戏拆解',
+    description: {
+      zh: '该拆解案聚焦《光·遇》以“情绪连接”为核心的社交系统，深度解析陌生人互动、好友关系、情绪动作、礼物互赠等六大模块，剖析其“非语言沟通+轻量协作+双向付出”的关系构建路径。',
+      en: 'Deeply analyzes Sky: Children of the Light\'s social system focused on "emotional connection," exploring non-verbal communication, lightweight cooperation, and the design trade-offs of the anonymity mechanism.',
+      ja: '「Sky 星を紡ぐ子どもたち」の「情緒的な繋がり」を核心としたソーシャルシステムを深く解析。非言語コミュニケーション、軽量な協調、匿名メカニズムの設計上の選択を剖析。'
+    },
+    image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800',
+    tags: ['社交系统', '交互设计', '3C逻辑'],
+    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
     github: '#'
   },
   {
@@ -57,9 +99,9 @@ const PROJECTS: Project[] = [
     description: {
       zh: '深度设计的赛博朋克肉鸽游戏，专注于快节奏战斗系统的打击感优化与随机关卡生成的逻辑构架。',
       en: 'A deeply designed cyberpunk rogue-like, focusing on combat feel optimization and the logical framework of procedural level generation.',
-      ja: 'サイバーパンクなローグライクゲーム。テンポの良い戦闘システムの最適化と、ランダム生成ステージの論理的フレームワークに焦点を当てています。'
+      ja: 'サイバーパンクなローグライクゲーム。テンポの良い戦闘系统的优化と、ランダム生成ステージの论理的フレームワークに焦点を当てています。'
     },
-    image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
     tags: ['System Design', 'Combat', 'Rogue-like'],
     link: '#',
     github: '#'
@@ -73,7 +115,7 @@ const PROJECTS: Project[] = [
       en: 'Multiplayer strategy game centered on turn-based balance design, skill counter matrices, and the construction of player mental models.',
       ja: 'マルチプレイヤー戦略ゲーム。ターン制のバランス設計、スキルカウンターのマトリックス、プレイヤーのメンタルモデルの構築が核心です。'
     },
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1592609931095-54a2168ae893?auto=format&fit=crop&q=80&w=800',
     tags: ['Balance Design', 'Strategy', 'UI/UX'],
     link: '#',
     github: '#'
@@ -85,9 +127,9 @@ const PROJECTS: Project[] = [
     description: {
       zh: '对《艾尔登法环》开放世界关卡流向与箱庭设计的深度拆解，分析其视觉引导与碎片化叙事的结合点。',
       en: 'A deep deconstruction of Elden Ring\'s open-world level flow and sandbox design, analyzing the intersection of visual guidance and environmental storytelling.',
-      ja: '「エルデンリング」のオープンワールドのレベルフローと箱庭設計の深い解体分析。視覚的誘導と環境ストーリーテリングの結合点を分析。'
+      ja: '「エルデンリング」のオープンワールドのレベルフローと箱庭设计の深い解体分析。视覚的誘導と环境ストーリーテリングの结合点を分析。'
     },
-    image: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=800',
     tags: ['Level Design', 'Narrative', 'Mechanics'],
     link: '#',
     github: '#'
@@ -97,25 +139,23 @@ const PROJECTS: Project[] = [
 // --- Sub-components ---
 
 const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.ReactNode, icon?: any, subtitle?: string }) => (
-  <div className="mb-12">
+  <div className="mb-12 border-b-8 border-brand-black pb-8">
     <div className="flex items-center gap-3 mb-2">
       {Icon && <Icon className="text-brand-primary w-6 h-6" />}
       <h2 className="text-4xl font-display font-black tracking-tighter uppercase leading-none">{children}</h2>
     </div>
     {subtitle && <p className="text-brand-black/50 font-mono text-[10px] uppercase tracking-widest font-bold">{subtitle}</p>}
-    <div className="h-2 w-24 bg-brand-primary mt-4" />
   </div>
 );
 
 const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string; key?: string }) => {
   const CardContent = (
-    <>
-      <div className="aspect-video relative overflow-hidden border-b-2 border-brand-black">
+    <div className={`group relative h-full bg-white brutalist-border overflow-hidden transition-all hover:rotate-0 hover:scale-[1.02] ${className} origin-center`}>
+      <div className="aspect-video relative overflow-hidden border-b-2 border-brand-black bg-brand-black/5">
         <img 
           src={project.image} 
           alt={project.title} 
-          className="object-cover w-full h-full transition-all duration-500"
-          referrerPolicy="no-referrer"
+          className="object-cover w-full h-full transition-all duration-500 rounded-none"
         />
         <div className="absolute top-0 left-0 bg-brand-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter">
           {(translations[lang].sections.portfolio as any).categories[project.category] || project.category}
@@ -138,7 +178,7 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 
   return (
@@ -147,7 +187,7 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      className={`group relative bg-white brutalist-border overflow-hidden transition-all hover:-translate-y-1 ${className}`}
+      className="p-2"
     >
       {project.link && project.link !== '#' ? (
         <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full">
@@ -279,10 +319,10 @@ export default function App() {
         
         {/* Projects */}
         <section id="works">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-16 border-b-8 border-brand-black pb-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-16">
             <SectionHeading icon={Layers} subtitle={t.sections.portfolio.subtitle}>{t.sections.portfolio.title}</SectionHeading>
             
-            <div className="flex flex-wrap gap-3 mb-4">
+            <div className="flex flex-wrap gap-3 mb-10">
               <button
                 onClick={() => setActiveTab('all')}
                 className={`px-8 py-3 font-display font-black uppercase text-sm brutalist-border transition-all ${activeTab === 'all' ? 'bg-brand-primary text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white hover:bg-brand-accent'}`}
@@ -304,7 +344,12 @@ export default function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, idx) => (
-                <ProjectCard key={project.id} project={project} lang={lang} className={idx % 2 === 0 ? 'collage-rotate-left' : 'collage-rotate-right'} />
+                <ProjectCard 
+                  key={project.id} 
+                  project={project} 
+                  lang={lang} 
+                  className={idx % 2 === 0 ? 'rotate-1' : '-rotate-1'} 
+                />
               ))}
             </AnimatePresence>
           </div>
@@ -313,15 +358,14 @@ export default function App() {
         {/* About */}
         <section id="about" className="relative">
           <div className="absolute top-0 left-0 w-full h-full diagonal-line opacity-5 -z-10" />
-          <div className="max-w-5xl mx-auto relative px-6">
-            <div className="absolute -top-10 -left-10 w-20 h-20 bg-brand-primary z-0 opacity-50" />
+          <div className="max-w-7xl mx-auto relative px-6">
             <div className="relative z-10">
               <SectionHeading icon={User} subtitle={t.sections.about.subtitle}>{t.sections.about.title}</SectionHeading>
               
               <div className="grid lg:grid-cols-12 gap-12 mt-16">
                 {/* Text Content */}
                 <div className="lg:col-span-12 space-y-8">
-                  <div className="flex gap-6 items-start bg-white p-8 brutalist-border collage-rotate-left hover:rotate-0 transition-transform">
+                  <div className="flex gap-6 items-start bg-white p-8 brutalist-border rotate-1 hover:rotate-0 transition-all origin-center">
                     <div className="bg-brand-primary p-4 brutalist-border flex-shrink-0">
                       <Terminal className="text-white w-8 h-8" />
                     </div>
@@ -332,7 +376,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="flex gap-6 items-start bg-brand-accent p-8 brutalist-border collage-rotate-right hover:rotate-0 transition-transform">
+                  <div className="flex gap-6 items-start bg-brand-accent p-8 brutalist-border -rotate-1 hover:rotate-0 transition-all origin-center">
                     <div className="bg-brand-black p-4 brutalist-border flex-shrink-0">
                       <Music className="text-white w-8 h-8" />
                     </div>
@@ -343,7 +387,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="flex gap-6 items-start bg-white p-8 brutalist-border -rotate-1 hover:rotate-0 transition-transform">
+                  <div className="flex gap-6 items-start bg-white p-8 brutalist-border rotate-0.5 hover:rotate-0 transition-all origin-center">
                     <div className="bg-brand-primary p-4 brutalist-border flex-shrink-0">
                       <Layout className="text-white w-8 h-8" />
                     </div>
@@ -396,7 +440,7 @@ export default function App() {
         <section id="contact" className="py-10 relative text-center">
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-4 bg-brand-black -z-10 opacity-10" />
           <SectionHeading icon={Rocket} subtitle={t.sections.contact.subtitle}>{t.sections.contact.title}</SectionHeading>
-          <div className="max-w-4xl mx-auto bg-white brutalist-border p-10 rotate-1 relative">
+          <div className="max-w-4xl mx-auto bg-white brutalist-border p-10 relative">
             <div className="absolute -top-12 -right-12 w-24 h-24 bg-brand-accent rounded-full border-8 border-brand-black flex items-center justify-center font-black text-4xl">!</div>
             {t.sections.contact.text && (
               <p className="text-brand-black text-4xl mb-10 font-black uppercase tracking-tight leading-[0.9] italic">
