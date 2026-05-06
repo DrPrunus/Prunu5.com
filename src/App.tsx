@@ -45,7 +45,7 @@ const PROJECTS: Project[] = [
       en: 'HD2D Exploration Puzzle Game developed in Unity for 2025 TapTap Spotlight GameJam 21-day challenge. A meta-narrative adventure about a hero fixing system bugs to find a non-existent princess. Roles: Design, Dev, Music.',
       ja: 'Unityで制作されたHD2D探索パズルゲーム。2025 TapTap Spotlight GameJam 21日間チャレンジ参加作品。勇者がバグを修正しながら存在しない王女を探すメタフィクション。役割：企画、開発、音楽。'
     },
-    image: 'https://storage.googleapis.com/static-assets-public/ais-dev-axbs6h3ajy54zeu7bnu77p-370257112311.us-east1.run.app/attachments/7e92e212-04ba-4581-9b16-43f9a745def3/1746520442385.jpg',
+    image: '/covers/404.jpg',
     tags: ['策划', '程序开发', '音乐', 'Unity'],
     link: 'https://www.taptap.cn/app/779210?os=pc',
     github: '#'
@@ -59,7 +59,7 @@ const PROJECTS: Project[] = [
       en: 'Focusing on the combat, card, and level systems of Slay the Spire, deeply analyzing its core design logic of "controlled randomness + deck construction growth + risk-reward choice."',
       ja: '「Slay the Spire」の戦闘、カード、ステージの3大コアシステムに焦点を当て、「コントロールされたランダム性＋デッキ構築の成長＋リスク・リターンの選択」というコアな設計ロジックを深く解析。'
     },
-    image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=800',
+    image: '/covers/sts.png',
     tags: ['系统设计', '卡牌构筑', '数值平衡'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/VZLQfKfxhlBxHkdw3ykcwPCwn7g',
     github: '#'
