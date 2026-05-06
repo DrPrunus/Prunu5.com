@@ -167,6 +167,10 @@ export default function App() {
           
           <div className="flex items-center gap-8">
             <div className="hidden lg:flex gap-10">
+              <a href="#intro" className="hover:text-brand-primary transition-colors flex items-center gap-2 group">
+                <span className="text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity">●</span>
+                {t.nav.intro}
+              </a>
               <a href="#works" className="hover:text-brand-primary transition-colors flex items-center gap-2 group">
                 <span className="text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity">●</span>
                 {t.nav.works}
@@ -197,7 +201,7 @@ export default function App() {
       </nav>
 
       {/* Hero */}
-      <header className="relative pt-24 pb-32 px-6 max-w-7xl mx-auto">
+      <header id="intro" className="relative pt-24 pb-32 px-6 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -280,85 +284,43 @@ export default function App() {
         {/* About */}
         <section id="about" className="relative">
           <div className="absolute top-0 left-0 w-full h-full diagonal-line opacity-5 -z-10" />
-          <div className="grid lg:grid-cols-2 gap-24 items-start">
-            <div className="relative">
-              <div className="absolute -top-10 -left-10 w-20 h-20 bg-brand-primary z-0" />
-              <div className="relative z-10 font-bold">
-                <SectionHeading icon={User} subtitle={t.sections.about.subtitle}>{t.sections.about.title}</SectionHeading>
-                <div className="space-y-10 text-brand-black text-xl leading-tight">
-                  <p className="bg-white p-10 brutalist-border collage-rotate-left italic underline decoration-brand-primary decoration-8 underline-offset-8">
-                    {t.sections.about.p1}
-                  </p>
-                  <p className="bg-brand-accent p-10 brutalist-border collage-rotate-right">
-                    {t.sections.about.p2}
-                  </p>
-                  
-                  <div className="pt-10 grid sm:grid-cols-2 gap-12">
-                    <div className="bg-white p-8 brutalist-border">
-                      <h4 className="text-brand-primary font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-primary pb-2">
-                        {t.sections.about.tech}
-                      </h4>
-                      <ul className="text-sm font-black font-mono space-y-4">
-                        <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> UNREAL ENGINE 5</li>
-                        <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> C++ // RUST // C#</li>
-                        <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> VULKAN API</li>
-                        <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> HLSL / GLSL</li>
-                      </ul>
-                    </div>
-                    <div className="bg-brand-black text-white p-8 brutalist-border">
-                      <h4 className="text-brand-accent font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-accent pb-2">
-                        {t.sections.about.disciplines}
-                      </h4>
-                      <ul className="text-sm font-black font-mono space-y-4">
-                        <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> GRAPHICS DEV</li>
-                        <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> GAME DESIGN</li>
-                        <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> TECH ART</li>
-                        <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> SYSTEM ARCH</li>
-                      </ul>
-                    </div>
+          <div className="max-w-4xl mx-auto relative">
+            <div className="absolute -top-10 -left-10 w-20 h-20 bg-brand-primary z-0" />
+            <div className="relative z-10 font-bold">
+              <SectionHeading icon={User} subtitle={t.sections.about.subtitle}>{t.sections.about.title}</SectionHeading>
+              <div className="space-y-10 text-brand-black text-xl leading-tight">
+                <p className="bg-white p-10 brutalist-border collage-rotate-left italic underline decoration-brand-primary decoration-8 underline-offset-8">
+                  {t.sections.about.p1}
+                </p>
+                <p className="bg-brand-accent p-10 brutalist-border collage-rotate-right">
+                  {t.sections.about.p2}
+                </p>
+                <p className="bg-white p-10 brutalist-border -rotate-1">
+                  {t.sections.about.p3}
+                </p>
+                
+                <div className="pt-10 grid sm:grid-cols-2 gap-12">
+                  <div className="bg-white p-8 brutalist-border">
+                    <h4 className="text-brand-primary font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-primary pb-2">
+                      {t.sections.about.tech}
+                    </h4>
+                    <ul className="text-sm font-black font-mono space-y-4">
+                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> UNREAL ENGINE 5</li>
+                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> C++ // RUST // C#</li>
+                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> VULKAN API</li>
+                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> HLSL / GLSL</li>
+                    </ul>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="sticky top-32 space-y-12">
-              <div className="bg-brand-black text-white p-12 brutalist-shadow relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary -rotate-45 translate-x-16 -translate-y-16 group-hover:bg-brand-accent transition-colors" />
-                <h3 className="text-5xl font-display font-black mb-12 uppercase leading-none tracking-tighter border-b-4 border-white/20 pb-4">
-                  {t.sections.pipeline.title}
-                </h3>
-                <div className="space-y-10 font-mono">
-                  <div className="flex justify-between items-center group/item border-b border-white/10 pb-4">
-                    <span className="text-white/40 text-xs font-black italic">{t.sections.pipeline.latestBuild}</span>
-                    <span className="text-brand-primary group-hover/item:text-brand-accent font-black text-2xl underline decoration-4 underline-offset-4 tracking-tighter">{t.sections.pipeline.success} [A45]</span>
-                  </div>
-                  <div className="flex justify-between items-center group/item border-b border-white/10 pb-4">
-                    <span className="text-white/40 text-xs font-black italic">{t.sections.pipeline.coverage}</span>
-                    <span className="text-brand-accent font-black text-2xl tracking-tighter">98.2%</span>
-                  </div>
-                  <div className="flex justify-between items-center group/item border-b border-white/10 pb-4">
-                    <span className="text-white/40 text-xs font-black italic">{t.sections.pipeline.coffee}</span>
-                    <span className="text-brand-primary font-black animate-pulse text-xl tracking-tighter uppercase">{t.sections.pipeline.refill}</span>
-                  </div>
-                  <div className="pt-8 space-y-8">
-                    <div>
-                      <div className="flex justify-between text-[11px] mb-3 font-black uppercase text-white/50">
-                        <span>{t.sections.pipeline.optimization}</span>
-                        <span>85.0</span>
-                      </div>
-                      <div className="h-10 bg-white/5 border-2 border-white/20 p-1">
-                        <div className="h-full bg-brand-primary w-[85%]" />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex justify-between text-[11px] mb-3 font-black uppercase text-white/50">
-                        <span>{t.sections.pipeline.reliability}</span>
-                        <span>92.0</span>
-                      </div>
-                      <div className="h-10 bg-white/5 border-2 border-white/20 p-1">
-                        <div className="h-full bg-brand-accent w-[92%]" />
-                      </div>
-                    </div>
+                  <div className="bg-brand-black text-white p-8 brutalist-border">
+                    <h4 className="text-brand-accent font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-accent pb-2">
+                      {t.sections.about.disciplines}
+                    </h4>
+                    <ul className="text-sm font-black font-mono space-y-4">
+                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> GRAPHICS DEV</li>
+                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> GAME DESIGN</li>
+                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> TECH ART</li>
+                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> SYSTEM ARCH</li>
+                    </ul>
                   </div>
                 </div>
               </div>

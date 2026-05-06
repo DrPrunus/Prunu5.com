@@ -3,9 +3,10 @@ export type Language = 'zh' | 'en' | 'ja';
 export const translations = {
   zh: {
     nav: {
-      works: '作品档案',
-      about: '关于开发者',
-      contact: '建立联络',
+      intro: '个人简介',
+      works: '项目作品',
+      about: '关于我',
+      contact: '联系我',
       status: '',
     },
     hero: {
@@ -13,20 +14,21 @@ export const translations = {
       titleAccent: '常规',
       titleEnd: '重塑边界',
       subtitle: '我专注于通过代码构建交互式的、富有冲击力的游戏体验。每一行代码都是一种构造，每一次交互都是一场试验。',
-      btnRepo: '进入档案库',
-      btnContact: '建立连接',
+      btnRepo: '查看项目',
+      btnContact: '联系我',
     },
     sections: {
       portfolio: {
-        title: '项目展示',
+        title: '项目作品',
         subtitle: '已验证的构造',
         all: '全部类别',
       },
       about: {
-        title: '核心数据',
-        subtitle: '解构开发者',
-        p1: '我是一名将代码视为建筑材料的游戏开发者。我热衷于平台跳跃与箱庭游戏的开发与探索。过去6年里，我一直致力于研究如何让虚拟世界更加生动且具有逻辑。',
-        p2: '对我而言，游戏开发不仅仅是编程，它是一种在数字空间进行的构成主义艺术。我擅长解决复杂的技术难题，并将其转化为极致的视觉与交互体验。',
+        title: '关于我',
+        subtitle: '技能与背景',
+        p1: '熟悉 C#（Unity 开发）与 Python（脚本/工具开发/Ren’Py 开发），能够在游戏项目中独立承担逻辑实现与工具制作，具备 UE 快速关卡原型能力。',
+        p2: '熟悉 Godot 引擎，具备一定的跨引擎开发与系统设计能力。熟练使用 FL Studio 进行音频制作与编辑，熟练使用 Aseprite 进行美术制作。',
+        p3: '善于使用 Axure、XMind 等策划工具进行原型设计与流程规划，具备较强的项目策划与沟通表达能力。',
         tech: '技术堆栈',
         disciplines: '核心学科',
       },
@@ -41,7 +43,7 @@ export const translations = {
         refill: '警告:能源不足',
       },
       contact: {
-        title: '信号源',
+        title: '联系我',
         subtitle: '建立通信',
         text: '准备好开始一场数字革命了吗？我的通信频道已经开启。',
         btnEmail: '发送指令',
@@ -56,9 +58,10 @@ export const translations = {
   },
   en: {
     nav: {
-      works: 'Archive',
-      about: 'The Dev',
-      contact: 'Connect',
+      intro: 'Profile',
+      works: 'Works',
+      about: 'About Me',
+      contact: 'Contact',
       status: '',
     },
     hero: {
@@ -66,20 +69,21 @@ export const translations = {
       titleAccent: 'Rules',
       titleEnd: 'Redefining.',
       subtitle: 'I build interactive, high-impact gaming experiences through the lens of code. Every line is a construct, every interaction an experiment.',
-      btnRepo: 'Enter Archive',
-      btnContact: 'Connect Now',
+      btnRepo: 'View Works',
+      btnContact: 'Contact Me',
     },
     sections: {
       portfolio: {
-        title: 'Projects',
+        title: 'Works',
         subtitle: 'Verified Constructs',
         all: 'All Categories',
       },
       about: {
-        title: 'Core Data',
-        subtitle: 'Deconstructing the Dev',
-        p1: 'I am a game developer who treats code as architectural material. I am passionate about the development and exploration of platformers and sandbox (box-garden) games.',
-        p2: 'For me, game development is not just programming; it’s a form of Constructivist art performed in digital space. I specialize in solving complex technical problems and transforming them into ultimate visual and interactive experiences.',
+        title: 'About Me',
+        subtitle: 'Skills & Background',
+        p1: 'Proficient in C# (Unity development) and Python (scripting / tool development / Ren’Py dev), capable of independently handling logic implementation and tool creation in game projects, with UE rapid level prototyping skills.',
+        p2: 'Familiar with Godot Engine, possessing cross-engine development and system design capabilities. Skilled in using FL Studio for audio production and editing, and Aseprite for pixel art creation.',
+        p3: 'Expert at using Axure, XMind, and other planning tools for prototyping and workflow design, with strong communication and project planning skills.',
         tech: 'Tech Stack',
         disciplines: 'Core Disciplines',
       },
@@ -94,7 +98,7 @@ export const translations = {
         refill: 'WARNING: REFILL NOW',
       },
       contact: {
-        title: 'Signal Source',
+        title: 'Contact',
         subtitle: 'Establish Comms',
         text: 'Ready to start a digital revolution? My communication channel is open.',
         btnEmail: 'Send Command',
@@ -109,9 +113,10 @@ export const translations = {
   },
   ja: {
     nav: {
-      works: 'アーカイブ',
-      about: '開発者',
-      contact: '接続する',
+      intro: 'プロフィール',
+      works: 'プロジェクト',
+      about: '私について',
+      contact: 'お問い合わせ',
       status: '',
     },
     hero: {
@@ -119,8 +124,8 @@ export const translations = {
       titleAccent: '破壊',
       titleEnd: 'し、再定義する',
       subtitle: '私はコードを通じて、インタラクティブでインパクトのあるゲーム体験を構築します。すべての行が構造であり、すべての相互作用が実験です。',
-      btnRepo: 'アーカイブに入る',
-      btnContact: '今すぐ接続',
+      btnRepo: 'プロジェクトを見る',
+      btnContact: 'お問い合わせ',
     },
     sections: {
       portfolio: {
@@ -129,10 +134,11 @@ export const translations = {
         all: 'すべて',
       },
       about: {
-        title: 'コアデータ',
-        subtitle: '開発者の解体',
-        p1: '私はコードを建築材料として扱うゲーム開発者です。プラットフォーマーや箱庭ゲームの開発と探索に情热を注いでいます。',
-        p2: '私にとって、ゲーム開発は単なるプログラミングではありません。それはデジタル空間で行われる構成主義的な芸術の一形態です。私は複雑な技術問題を解決し、それを究極の視覚的・インタラクティブな体験へと変換することを得意としています。',
+        title: '私について',
+        subtitle: 'スキルと背景',
+        p1: 'C#（Unity開発）とPython（スクリプト/ツール開発/Ren’Py開発）に精通し、ゲームプロジェクトでロジック実装とツール制作を独立して担当できます。UEでの迅速なレベルプロトタイピングが可能です。',
+        p2: 'Godotエンジンに精通しており、クロスエンジン開発とシステム設計の能力を備えています。FL Studioを使用したオーディオ制作・編集や、Asepriteを使用したドット絵制作に熟練しています。',
+        p3: 'AxureやXMindなどのプランニングツールを使用したプロトタイプ設計とワークフロー計画に長けており、強いコミュニケーション能力とプロジェクト企画力を持ち合わせています。',
         tech: '技術スタック',
         disciplines: '専門分野',
       },
@@ -147,7 +153,7 @@ export const translations = {
         refill: '警告: 補充が必要',
       },
       contact: {
-        title: '信号源',
+        title: 'お問い合わせ',
         subtitle: '通信確立',
         text: 'デジタル革命を始める準備はできていますか？私の通信チャネルは開いています。',
         btnEmail: 'コマンド送信',
