@@ -173,8 +173,8 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           className="object-cover w-full h-full transition-all duration-500 rounded-none pointer-events-none"
           referrerPolicy="no-referrer"
           onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = `https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800&sig=${project.id}`;
+            console.error(`Failed to load image: ${project.image}`);
+            // No longer forcing Unsplash fallback so user can see their own images
           }}
         />
         <div className="absolute top-0 left-0 bg-brand-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter">
