@@ -153,16 +153,16 @@ export default function App() {
 
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-brand-black text-white px-6 py-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center text-sm font-mono tracking-widest uppercase font-black">
+        <div className="max-w-7xl mx-auto flex justify-between items-center text-sm font-mono tracking-widest font-black">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="flex items-center gap-4"
           >
             <div className="w-10 h-10 bg-brand-primary flex items-center justify-center -rotate-3 hover:rotate-0 transition-transform cursor-pointer brutalist-border border-white">
-              <span className="text-white font-display font-black text-2xl">V</span>
+              <span className="text-white font-display font-black text-2xl">桃</span>
             </div>
-            <span className="hidden sm:inline text-lg tracking-tighter">VERTEX_ARKHIV_v1.0</span>
+            <span className="hidden sm:inline text-lg tracking-tighter normal-case">DrPrunus</span>
           </motion.div>
           
           <div className="flex items-center gap-8">
@@ -395,13 +395,13 @@ export default function App() {
 
       {/* Footer */}
       <footer className="mt-60 border-t-[16px] border-brand-black bg-brand-black text-white px-6 py-24 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none uppercase font-black text-[12rem] leading-[0.8] break-all select-none rotate-6">
-          VERTEX VERTEX VERTEX VERTEX
+        <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none font-black text-[12rem] leading-[0.8] break-all select-none rotate-6">
+          DrPrunus DrPrunus DrPrunus DrPrunus
         </div>
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
           <div>
-            <div className="text-6xl font-display font-black uppercase mb-6 tracking-tighter leading-none border-b-8 border-brand-primary inline-block">
-              VERTEX_ARKHIV
+            <div className="text-6xl font-display font-black mb-6 tracking-tighter leading-none border-b-8 border-brand-primary inline-block">
+              DrPrunus
             </div>
             <p className="text-white/40 font-mono text-sm font-black uppercase tracking-[0.3em] mt-4">
               © {new Date().getFullYear()} // {t.footer.rights}
