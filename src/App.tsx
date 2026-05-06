@@ -46,7 +46,7 @@ const PROJECTS: Project[] = [
       en: '2D Puzzle Web Game developed in Unity for 2025 Brackeys Jam 7-day challenge. Features "Ghost eating cookies" core gameplay, deeply optimized for H5 platforms. Roles: Design, Development, Music & Sound.',
       ja: 'Unityで制作された2Dパズルウェブゲーム。2025 Brackeys Jam 7日間ジャム参加作品。「幽霊がクッキーを食べる」核心的な遊び。H5プラットフォーム向けに最適化。役割：企画、開発、音楽、効果音。'
     },
-    image: '/covers/gc.png',
+    image: '/covers/gc.png', // Path: /covers/gc.png
     tags: ['策划', '程序开发', '音乐', 'Unity'],
     link: 'https://volticx.itch.io/ghostcookies',
     github: '#'
@@ -60,7 +60,7 @@ const PROJECTS: Project[] = [
       en: 'HD2D Exploration Puzzle Game developed in Unity for 2025 TapTap Spotlight GameJam 21-day challenge. A meta-narrative adventure about a hero fixing system bugs to find a non-existent princess. Roles: Design, Dev, Music.',
       ja: 'Unityで制作されたHD2D探索パズルゲーム。2025 TapTap Spotlight GameJam 21日間チャレンジ参加作品。勇者がバグを修正しながら存在しない王女を探すメタフィクション。役割：企画、開発、音楽。'
     },
-    image: '/covers/404.jpg',
+    image: '/covers/404.jpg', // Path: /covers/404.jpg
     tags: ['策划', '程序开发', '音乐', 'Unity'],
     link: 'https://www.taptap.cn/app/779210?os=pc',
     github: '#'
@@ -74,7 +74,7 @@ const PROJECTS: Project[] = [
       en: 'Focusing on the combat, card, and level systems of Slay the Spire, deeply analyzing its core design logic of "controlled randomness + deck construction growth + risk-reward choice."',
       ja: '「Slay the Spire」の戦闘、カード、ステージの3大コアシステムに焦点を当て、「コントロールされたランダム性＋デッキ構築の成長＋リスク・リターンの選択」というコアな設計ロジックを深く解析。'
     },
-    image: '/covers/sts.png',
+    image: '/covers/sts.png', // Path: /covers/sts.png
     tags: ['系统设计', '卡牌构筑', '数值平衡'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/VZLQfKfxhlBxHkdw3ykcwPCwn7g',
     github: '#'
@@ -171,6 +171,11 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           src={project.image} 
           alt={project.title} 
           className="object-cover w-full h-full transition-all duration-500 rounded-none pointer-events-none"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = `https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800&sig=${project.id}`;
+          }}
         />
         <div className="absolute top-0 left-0 bg-brand-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter">
           {(translations[lang].sections.portfolio as any).categories[project.category] || project.category}
