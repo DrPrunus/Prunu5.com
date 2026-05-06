@@ -166,20 +166,9 @@ const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.Re
 const getImageUrl = (path: string) => {
   if (!path) return '';
   if (path.startsWith('http')) return path;
-  
-  // Clean the path to avoid double slashes
-  const cleanPath = path.startsWith('/') ? path.substring(1) : path;
-  
-  // Use import.meta.env.BASE_URL for stable relative paths
-  const baseUrl = import.meta.env.BASE_URL || '/';
-  const relativePath = baseUrl.endsWith('/') ? `${baseUrl}${cleanPath}` : `${baseUrl}/${cleanPath}`;
-
-  // If we are in the browser, provide a full URL to help external sites like prunu5.com
-  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
-    return `${window.location.origin}${relativePath.startsWith('/') ? '' : '/'}${relativePath}`;
-  }
-  
-  return relativePath;
+  // Use relative paths for local assets. This is the most compatible way
+  // to ensure images work when the app is moved to prunu5.com or other domains.
+  return path;
 };
 
 const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string; key?: string | number }) => {
