@@ -162,19 +162,29 @@ const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.Re
   </div>
 );
 
-const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string }) => {
+// --- Helpers ---
+const getImageUrl = (path: string) => {
+  if (path.startsWith('http')) return path;
+  // In development/production, we can prepend the current origin to make it an absolute URL
+  // This helps when the data is consumed by other sites or when absolute paths are needed.
+  const origin = typeof window !== 'undefined' ? window.location.origin : '';
+  return `${origin}${path}`;
+};
+
+const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string; key?: string | number }) => {
   const [imageError, setImageError] = useState(false);
+  const imageUrl = getImageUrl(project.image);
 
   const CardContent = (
     <div className={`group relative h-full bg-white brutalist-border overflow-hidden transition-all hover:rotate-0 hover:scale-[1.02] ${className} origin-center`}>
       <div className="aspect-video relative overflow-hidden border-b-2 border-brand-black bg-brand-black/5">
         <img 
-          src={imageError ? `https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800&sig=${project.id}` : project.image} 
+          src={imageError ? `https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800&sig=${project.id}` : imageUrl} 
           alt={project.title} 
           className="object-cover w-full h-full transition-all duration-500 rounded-none"
           referrerPolicy="no-referrer"
           onError={() => {
-            console.error(`Failed to load image: ${project.image}`);
+            console.error(`Failed to load image: ${imageUrl}. Falling back to Unsplash.`);
             setImageError(true);
           }}
         />
@@ -182,7 +192,6 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           {(translations[lang].sections.portfolio as any).categories[project.category] || project.category}
         </div>
       </div>
-      
       <div className="p-6">
         <h3 className="text-2xl font-display font-black mb-3 leading-none group-hover:text-brand-primary transition-colors">
           {project.title}

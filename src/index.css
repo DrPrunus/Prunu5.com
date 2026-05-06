@@ -27,6 +27,14 @@
   @apply shadow-[8px_8px_0px_0px_rgba(15,15,15,1)];
 }
 
+.moebius-line {
+  @apply border-b border-brand-black/20;
+}
+
+.glass-morphism {
+  @apply bg-white/40 backdrop-blur-md border border-white/20;
+}
+
 .collage-rotate-left {
   transform: rotate(-1deg) skew(-1deg);
 }
@@ -38,3 +46,4 @@
 .diagonal-line {
   background: linear-gradient(45deg, transparent 49.5%, var(--color-brand-black) 49.5%, var(--color-brand-black) 50.5%, transparent 50.5%);
 }
+
