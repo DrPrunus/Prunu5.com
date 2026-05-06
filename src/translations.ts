@@ -12,8 +12,8 @@ export const translations = {
     hero: {
       title: '打破',
       titleAccent: '常规',
-      titleEnd: '重塑边界',
-      subtitle: '我专注于通过代码构建交互式的、富有冲击力的游戏体验。每一行代码都是一种构造，每一次交互都是一场试验。',
+      titleEnd: '游戏策划',
+      subtitle: '我致力于通过系统化的策划与技术实现，创造出独特且引人入胜的游戏世界。在逻辑与创意之间，将奇思妙想转化为玩家的沉浸式体验。',
       btnRepo: '查看项目',
       btnContact: '联系我',
     },
@@ -22,6 +22,10 @@ export const translations = {
         title: '项目作品',
         subtitle: '',
         all: '全部类别',
+        categories: {
+          '游戏拆解': '游戏拆解',
+          'PC': 'PC',
+        }
       },
       about: {
         title: '关于我',
@@ -61,8 +65,8 @@ export const translations = {
     hero: {
       title: 'Breaking',
       titleAccent: 'Rules',
-      titleEnd: 'Redefining.',
-      subtitle: 'I build interactive, high-impact gaming experiences through the lens of code. Every line is a construct, every interaction an experiment.',
+      titleEnd: 'Game Design.',
+      subtitle: 'I focus on creating unique and engaging game worlds through systematic planning and technical execution. Balancing logic and creativity to transform bold ideas into immersive player experiences.',
       btnRepo: 'View Works',
       btnContact: 'Contact Me',
     },
@@ -71,6 +75,10 @@ export const translations = {
         title: 'Works',
         subtitle: '',
         all: 'All Categories',
+        categories: {
+          '游戏拆解': 'Game Deconstruction',
+          'PC': 'PC',
+        }
       },
       about: {
         title: 'About Me',
@@ -110,8 +118,8 @@ export const translations = {
     hero: {
       title: '常識を',
       titleAccent: '破壊',
-      titleEnd: 'し、再定義する',
-      subtitle: '私はコードを通じて、インタラクティブでインパクトのあるゲーム体験を構築します。すべての行が構造であり、すべての相互作用が実験です。',
+      titleEnd: 'ゲーム企画',
+      subtitle: '私は、体系的な企画と技術的な実現を通じて、ユニークで魅力的なゲームの世界を作り上げることに専念しています。論理と創造性のバランスを保ち、奇抜なアイデアをプレイヤーの没入体験へと変えていきます。',
       btnRepo: 'プロジェクトを見る',
       btnContact: '連絡',
     },
@@ -120,6 +128,10 @@ export const translations = {
         title: 'プロジェクト',
         subtitle: '',
         all: 'すべて',
+        categories: {
+          '游戏拆解': 'ゲーム解体',
+          'PC': 'PC',
+        }
       },
       about: {
         title: '私について',

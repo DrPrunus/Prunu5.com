@@ -26,7 +26,7 @@ import { translations, Language } from './translations';
 interface Project {
   id: string;
   title: string;
-  category: 'PC' | 'Mobile' | 'Console' | 'Tools';
+  category: '游戏拆解' | 'PC';
   description: Record<Language, string>;
   image: string;
   tags: string[];
@@ -37,44 +37,58 @@ interface Project {
 // --- Mock Data ---
 const PROJECTS: Project[] = [
   {
+    id: '4',
+    title: '404 Princess Not Found',
+    category: 'PC',
+    description: {
+      zh: 'HD2D 探索解谜游戏 | Unity 引擎 | 2025 TapTap 聚光灯 GameJam 21 天极限创作赛事参赛作品。以“勇者修复残缺游戏世界 Bug、追寻不存在的公主”为主线，担任策划、程序开发与音乐制作，上线 TapTap PC 端。',
+      en: 'HD2D Exploration Puzzle Game developed in Unity for 2025 TapTap Spotlight GameJam 21-day challenge. A meta-narrative adventure about a hero fixing system bugs to find a non-existent princess. Roles: Design, Dev, Music.',
+      ja: 'Unityで制作されたHD2D探索パズルゲーム。2025 TapTap Spotlight GameJam 21日間チャレンジ参加作品。勇者がバグを修正しながら存在しない王女を探すメタフィクション。役割：企画、開発、音楽。'
+    },
+    image: 'https://storage.googleapis.com/static-assets-public/ais-dev-axbs6h3ajy54zeu7bnu77p-370257112311.us-east1.run.app/attachments/2d93e1af-011f-4428-9418-28956e174092/1746517006815.jpg',
+    tags: ['策划', '程序开发', '音乐', 'Unity'],
+    link: 'https://www.taptap.cn/app/779210?os=pc',
+    github: '#'
+  },
+  {
     id: '1',
     title: 'Neon Odyssey',
     category: 'PC',
     description: {
-      zh: '一款具有可破坏环境和程序化关卡生成的快节奏赛博朋克肉鸽游戏，使用自定义 C++ 引擎开发。',
-      en: 'A fast-paced cyberpunk rogue-like with destructible environments and procedural level generation using custom C++ engine.',
-      ja: 'カスタムC++エンジンを使用した、破壊可能な環境とプロシージャルなレベル生成を備えたスピード感あふれるサイバーパンク・ローグライク。'
+      zh: '深度设计的赛博朋克肉鸽游戏，专注于快节奏战斗系统的打击感优化与随机关卡生成的逻辑构架。',
+      en: 'A deeply designed cyberpunk rogue-like, focusing on combat feel optimization and the logical framework of procedural level generation.',
+      ja: 'サイバーパンクなローグライクゲーム。テンポの良い戦闘システムの最適化と、ランダム生成ステージの論理的フレームワークに焦点を当てています。'
     },
     image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800',
-    tags: ['C++', 'Unreal Engine 5', 'Shaders'],
+    tags: ['System Design', 'Combat', 'Rogue-like'],
     link: '#',
     github: '#'
   },
   {
     id: '2',
     title: 'Pixel Tactics',
-    category: 'Mobile',
+    category: 'PC',
     description: {
-      zh: '专注于竞技多人游戏和跨平台游戏的交替回合制策略游戏。使用 Unity 和自定义 gRPC 服务器构建。',
-      en: 'Turn-based strategy game focused on competitive multiplayer and cross-platform play. Built with Unity and custom gRPC server.',
-      ja: '対戦マルチプレイヤーとクロスプラットフォームプレイに焦点を当てたターン制戦略ゲーム。UnityとカスタムgRPCサーバーで構築。'
+      zh: '多人策略对战游戏，核心在于回合制平衡性设计、技能克制矩阵以及玩家交互心智模型的构建。',
+      en: 'Multiplayer strategy game centered on turn-based balance design, skill counter matrices, and the construction of player mental models.',
+      ja: 'マルチプレイヤー戦略ゲーム。ターン制のバランス設計、スキルカウンターのマトリックス、プレイヤーのメンタルモデルの構築が核心です。'
     },
     image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
-    tags: ['C#', 'Unity', 'Networking', 'Go'],
+    tags: ['Balance Design', 'Strategy', 'UI/UX'],
     link: '#',
     github: '#'
   },
   {
     id: '3',
-    title: 'Voxel Engine Core',
-    category: 'Tools',
+    title: 'Deep Analysis: Elden Ring',
+    category: '游戏拆解',
     description: {
-      zh: '一个开源的体素操作引擎，能够使用稀疏体素八叉树实时渲染数十亿个立方体。',
-      en: 'An open-source voxel manipulation engine capable of rendering billions of cubes in real-time using sparse voxel octrees.',
-      ja: '疎なボクセル八分木を使用して、リアルタイムで数十億の立方体をレンダリングできるオープンソースのボクセル操作エンジン。'
+      zh: '对《艾尔登法环》开放世界关卡流向与箱庭设计的深度拆解，分析其视觉引导与碎片化叙事的结合点。',
+      en: 'A deep deconstruction of Elden Ring\'s open-world level flow and sandbox design, analyzing the intersection of visual guidance and environmental storytelling.',
+      ja: '「エルデンリング」のオープンワールドのレベルフローと箱庭設計の深い解体分析。視覚的誘導と環境ストーリーテリングの結合点を分析。'
     },
     image: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&q=80&w=800',
-    tags: ['Rust', 'Vulkan', 'Compute Shaders'],
+    tags: ['Level Design', 'Narrative', 'Mechanics'],
     link: '#',
     github: '#'
   }
@@ -94,6 +108,39 @@ const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.Re
 );
 
 const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string; key?: string }) => {
+  const CardContent = (
+    <>
+      <div className="aspect-video relative overflow-hidden border-b-2 border-brand-black">
+        <img 
+          src={project.image} 
+          alt={project.title} 
+          className="object-cover w-full h-full transition-all duration-500"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute top-0 left-0 bg-brand-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter">
+          {(translations[lang].sections.portfolio as any).categories[project.category] || project.category}
+        </div>
+      </div>
+      
+      <div className="p-6">
+        <h3 className="text-2xl font-display font-black mb-3 leading-none uppercase group-hover:text-brand-primary transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-brand-black font-medium text-sm mb-6 leading-relaxed">
+          {project.description[lang]}
+        </p>
+        
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map(tag => (
+            <span key={tag} className="text-[9px] font-black bg-brand-black text-white px-2 py-0.5 uppercase tracking-tighter">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <motion.div 
       layout
@@ -102,39 +149,15 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
       exit={{ opacity: 0, scale: 0.9 }}
       className={`group relative bg-white brutalist-border overflow-hidden transition-all hover:-translate-y-1 ${className}`}
     >
-      <div className="aspect-video relative overflow-hidden border-b-2 border-brand-black">
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute top-0 left-0 bg-brand-black text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter">
-          {project.category}
+      {project.link && project.link !== '#' ? (
+        <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+          {CardContent}
+        </a>
+      ) : (
+        <div className="h-full">
+          {CardContent}
         </div>
-      </div>
-      
-      <div className="p-6">
-        <h3 className="text-2xl font-display font-black mb-3 leading-none uppercase group-hover:text-brand-primary transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-brand-black font-medium text-sm mb-6 leading-tight h-[48px] overflow-hidden line-clamp-3">
-          {project.description[lang]}
-        </p>
-        
-        <div className="flex flex-wrap gap-2 mb-8">
-          {project.tags.map(tag => (
-            <span key={tag} className="text-[9px] font-black bg-brand-black text-white px-2 py-0.5 uppercase tracking-tighter">
-              {tag}
-            </span>
-          ))}
-        </div>
-        
-        <div className="flex items-center gap-4 pt-4 border-t-2 border-brand-black/5">
-          <Github size={20} className="text-brand-black/30 hover:text-brand-black cursor-pointer transition-colors" />
-          <Rocket size={20} className="text-brand-black/30 hover:text-brand-primary cursor-pointer transition-colors ml-auto" />
-        </div>
-      </div>
+      )}
     </motion.div>
   );
 };
@@ -224,12 +247,12 @@ export default function App() {
               {t.hero.subtitle}
             </p>
             <div className="flex flex-wrap gap-6">
-              <button className="bg-brand-black text-white px-12 py-6 font-display font-black uppercase tracking-widest brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center gap-3 text-lg">
+              <a href="#works" className="bg-brand-black text-white px-12 py-6 font-display font-black uppercase tracking-widest brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center gap-3 text-lg">
                 {t.hero.btnRepo} <ChevronRight size={24} />
-              </button>
-              <button className="bg-white border-2 border-brand-black px-12 py-6 font-display font-black uppercase tracking-widest hover:bg-brand-black hover:text-white transition-all flex items-center gap-3 text-lg brutalist-border">
+              </a>
+              <a href="#contact" className="bg-white border-2 border-brand-black px-12 py-6 font-display font-black uppercase tracking-widest hover:bg-brand-black hover:text-white transition-all flex items-center gap-3 text-lg brutalist-border">
                 {t.hero.btnContact} <Mail size={24} />
-              </button>
+              </a>
             </div>
           </motion.div>
 
@@ -266,13 +289,13 @@ export default function App() {
               >
                 {t.sections.portfolio.all}
               </button>
-              {(['PC', 'Mobile', 'Console', 'Tools'] as const).map(tab => (
+              {(['游戏拆解', 'PC'] as const).map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`px-8 py-3 font-display font-black uppercase text-sm brutalist-border transition-all ${activeTab === tab ? 'bg-brand-primary text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white hover:bg-brand-accent'}`}
                 >
-                  {tab}
+                  {(t.sections.portfolio as any).categories[tab] || tab}
                 </button>
               ))}
             </div>
