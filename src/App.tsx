@@ -37,6 +37,20 @@ interface Project {
 // --- Mock Data ---
 const PROJECTS: Project[] = [
   {
+    id: '8',
+    title: 'GhostCookies',
+    category: 'PC',
+    description: {
+      zh: '2D 益智类网页游戏 | Unity 引擎 | 2025 Brackeys Jam 7 天极限创作赛事参赛作品。以 “鬼魂吃饼干” 为核心玩法，针对 H5 平台特性深度适配优化，独自完成策划、程序开发及音乐与音效设计。',
+      en: '2D Puzzle Web Game developed in Unity for 2025 Brackeys Jam 7-day challenge. Features "Ghost eating cookies" core gameplay, deeply optimized for H5 platforms. Roles: Design, Development, Music & Sound.',
+      ja: 'Unityで制作された2Dパズルウェブゲーム。2025 Brackeys Jam 7日間ジャム参加作品。「幽霊がクッキーを食べる」核心的な遊び。H5プラットフォーム向けに最適化。役割：企画、開発、音楽、効果音。'
+    },
+    image: '/covers/gc.png',
+    tags: ['策划', '程序开发', '音乐', 'Unity'],
+    link: 'https://volticx.itch.io/ghostcookies',
+    github: '#'
+  },
+  {
     id: '4',
     title: '404 Princess Not Found',
     category: 'PC',
@@ -163,7 +177,7 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
       </div>
       
       <div className="p-6">
-        <h3 className="text-2xl font-display font-black mb-3 leading-none uppercase group-hover:text-brand-primary transition-colors">
+        <h3 className="text-2xl font-display font-black mb-3 leading-none group-hover:text-brand-primary transition-colors">
           {project.title}
         </h3>
         <p className="text-brand-black font-medium text-sm mb-6 leading-relaxed">
