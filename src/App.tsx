@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence, Reorder } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   Gamepad2, 
   Cpu, 
@@ -18,8 +18,7 @@ import {
   Layout,
   Briefcase,
   Monitor,
-  Shapes,
-  GripVertical
+  Shapes
 } from 'lucide-react';
 import { translations, Language } from './translations';
 
@@ -165,12 +164,12 @@ const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.Re
 
 const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string; key?: string | number }) => {
   const CardContent = (
-    <div className={`group relative h-full bg-white brutalist-border overflow-hidden transition-all hover:rotate-0 hover:scale-[1.02] ${className} origin-center cursor-grab active:cursor-grabbing`}>
+    <div className={`group relative h-full bg-white brutalist-border overflow-hidden transition-all hover:rotate-0 hover:scale-[1.02] ${className} origin-center`}>
       <div className="aspect-video relative overflow-hidden border-b-2 border-brand-black bg-brand-black/5">
         <img 
           src={project.image} 
           alt={project.title} 
-          className="object-cover w-full h-full transition-all duration-500 rounded-none pointer-events-none"
+          className="object-cover w-full h-full transition-all duration-500 rounded-none"
           referrerPolicy="no-referrer"
           onError={(e) => {
             console.error(`Failed to load image: ${project.image}`);
@@ -179,9 +178,6 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
         />
         <div className="absolute top-0 left-0 bg-brand-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter">
           {(translations[lang].sections.portfolio as any).categories[project.category] || project.category}
-        </div>
-        <div className="absolute top-0 right-0 bg-brand-black text-white p-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          <GripVertical size={16} />
         </div>
       </div>
       
@@ -205,18 +201,15 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
   );
 
   return (
-    <Reorder.Item 
-      value={project}
-      id={project.id}
+    <motion.div 
+      layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      className="p-2 cursor-auto"
+      className="p-2"
     >
       {project.link && project.link !== '#' ? (
-        <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full" onClick={(e) => {
-          // Prevent click if recently dragged
-        }}>
+        <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full">
           {CardContent}
         </a>
       ) : (
@@ -224,38 +217,19 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           {CardContent}
         </div>
       )}
-    </Reorder.Item>
+    </motion.div>
   );
 };
 
 export default function App() {
   const [lang, setLang] = useState<Language>('zh');
   const [activeTab, setActiveTab] = useState<'all' | Project['category']>('all');
-  const [projects, setProjects] = useState<Project[]>(PROJECTS);
 
   const t = translations[lang];
 
   const filteredProjects = activeTab === 'all' 
-    ? projects 
-    : projects.filter(p => p.category === activeTab);
-
-  const handleReorder = (newFilteredOrder: Project[]) => {
-    if (activeTab === 'all') {
-      setProjects(newFilteredOrder);
-    } else {
-      const newProjects = [...projects];
-      // Get indices of the items belonging to the current category in the original list
-      const indices = projects
-        .map((p, i) => p.category === activeTab ? i : -1)
-        .filter(i => i !== -1);
-      
-      // Replace items at those indices with items from newFilteredOrder in order
-      indices.forEach((index, i) => {
-        newProjects[index] = newFilteredOrder[i];
-      });
-      setProjects(newProjects);
-    }
-  };
+    ? PROJECTS 
+    : PROJECTS.filter(p => p.category === activeTab);
 
   return (
     <div className="min-h-screen selection:bg-brand-primary selection:text-white pb-10">
@@ -386,12 +360,7 @@ export default function App() {
             </div>
           </div>
 
-          <Reorder.Group 
-            axis="y" 
-            values={filteredProjects} 
-            onReorder={handleReorder}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-12"
-          >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, idx) => (
                 <ProjectCard 
@@ -402,7 +371,7 @@ export default function App() {
                 />
               ))}
             </AnimatePresence>
-          </Reorder.Group>
+          </div>
         </section>
 
         {/* About */}
