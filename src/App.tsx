@@ -87,7 +87,7 @@ const PROJECTS: Project[] = [
       en: 'Focuses on Deep Rock Galactic\'s "switchable permanent seasons + linear progress + non-linear reward tree" design, analyzing how it achieves long-term player friendly experience through high autonomy.',
       ja: '「Deep Rock Galactic」の「いつでも切り替え可能な永久シーズン＋線形進捗＋非線形報酬ツリー」のコア設計に焦点を当て、時間制約の排除と高い自主性による長期的なプレイヤー体験を分析。'
     },
-    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800',
+    image: '/covers/dr.png',
     tags: ['通行证设计', '系统分析', '数值构架'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/BnVjfi28ulUhZkdw4NIcoFimnid',
     github: '#'
@@ -101,51 +101,9 @@ const PROJECTS: Project[] = [
       en: 'Deeply analyzes Sky: Children of the Light\'s social system focused on "emotional connection," exploring non-verbal communication, lightweight cooperation, and the design trade-offs of the anonymity mechanism.',
       ja: '「Sky 星を紡ぐ子どもたち」の「情緒的な繋がり」を核心としたソーシャルシステムを深く解析。非言語コミュニケーション、軽量な協調、匿名メカニズムの設計上の選択を剖析。'
     },
-    image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800',
+    image: '/covers/gy.png',
     tags: ['社交系统', '交互设计', '3C逻辑'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
-    github: '#'
-  },
-  {
-    id: '1',
-    title: 'Neon Odyssey',
-    category: 'PC',
-    description: {
-      zh: '深度设计的赛博朋克肉鸽游戏，专注于快节奏战斗系统的打击感优化与随机关卡生成的逻辑构架。',
-      en: 'A deeply designed cyberpunk rogue-like, focusing on combat feel optimization and the logical framework of procedural level generation.',
-      ja: 'サイバーパンクなローグライクゲーム。テンポの良い戦闘系统的优化と、ランダム生成ステージの论理的フレームワークに焦点を当てています。'
-    },
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
-    tags: ['System Design', 'Combat', 'Rogue-like'],
-    link: '#',
-    github: '#'
-  },
-  {
-    id: '2',
-    title: 'Pixel Tactics',
-    category: 'PC',
-    description: {
-      zh: '多人策略对战游戏，核心在于回合制平衡性设计、技能克制矩阵以及玩家交互心智模型的构建。',
-      en: 'Multiplayer strategy game centered on turn-based balance design, skill counter matrices, and the construction of player mental models.',
-      ja: 'マルチプレイヤー戦略ゲーム。ターン制のバランス設計、スキルカウンターのマトリックス、プレイヤーのメンタルモデルの構築が核心です。'
-    },
-    image: 'https://images.unsplash.com/photo-1592609931095-54a2168ae893?auto=format&fit=crop&q=80&w=800',
-    tags: ['Balance Design', 'Strategy', 'UI/UX'],
-    link: '#',
-    github: '#'
-  },
-  {
-    id: '3',
-    title: 'Deep Analysis: Elden Ring',
-    category: '游戏拆解',
-    description: {
-      zh: '对《艾尔登法环》开放世界关卡流向与箱庭设计的深度拆解，分析其视觉引导与碎片化叙事的结合点。',
-      en: 'A deep deconstruction of Elden Ring\'s open-world level flow and sandbox design, analyzing the intersection of visual guidance and environmental storytelling.',
-      ja: '「エルデンリング」のオープンワールドのレベルフローと箱庭设计の深い解体分析。视覚的誘導と环境ストーリーテリングの结合点を分析。'
-    },
-    image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=800',
-    tags: ['Level Design', 'Narrative', 'Mechanics'],
-    link: '#',
     github: '#'
   }
 ];
