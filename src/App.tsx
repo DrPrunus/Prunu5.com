@@ -162,18 +162,20 @@ const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.Re
   </div>
 );
 
-const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string; key?: string | number }) => {
+const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string }) => {
+  const [imageError, setImageError] = useState(false);
+
   const CardContent = (
     <div className={`group relative h-full bg-white brutalist-border overflow-hidden transition-all hover:rotate-0 hover:scale-[1.02] ${className} origin-center`}>
       <div className="aspect-video relative overflow-hidden border-b-2 border-brand-black bg-brand-black/5">
         <img 
-          src={project.image} 
+          src={imageError ? `https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800&sig=${project.id}` : project.image} 
           alt={project.title} 
           className="object-cover w-full h-full transition-all duration-500 rounded-none"
           referrerPolicy="no-referrer"
-          onError={(e) => {
+          onError={() => {
             console.error(`Failed to load image: ${project.image}`);
-            // No longer forcing Unsplash fallback so user can see their own images
+            setImageError(true);
           }}
         />
         <div className="absolute top-0 left-0 bg-brand-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter">
