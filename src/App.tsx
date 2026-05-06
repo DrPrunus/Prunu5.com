@@ -105,6 +105,34 @@ const PROJECTS: Project[] = [
     tags: ['社交系统', '交互设计', '3C逻辑'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
     github: '#'
+  },
+  {
+    id: '9',
+    title: 'Connection',
+    category: 'PC',
+    description: {
+      zh: '一款深度的角色养成模拟游戏，玩家通过管理多种属性指标来引导女儿的成长轨迹，探索成长过程中的可能性与羁绊。',
+      en: 'A deep character growth simulation game where players guide their daughter\'s growth through a variety of attributes, exploring possibilities and connections.',
+      ja: '深いキャラクター育成シミュレーションゲーム。プレイヤーはさまざまな属性を管理することで娘の成長を導き、成長過程における可能性と絆を探索します。'
+    },
+    image: '/covers/c.jpg',
+    tags: ['养成模拟', '角色设计', '数值策划'],
+    link: 'https://tzzsleep.itch.io/connection',
+    github: '#'
+  },
+  {
+    id: '10',
+    title: '完美通关',
+    category: 'PC',
+    description: {
+      zh: '有时候通关并不是游戏的终点，试试利用道具，达成完美通关吧！玩家需要通过鼠标点击规划路径，并在特定关卡巧用获得的道具来达成“完美”成就。',
+      en: 'Clearing the level is just the beginning. Use items strategically to achieve a "Perfect Clear"! A puzzle game focused on path planning and item management.',
+      ja: 'クリアは終わりではありません。アイテムを駆使して「パーフェクトクリア」を目指しましょう！パスプランニングとアイテム使用が鍵となるパズルゲーム。'
+    },
+    image: '/covers/pc.png',
+    tags: ['关卡设计', '解谜逻辑', '道具系统'],
+    link: 'https://034gamejam.uneoon.com/games/24',
+    github: '#'
   }
 ];
 
@@ -293,9 +321,7 @@ export default function App() {
                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-brand-accent -rotate-12 flex items-center justify-center">
                  <Gamepad2 size={64} className="text-brand-black" />
                </div>
-               <div className="absolute bottom-4 right-4 text-white font-mono text-[8px] opacity-30 text-right">
-                 COMPOSITION_01<br />AXIS_Y_REDACTED
-               </div>
+
             </div>
             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-accent brutalist-border -rotate-6 z-20 flex items-center justify-center">
                <Cpu size={64} className="text-brand-black" />
