@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Gamepad2, 
   Cpu, 
-  Code2, 
   Rocket, 
   Github, 
   Twitter, 
@@ -12,7 +11,14 @@ import {
   Layers,
   Terminal,
   User,
-  Languages
+  Languages,
+  Code2,
+  Music,
+  Palette,
+  Layout,
+  Briefcase,
+  Monitor,
+  Shapes
 } from 'lucide-react';
 import { translations, Language } from './translations';
 
@@ -144,7 +150,7 @@ export default function App() {
     : PROJECTS.filter(p => p.category === activeTab);
 
   return (
-    <div className="min-h-screen selection:bg-brand-primary selection:text-white pb-20">
+    <div className="min-h-screen selection:bg-brand-primary selection:text-white pb-10">
       {/* Background Decor */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-brand-bg" />
       <div className="fixed inset-0 pointer-events-none opacity-[0.05] -z-10" 
@@ -162,7 +168,7 @@ export default function App() {
             <div className="w-10 h-10 bg-brand-primary flex items-center justify-center -rotate-3 hover:rotate-0 transition-transform cursor-pointer brutalist-border border-white">
               <span className="text-white font-display font-black text-2xl">桃</span>
             </div>
-            <span className="hidden sm:inline text-lg tracking-tighter normal-case">DrPrunus</span>
+            <span className="hidden sm:inline text-lg tracking-tighter normal-case font-sans">DrPrunus</span>
           </motion.div>
           
           <div className="flex items-center gap-8">
@@ -201,7 +207,7 @@ export default function App() {
       </nav>
 
       {/* Hero */}
-      <header id="intro" className="relative pt-24 pb-32 px-6 max-w-7xl mx-auto">
+      <header id="intro" className="relative pt-12 pb-20 px-6 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -246,7 +252,7 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 space-y-48">
+      <main className="max-w-7xl mx-auto px-6 space-y-24">
         
         {/* Projects */}
         <section id="works">
@@ -284,42 +290,77 @@ export default function App() {
         {/* About */}
         <section id="about" className="relative">
           <div className="absolute top-0 left-0 w-full h-full diagonal-line opacity-5 -z-10" />
-          <div className="max-w-4xl mx-auto relative">
-            <div className="absolute -top-10 -left-10 w-20 h-20 bg-brand-primary z-0" />
-            <div className="relative z-10 font-bold">
+          <div className="max-w-5xl mx-auto relative px-6">
+            <div className="absolute -top-10 -left-10 w-20 h-20 bg-brand-primary z-0 opacity-50" />
+            <div className="relative z-10">
               <SectionHeading icon={User} subtitle={t.sections.about.subtitle}>{t.sections.about.title}</SectionHeading>
-              <div className="space-y-10 text-brand-black text-xl leading-tight">
-                <p className="bg-white p-10 brutalist-border collage-rotate-left italic underline decoration-brand-primary decoration-8 underline-offset-8">
-                  {t.sections.about.p1}
-                </p>
-                <p className="bg-brand-accent p-10 brutalist-border collage-rotate-right">
-                  {t.sections.about.p2}
-                </p>
-                <p className="bg-white p-10 brutalist-border -rotate-1">
-                  {t.sections.about.p3}
-                </p>
-                
-                <div className="pt-10 grid sm:grid-cols-2 gap-12">
-                  <div className="bg-white p-8 brutalist-border">
-                    <h4 className="text-brand-primary font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-primary pb-2">
-                      {t.sections.about.tech}
+              
+              <div className="grid lg:grid-cols-12 gap-12 mt-16">
+                {/* Text Content */}
+                <div className="lg:col-span-12 space-y-8">
+                  <div className="flex gap-6 items-start bg-white p-8 brutalist-border collage-rotate-left hover:rotate-0 transition-transform">
+                    <div className="bg-brand-primary p-4 brutalist-border flex-shrink-0">
+                      <Terminal className="text-white w-8 h-8" />
+                    </div>
+                    <div>
+                      <p className="text-xl font-bold leading-tight decoration-brand-primary/30 decoration-4 underline-offset-4">
+                        {t.sections.about.p1}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-6 items-start bg-brand-accent p-8 brutalist-border collage-rotate-right hover:rotate-0 transition-transform">
+                    <div className="bg-brand-black p-4 brutalist-border flex-shrink-0">
+                      <Music className="text-white w-8 h-8" />
+                    </div>
+                    <div>
+                      <p className="text-xl font-bold leading-tight">
+                        {t.sections.about.p2}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-6 items-start bg-white p-8 brutalist-border -rotate-1 hover:rotate-0 transition-transform">
+                    <div className="bg-brand-primary p-4 brutalist-border flex-shrink-0">
+                      <Layout className="text-white w-8 h-8" />
+                    </div>
+                    <div>
+                      <p className="text-xl font-bold leading-tight">
+                        {t.sections.about.p3}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tech Grids */}
+                <div className="lg:col-span-6">
+                  <div className="bg-white p-8 brutalist-border h-full">
+                    <h4 className="text-brand-primary font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-primary pb-2 flex items-center gap-3">
+                      <Monitor className="w-6 h-6" /> {t.sections.about.tech}
                     </h4>
-                    <ul className="text-sm font-black font-mono space-y-4">
-                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> UNREAL ENGINE 5</li>
-                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> C++ // RUST // C#</li>
-                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> VULKAN API</li>
-                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-black" /> HLSL / GLSL</li>
+                    <ul className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm font-black font-mono">
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> UNITY // C#</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> GODOT ENGINE</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> UNREAL ENGINE</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> PYTHON // REN'PY</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> FL STUDIO</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> ASEPRITE</li>
                     </ul>
                   </div>
-                  <div className="bg-brand-black text-white p-8 brutalist-border">
-                    <h4 className="text-brand-accent font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-accent pb-2">
-                      {t.sections.about.disciplines}
+                </div>
+
+                <div className="lg:col-span-6">
+                  <div className="bg-brand-black text-white p-8 brutalist-border h-full">
+                    <h4 className="text-brand-accent font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-accent pb-2 flex items-center gap-3">
+                      <Briefcase className="w-6 h-6" /> {t.sections.about.disciplines}
                     </h4>
-                    <ul className="text-sm font-black font-mono space-y-4">
-                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> GRAPHICS DEV</li>
-                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> GAME DESIGN</li>
-                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> TECH ART</li>
-                      <li className="flex items-center gap-3"><div className="w-3 h-3 bg-brand-accent" /> SYSTEM ARCH</li>
+                    <ul className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm font-black font-mono">
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 项目策划 // 通信</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 原型设计 (AXURE)</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> XMIND 流程规划</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 独立逻辑实现</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 音美全栈制作</li>
+                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 系统构架设计</li>
                     </ul>
                   </div>
                 </div>
@@ -329,26 +370,20 @@ export default function App() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="py-20 relative text-center">
+        <section id="contact" className="py-10 relative text-center">
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-4 bg-brand-black -z-10 opacity-10" />
           <SectionHeading icon={Rocket} subtitle={t.sections.contact.subtitle}>{t.sections.contact.title}</SectionHeading>
-          <div className="max-w-4xl mx-auto bg-white brutalist-border p-20 rotate-1 relative">
-            <div className="absolute -top-12 -right-12 w-32 h-32 bg-brand-accent rounded-full border-8 border-brand-black flex items-center justify-center font-black text-6xl">!</div>
-            <p className="text-brand-black text-4xl mb-16 font-black uppercase tracking-tight leading-[0.9] italic">
-              "{t.sections.contact.text}"
-            </p>
+          <div className="max-w-4xl mx-auto bg-white brutalist-border p-10 rotate-1 relative">
+            <div className="absolute -top-12 -right-12 w-24 h-24 bg-brand-accent rounded-full border-8 border-brand-black flex items-center justify-center font-black text-4xl">!</div>
+            {t.sections.contact.text && (
+              <p className="text-brand-black text-4xl mb-10 font-black uppercase tracking-tight leading-[0.9] italic">
+                "{t.sections.contact.text}"
+              </p>
+            )}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
-              <a href="mailto:contact@example.com" className="w-full sm:w-auto bg-brand-primary text-white px-16 py-8 font-display font-black uppercase tracking-widest brutalist-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all flex items-center justify-center gap-4 text-2xl">
-                <Mail size={32} /> {t.sections.contact.btnEmail}
+              <a href="mailto:2279670554@qq.com" className="w-full sm:w-auto bg-brand-primary text-white px-10 py-5 font-display font-black tracking-widest brutalist-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all flex items-center justify-center gap-4 text-xl">
+                <Mail size={24} /> {t.sections.contact.btnEmail}
               </a>
-              <div className="flex gap-6">
-                <a href="#" className="w-24 h-24 bg-brand-black text-white flex items-center justify-center brutalist-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all">
-                  <Github size={48} />
-                </a>
-                <a href="#" className="w-24 h-24 bg-brand-accent text-brand-black flex items-center justify-center brutalist-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all">
-                  <Twitter size={48} />
-                </a>
-              </div>
             </div>
           </div>
         </section>
@@ -356,24 +391,11 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-60 border-t-[16px] border-brand-black bg-brand-black text-white px-6 py-24 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none font-black text-[12rem] leading-[0.8] break-all select-none rotate-6">
-          DrPrunus DrPrunus DrPrunus DrPrunus
-        </div>
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
-          <div>
-            <div className="text-6xl font-display font-black mb-6 tracking-tighter leading-none border-b-8 border-brand-primary inline-block">
-              DrPrunus
-            </div>
-            <p className="text-white/40 font-mono text-sm font-black uppercase tracking-[0.3em] mt-4">
-              © {new Date().getFullYear()} // {t.footer.rights}
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-x-16 gap-y-8 font-display font-black text-lg uppercase tracking-widest md:justify-end">
-            <a href="#" className="hover:text-brand-primary transition-colors underline decoration-4 underline-offset-8">{t.footer.privacy}</a>
-            <a href="#" className="hover:text-brand-primary transition-colors underline decoration-4 underline-offset-8">{t.footer.terms}</a>
-            <a href="#" className="hover:text-brand-primary transition-colors underline decoration-4 underline-offset-8">{t.footer.logs}</a>
-          </div>
+      <footer className="mt-10 border-t-8 border-brand-black bg-brand-black text-white px-6 py-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <p className="text-white/40 text-lg font-medium tracking-wide">
+            © 2026 DrPrunus
+          </p>
         </div>
       </footer>
     </div>

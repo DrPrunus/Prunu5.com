@@ -20,17 +20,17 @@ export const translations = {
     sections: {
       portfolio: {
         title: '项目作品',
-        subtitle: '已验证的构造',
+        subtitle: '',
         all: '全部类别',
       },
       about: {
         title: '关于我',
-        subtitle: '技能与背景',
-        p1: '熟悉 C#（Unity 开发）与 Python（脚本/工具开发/Ren’Py 开发），能够在游戏项目中独立承担逻辑实现与工具制作，具备 UE 快速关卡原型能力。',
-        p2: '熟悉 Godot 引擎，具备一定的跨引擎开发与系统设计能力。熟练使用 FL Studio 进行音频制作与编辑，熟练使用 Aseprite 进行美术制作。',
-        p3: '善于使用 Axure、XMind 等策划工具进行原型设计与流程规划，具备较强的项目策划与沟通表达能力。',
-        tech: '技术堆栈',
-        disciplines: '核心学科',
+        subtitle: '',
+        p1: '我是一名专注于项目导向的游戏开发者，致力于在设计、技术实现与项目管理之间寻找平衡。我不仅追求代码的严谨，更在乎作品最终传达的情感与体验。',
+        p2: '在开发之余，我也是一名音乐爱好者与像素画创作者。我习惯使用 FL Studio 捕捉灵感片段，并用 Aseprite 勾勒奇思妙想。我始终相信，多维度的感官体验是塑造游戏灵魂的关键。',
+        p3: '无论是独立的逻辑攻坚，还是复杂的流程规划，我都能以全栈思维切入。我正不断探索跨引擎开发的无限可能，力求将每一个概念草图转化为触手可及的数字现实。',
+        tech: '软件与技术',
+        disciplines: '专业领域',
       },
       pipeline: {
         title: '生产流水线状态',
@@ -44,16 +44,10 @@ export const translations = {
       },
       contact: {
         title: '联系我',
-        subtitle: '建立通信',
-        text: '准备好开始一场数字革命了吗？我的通信频道已经开启。',
-        btnEmail: '发送指令',
+        subtitle: '',
+        text: '',
+        btnEmail: '2279670554@qq.com',
       }
-    },
-    footer: {
-      rights: '版权所有 // 系统状态: 完美',
-      privacy: '隐私协议',
-      terms: '使用条款',
-      logs: '行为日志',
     }
   },
   en: {
@@ -61,7 +55,7 @@ export const translations = {
       intro: 'Profile',
       works: 'Works',
       about: 'About Me',
-      contact: 'Contact',
+      contact: 'Contact Me',
       status: '',
     },
     hero: {
@@ -75,16 +69,16 @@ export const translations = {
     sections: {
       portfolio: {
         title: 'Works',
-        subtitle: 'Verified Constructs',
+        subtitle: '',
         all: 'All Categories',
       },
       about: {
         title: 'About Me',
-        subtitle: 'Skills & Background',
-        p1: 'Proficient in C# (Unity development) and Python (scripting / tool development / Ren’Py dev), capable of independently handling logic implementation and tool creation in game projects, with UE rapid level prototyping skills.',
-        p2: 'Familiar with Godot Engine, possessing cross-engine development and system design capabilities. Skilled in using FL Studio for audio production and editing, and Aseprite for pixel art creation.',
-        p3: 'Expert at using Axure, XMind, and other planning tools for prototyping and workflow design, with strong communication and project planning skills.',
-        tech: 'Tech Stack',
+        subtitle: '',
+        p1: 'I am a project-oriented game developer thriving at the intersection of design, technical implementation, and project management. I strive for code precision while prioritizing the ultimate emotional impact of the player experience.',
+        p2: 'Beyond development, I am a music enthusiast and pixel artist. I regularly use FL Studio to capture melodic inspirations and Aseprite to illustrate imaginative ideas. I believe multi-sensory experiences are vital to a game\'s soul.',
+        p3: 'Whether tackling solo logic challenges or complex workflow planning, I bring a full-stack mindset to every project. I am constantly exploring cross-engine possibilities to transform concept sketches into tangible digital realities.',
+        tech: 'Software & Tech',
         disciplines: 'Core Disciplines',
       },
       pipeline: {
@@ -98,17 +92,11 @@ export const translations = {
         refill: 'WARNING: REFILL NOW',
       },
       contact: {
-        title: 'Contact',
-        subtitle: 'Establish Comms',
-        text: 'Ready to start a digital revolution? My communication channel is open.',
-        btnEmail: 'Send Command',
+        title: 'Contact Me',
+        subtitle: '',
+        text: '',
+        btnEmail: '2279670554@qq.com',
       }
-    },
-    footer: {
-      rights: 'ALL_SYSTEMS_OPTIMIZED',
-      privacy: 'Privacy_Terms',
-      terms: 'Usage_Rules',
-      logs: 'Action_Logs',
     }
   },
   ja: {
@@ -116,7 +104,7 @@ export const translations = {
       intro: 'プロフィール',
       works: 'プロジェクト',
       about: '私について',
-      contact: 'お問い合わせ',
+      contact: '連絡',
       status: '',
     },
     hero: {
@@ -125,20 +113,20 @@ export const translations = {
       titleEnd: 'し、再定義する',
       subtitle: '私はコードを通じて、インタラクティブでインパクトのあるゲーム体験を構築します。すべての行が構造であり、すべての相互作用が実験です。',
       btnRepo: 'プロジェクトを見る',
-      btnContact: 'お問い合わせ',
+      btnContact: '連絡',
     },
     sections: {
       portfolio: {
         title: 'プロジェクト',
-        subtitle: '検証済み構造物',
+        subtitle: '',
         all: 'すべて',
       },
       about: {
         title: '私について',
-        subtitle: 'スキルと背景',
-        p1: 'C#（Unity開発）とPython（スクリプト/ツール開発/Ren’Py開発）に精通し、ゲームプロジェクトでロジック実装とツール制作を独立して担当できます。UEでの迅速なレベルプロトタイピングが可能です。',
-        p2: 'Godotエンジンに精通しており、クロスエンジン開発とシステム設計の能力を備えています。FL Studioを使用したオーディオ制作・編集や、Asepriteを使用したドット絵制作に熟練しています。',
-        p3: 'AxureやXMindなどのプランニングツールを使用したプロトタイプ設計とワークフロー計画に長けており、強いコミュニケーション能力とプロジェクト企画力を持ち合わせています。',
+        subtitle: '',
+        p1: '私はデザイン、技術実装、プロジェクト管理の交差点で活躍する、プロジェクト指向のゲーム開発者です。コードの精密さを追求しつつ、プレイヤー体験がもたらす感情的なインパクトを最も大切にしています。',
+        p2: '開発以外では、熱心な音楽ファンでありピクセルアーティストでもあります。FL Studioでインスピレーションを形にし、Asepriteで想像力豊かなアイデアを描き出すのが日課です。多角的な感覚体验こそがゲームの魂を形作ると信じています。',
+        p3: '单独のロジック開発から複雑なワークフロー計画まで、あらゆるプロジェクトにフルスタックの思考で取り組みます。现在、コンセプトスケッチを確かなデジタルリアリティへと変えるため、エンジンを超えた開発の可能性を常に模索しています。',
         tech: '技術スタック',
         disciplines: '専門分野',
       },
@@ -153,17 +141,11 @@ export const translations = {
         refill: '警告: 補充が必要',
       },
       contact: {
-        title: 'お問い合わせ',
-        subtitle: '通信確立',
-        text: 'デジタル革命を始める準備はできていますか？私の通信チャネルは開いています。',
-        btnEmail: 'コマンド送信',
+        title: '連絡',
+        subtitle: '',
+        text: '',
+        btnEmail: '2279670554@qq.com',
       }
-    },
-    footer: {
-      rights: '全システム最適化済み',
-      privacy: 'プライバシー',
-      terms: '利用規約',
-      logs: '動作ログ',
     }
   }
 };
