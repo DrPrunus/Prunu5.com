@@ -164,11 +164,22 @@ const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.Re
 
 // --- Helpers ---
 const getImageUrl = (path: string) => {
+  if (!path) return '';
   if (path.startsWith('http')) return path;
-  // In development/production, we can prepend the current origin to make it an absolute URL
-  // This helps when the data is consumed by other sites or when absolute paths are needed.
-  const origin = typeof window !== 'undefined' ? window.location.origin : '';
-  return `${origin}${path}`;
+  
+  // Clean the path to avoid double slashes
+  const cleanPath = path.startsWith('/') ? path.substring(1) : path;
+  
+  // Use import.meta.env.BASE_URL for stable relative paths
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const relativePath = baseUrl.endsWith('/') ? `${baseUrl}${cleanPath}` : `${baseUrl}/${cleanPath}`;
+
+  // If we are in the browser, provide a full URL to help external sites like prunu5.com
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+    return `${window.location.origin}${relativePath.startsWith('/') ? '' : '/'}${relativePath}`;
+  }
+  
+  return relativePath;
 };
 
 const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string; key?: string | number }) => {
@@ -183,9 +194,11 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           alt={project.title} 
           className="object-cover w-full h-full transition-all duration-500 rounded-none"
           referrerPolicy="no-referrer"
-          onError={() => {
-            console.error(`Failed to load image: ${imageUrl}. Falling back to Unsplash.`);
-            setImageError(true);
+          onError={(e) => {
+            console.warn(`Failed to load image at: ${imageUrl}. Check if the file exists in public/covers/`);
+            if (!imageError) {
+              setImageError(true);
+            }
           }}
         />
         <div className="absolute top-0 left-0 bg-brand-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter">
