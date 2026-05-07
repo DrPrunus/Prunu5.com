@@ -463,7 +463,6 @@ export default function App() {
         {/* Contact */}
         <section id="contact" className="py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-brand-black/5 -z-10" />
-          <div className="absolute top-1/2 left-0 w-full h-px bg-brand-black opacity-20 -z-10" />
           
           <div className="max-w-7xl mx-auto px-6">
             <SectionHeading icon={Rocket} subtitle={t.sections.contact.subtitle}>{t.sections.contact.title}</SectionHeading>
