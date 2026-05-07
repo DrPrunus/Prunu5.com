@@ -16,6 +16,7 @@ export const translations = {
       subtitle: '我致力于通过系统化的策划与技术实现，创造出独特且引人入胜的游戏世界。在逻辑与创意之间，将奇思妙想转化为玩家的沉浸式体验。',
       btnRepo: '查看项目',
       btnContact: '联系我',
+      btnMusic: '音乐主页',
     },
     sections: {
       portfolio: {
@@ -71,6 +72,7 @@ export const translations = {
       subtitle: 'I focus on creating unique and engaging game worlds through systematic planning and technical execution. Balancing logic and creativity to transform bold ideas into immersive player experiences.',
       btnRepo: 'View Works',
       btnContact: 'Contact Me',
+      btnMusic: 'NetEase Music',
     },
     sections: {
       portfolio: {
@@ -126,6 +128,7 @@ export const translations = {
       subtitle: '私は、体系的な企画と技術的な実現を通じて、ユニークで魅力的なゲームの世界を作り上げることに専念しています。論理と創造性のバランスを保ち、奇抜なアイデアをプレイヤーの没入体験へと変えていきます。',
       btnRepo: 'プロジェクトを見る',
       btnContact: '連絡',
+      btnMusic: '音楽主ページ',
     },
     sections: {
       portfolio: {

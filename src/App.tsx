@@ -312,14 +312,22 @@ export default function App() {
             <p className="text-brand-black text-xl max-w-xl mb-12 leading-tight font-black p-8 border-l-[12px] border-brand-primary bg-white brutalist-border">
               {t.hero.subtitle}
             </p>
-            <div className="flex flex-wrap gap-6">
-              <a href="#works" className="bg-brand-black text-white px-12 py-6 font-display font-black uppercase tracking-widest brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center gap-3 text-lg">
-                {t.hero.btnRepo} <ChevronRight size={24} />
-              </a>
-              <a href="#contact" className="bg-white border-2 border-brand-black px-12 py-6 font-display font-black uppercase tracking-widest hover:bg-brand-black hover:text-white transition-all flex items-center gap-3 text-lg brutalist-border">
-                {t.hero.btnContact} <Mail size={24} />
-              </a>
-            </div>
+              <div className="flex flex-wrap gap-6 pt-4">
+                <a href="#works" className="bg-brand-black text-white px-8 py-4 font-display font-black uppercase tracking-widest brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center gap-3 text-base">
+                  {t.hero.btnRepo} <ChevronRight size={20} />
+                </a>
+                <a href="#contact" className="bg-white border-2 border-brand-black px-8 py-4 font-display font-black uppercase tracking-widest hover:bg-brand-black hover:text-white transition-all flex items-center gap-3 text-base brutalist-border">
+                  {t.hero.btnContact} <Mail size={20} />
+                </a>
+                <a 
+                  href="https://music.163.com/#/artist?id=57703531" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-brand-accent border-2 border-brand-black px-8 py-4 font-display font-black uppercase tracking-widest hover:bg-brand-black hover:text-white transition-all flex items-center gap-3 text-base brutalist-border"
+                >
+                  {t.hero.btnMusic} <Music size={20} />
+                </a>
+              </div>
           </motion.div>
 
           <div className="lg:col-span-4 relative hidden lg:block">
