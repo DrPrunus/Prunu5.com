@@ -51,6 +51,8 @@ export const translations = {
         subtitle: '',
         text: '',
         btnEmail: '2279670554@qq.com',
+        btnWechat: 'DrPrunus',
+        btnGmail: 'prunu5h3ad@gmail.com',
       }
     }
   },
@@ -104,6 +106,8 @@ export const translations = {
         subtitle: '',
         text: '',
         btnEmail: '2279670554@qq.com',
+        btnWechat: 'DrPrunus',
+        btnGmail: 'prunu5h3ad@gmail.com',
       }
     }
   },
@@ -157,6 +161,8 @@ export const translations = {
         subtitle: '',
         text: '',
         btnEmail: '2279670554@qq.com',
+        btnWechat: 'DrPrunus',
+        btnGmail: 'prunu5h3ad@gmail.com',
       }
     }
   }

@@ -18,7 +18,8 @@ import {
   Layout,
   Briefcase,
   Monitor,
-  Shapes
+  Shapes,
+  MessageSquare
 } from 'lucide-react';
 import { translations, Language } from './translations';
 
@@ -223,8 +224,15 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
 export default function App() {
   const [lang, setLang] = useState<Language>('zh');
   const [activeTab, setActiveTab] = useState<'all' | Project['category']>('all');
+  const [copied, setCopied] = useState(false);
 
   const t = translations[lang];
+
+  const handleCopyWeChat = () => {
+    navigator.clipboard.writeText(t.sections.contact.btnWechat);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const filteredProjects = activeTab === 'all' 
     ? PROJECTS 
@@ -453,20 +461,84 @@ export default function App() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="py-10 relative text-center">
-          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-4 bg-brand-black -z-10 opacity-10" />
-          <SectionHeading icon={Rocket} subtitle={t.sections.contact.subtitle}>{t.sections.contact.title}</SectionHeading>
-          <div className="max-w-4xl mx-auto bg-white brutalist-border p-10 relative">
-            <div className="absolute -top-12 -right-12 w-24 h-24 bg-brand-accent rounded-full border-8 border-brand-black flex items-center justify-center font-black text-4xl">!</div>
-            {t.sections.contact.text && (
-              <p className="text-brand-black text-4xl mb-10 font-black uppercase tracking-tight leading-[0.9] italic">
-                "{t.sections.contact.text}"
-              </p>
-            )}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
-              <a href="mailto:2279670554@qq.com" className="w-full sm:w-auto bg-brand-primary text-white px-10 py-5 font-display font-black tracking-widest brutalist-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all flex items-center justify-center gap-4 text-xl">
-                <Mail size={24} /> {t.sections.contact.btnEmail}
-              </a>
+        <section id="contact" className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-brand-black/5 -z-10" />
+          <div className="absolute top-1/2 left-0 w-full h-px bg-brand-black opacity-20 -z-10" />
+          
+          <div className="max-w-7xl mx-auto px-6">
+            <SectionHeading icon={Rocket} subtitle={t.sections.contact.subtitle}>{t.sections.contact.title}</SectionHeading>
+            
+            <div className="max-w-4xl mx-auto mt-12 bg-white brutalist-border p-8 md:p-16 relative shadow-[20px_20px_0px_0px_rgba(0,0,0,1)]">
+              {/* Decorative Warning Element */}
+              <div className="absolute -top-8 -right-8 w-20 h-20 bg-brand-accent rounded-full border-4 border-brand-black flex items-center justify-center font-black text-3xl z-20 brutalist-shadow rotate-12">!</div>
+              
+              {t.sections.contact.text && (
+                <div className="mb-16">
+                  <p className="text-brand-black text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] italic text-left border-l-8 border-brand-primary pl-6">
+                    "{t.sections.contact.text}"
+                  </p>
+                </div>
+              )}
+
+              <div className="flex flex-col gap-8 md:gap-12">
+                {/* Email Channels */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <a href={`mailto:${t.sections.contact.btnEmail}`} className="group relative bg-brand-primary text-white p-6 md:p-8 brutalist-border brutalist-shadow hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all overflow-hidden">
+                    <div className="flex items-start justify-between mb-4">
+                      <Mail size={32} className="group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div className="text-left">
+                      <span className="block text-xs font-mono opacity-60 mb-1">QQ Email</span>
+                      <span className="text-lg sm:text-xl md:text-2xl font-black whitespace-nowrap tracking-tighter">{t.sections.contact.btnEmail}</span>
+                    </div>
+                  </a>
+
+                  <a href={`mailto:${t.sections.contact.btnGmail}`} className="group relative bg-brand-accent text-brand-black p-6 md:p-8 brutalist-border brutalist-shadow hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all overflow-hidden">
+                    <div className="flex items-start justify-between mb-4">
+                      <Mail size={32} className="group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div className="text-left">
+                      <span className="block text-xs font-mono opacity-60 mb-1">Gmail</span>
+                      <span className="text-lg sm:text-xl md:text-2xl font-black whitespace-nowrap tracking-tighter">{t.sections.contact.btnGmail}</span>
+                    </div>
+                  </a>
+                </div>
+
+                {/* WeChat Channel - Full Width */}
+                <button 
+                  onClick={handleCopyWeChat}
+                  className="w-full bg-brand-black text-white p-8 md:p-12 brutalist-border brutalist-shadow relative overflow-hidden group hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(255,255,255,0.1)] transition-all cursor-pointer"
+                >
+                  <div className="absolute top-0 right-0 w-48 h-full bg-brand-accent/10 skew-x-[-20deg] translate-x-24" />
+                  
+                  <AnimatePresence>
+                    {copied && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="absolute inset-0 flex items-center justify-center bg-brand-accent/90 z-30"
+                      >
+                        <span className="text-brand-black text-4xl font-black uppercase tracking-widest flex items-center gap-4">
+                          <Rocket className="animate-bounce" /> {lang === 'zh' ? '已复制！' : 'COPIED!'}
+                        </span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                    <div className="w-20 h-20 bg-brand-accent flex items-center justify-center brutalist-border rotate-3 group-hover:rotate-0 transition-transform">
+                      <MessageSquare size={40} className="text-brand-black" />
+                    </div>
+                    <div className="text-center md:text-left">
+                      <span className="block text-sm text-brand-accent font-mono uppercase tracking-[0.3em] mb-2 font-black group-hover:text-white transition-colors">WeChat (Click to Copy)</span>
+                      <p className="text-4xl md:text-6xl font-black font-mono tracking-tighter text-white">
+                        {t.sections.contact.btnWechat}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </section>
