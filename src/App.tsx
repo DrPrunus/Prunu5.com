@@ -484,11 +484,11 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <a href={`mailto:${t.sections.contact.btnEmail}`} className="group relative bg-brand-primary text-white p-6 md:p-8 brutalist-border brutalist-shadow hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all overflow-hidden flex flex-col justify-between">
                     <div className="flex items-center justify-between mb-6">
-                      <span className="text-[10px] font-mono opacity-80 uppercase tracking-widest font-black">QQ Email</span>
+                      <span className="text-base font-mono opacity-100 uppercase tracking-widest font-black">QQ Email</span>
                       <Mail size={24} className="group-hover:rotate-12 transition-transform" />
                     </div>
                     <div className="text-left">
-                      <span className="text-lg sm:text-xl lg:text-2xl font-black whitespace-nowrap tracking-tighter block truncate">
+                      <span className="text-lg md:text-xl lg:text-2xl font-black whitespace-nowrap tracking-tighter block truncate">
                         {t.sections.contact.btnEmail}
                       </span>
                     </div>
@@ -496,11 +496,11 @@ export default function App() {
 
                   <a href={`mailto:${t.sections.contact.btnGmail}`} className="group relative bg-brand-accent text-brand-black p-6 md:p-8 brutalist-border brutalist-shadow hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all overflow-hidden flex flex-col justify-between">
                     <div className="flex items-center justify-between mb-6">
-                      <span className="text-[10px] font-mono opacity-80 uppercase tracking-widest font-black">Gmail</span>
+                      <span className="text-base font-mono opacity-100 uppercase tracking-widest font-black">Gmail</span>
                       <Mail size={24} className="group-hover:rotate-12 transition-transform" />
                     </div>
                     <div className="text-left">
-                      <span className="text-lg sm:text-xl lg:text-2xl font-black whitespace-nowrap tracking-tighter block truncate">
+                      <span className="text-lg md:text-xl lg:text-2xl font-black whitespace-nowrap tracking-tighter block truncate">
                         {t.sections.contact.btnGmail}
                       </span>
                     </div>
