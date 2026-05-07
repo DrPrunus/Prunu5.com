@@ -306,12 +306,50 @@ export default function App() {
             <div className="inline-block bg-brand-primary text-white px-6 py-2 mb-8 -rotate-1 brutalist-shadow font-display font-black uppercase tracking-tighter text-4xl">
               {t.hero.title} {t.hero.titleAccent}
             </div>
-            <h1 className="text-7xl md:text-[8rem] font-display font-black leading-[0.75] tracking-tighter mb-10 uppercase break-words hyphens-auto">
-              {t.hero.titleEnd}
-            </h1>
-            <p className="text-brand-black text-xl max-w-xl mb-12 leading-tight font-black p-8 border-l-[12px] border-brand-primary bg-white brutalist-border">
-              {t.hero.subtitle}
-            </p>
+            <div className="flex flex-col mb-12">
+              <motion.h1 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="text-6xl md:text-[8.5rem] font-display font-black leading-[0.75] tracking-tighter uppercase text-brand-black"
+              >
+                {t.hero.roleGame}
+              </motion.h1>
+              <motion.div 
+                initial={{ x: 20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="flex items-center gap-4 md:gap-8 -mt-2 md:-mt-4 ml-6 md:ml-24"
+              >
+                <h2 className="text-5xl md:text-[7rem] font-display font-black leading-[0.75] tracking-tighter uppercase text-brand-primary italic drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+                  {t.hero.roleMusic}
+                </h2>
+              </motion.div>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="text-brand-black text-lg leading-tight font-black p-8 border-l-[12px] border-brand-primary bg-white brutalist-border relative"
+              >
+                <div className="absolute -top-4 -right-4 bg-brand-black text-white px-3 py-1 text-xs uppercase font-mono brutalist-shadow-small">
+                  Logic
+                </div>
+                {t.hero.subtitleGame}
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+                className="text-brand-black text-lg leading-tight font-black p-8 border-l-[12px] border-brand-accent bg-white brutalist-border mt-4 md:mt-8 relative"
+              >
+                <div className="absolute -top-4 -right-4 bg-brand-black text-white px-3 py-1 text-xs uppercase font-mono brutalist-shadow-small">
+                  Vibe
+                </div>
+                {t.hero.subtitleMusic}
+              </motion.div>
+            </div>
               <div className="flex flex-wrap gap-6 pt-4">
                 <a href="#works" className="bg-brand-black text-white px-8 py-4 font-display font-black uppercase tracking-widest brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center gap-3 text-base">
                   {t.hero.btnRepo} <ChevronRight size={20} />
