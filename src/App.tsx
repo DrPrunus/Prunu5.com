@@ -18,6 +18,7 @@ import {
   Layout,
   Briefcase,
   Monitor,
+  RefreshCcw,
   Shapes,
   MessageSquare
 } from 'lucide-react';
@@ -254,8 +255,14 @@ export default function App() {
             animate={{ opacity: 1 }}
             className="flex items-center gap-4"
           >
-            <div className="w-10 h-10 bg-brand-primary flex items-center justify-center -rotate-3 hover:rotate-0 transition-transform cursor-pointer brutalist-border border-white">
-              <span className="text-white font-display font-black text-2xl">桃</span>
+            <div 
+              onClick={() => window.location.reload()}
+              className="group/peach relative w-10 h-10 bg-brand-primary flex items-center justify-center -rotate-3 hover:rotate-0 transition-transform cursor-pointer brutalist-border border-white"
+            >
+              <span className="text-white font-display font-black text-2xl group-hover/peach:scale-0 transition-all duration-300">桃</span>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/peach:opacity-100 group-hover/peach:rotate-180 transition-all duration-500 text-white">
+                <RefreshCcw className="w-5 h-5" />
+              </div>
             </div>
             <span className="hidden sm:inline text-lg tracking-tighter normal-case font-sans">DrPrunus</span>
           </motion.div>
