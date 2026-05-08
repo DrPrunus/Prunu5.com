@@ -23,6 +23,10 @@
   @apply border-2 border-brand-black shadow-[4px_4px_0px_0px_rgba(15,15,15,1)];
 }
 
+.brutalist-border-small {
+  @apply border border-brand-black shadow-[2px_2px_0px_0px_rgba(15,15,15,1)];
+}
+
 .brutalist-shadow {
   @apply shadow-[8px_8px_0px_0px_rgba(15,15,15,1)];
 }

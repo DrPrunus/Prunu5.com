@@ -475,13 +475,43 @@ export default function App() {
                     <h4 className="text-brand-primary font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-primary pb-2 flex items-center gap-3">
                       <Monitor className="w-6 h-6" /> {t.sections.about.tech}
                     </h4>
-                    <ul className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm font-black font-mono">
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> UNITY // C#</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> GODOT ENGINE</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> UNREAL ENGINE</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> PYTHON // REN'PY</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> FL STUDIO</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-black" /> ASEPRITE</li>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-black font-mono">
+                      <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
+                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
+                          <img src="/unity_icon.png" alt="Unity" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://api.iconify.design/logos:unity.svg'; }} />
+                        </div>
+                        <span className="whitespace-nowrap">UNITY // C#</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
+                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
+                          <img src="/godot_icon.png" alt="Godot" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://api.iconify.design/logos:godot-icon.svg'; }} />
+                        </div>
+                        <span className="whitespace-nowrap">GODOT ENGINE</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
+                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
+                          <img src="/unreal_icon.png" alt="Unreal" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://api.iconify.design/logos:unrealengine-icon.svg'; }} />
+                        </div>
+                        <span className="whitespace-nowrap">UNREAL ENGINE</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
+                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
+                          <Terminal className="w-5 h-5 text-brand-primary" />
+                        </div>
+                        <span className="whitespace-nowrap">PYTHON // REN'PY</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
+                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
+                          <img src="/flstudio_icon.png" alt="FL Studio" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://api.iconify.design/logos:fl-studio.svg'; }} />
+                        </div>
+                        <span className="whitespace-nowrap">FL STUDIO</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
+                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
+                          <Palette className="w-5 h-5 text-brand-primary" />
+                        </div>
+                        <span className="whitespace-nowrap">ASEPRITE</span>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -491,13 +521,43 @@ export default function App() {
                     <h4 className="text-brand-accent font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-accent pb-2 flex items-center gap-3">
                       <Briefcase className="w-6 h-6" /> {t.sections.about.disciplines}
                     </h4>
-                    <ul className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm font-black font-mono">
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 项目策划 // 通信</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 原型设计 (AXURE)</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> XMIND 流程规划</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 独立逻辑实现</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 音美全栈制作</li>
-                      <li className="flex items-center gap-2"><div className="w-2 h-2 bg-brand-accent" /> 系统构架设计</li>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-black font-mono">
+                      <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
+                        <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
+                          <Layout className="w-5 h-5 text-black" />
+                        </div>
+                        <span className="whitespace-nowrap">项目策划 // 通信</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
+                        <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
+                          <Monitor className="w-5 h-5 text-black" />
+                        </div>
+                        <span className="whitespace-nowrap">原型设计 (AXURE)</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
+                        <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
+                          <Shapes className="w-5 h-5 text-black" />
+                        </div>
+                        <span className="whitespace-nowrap">XMIND 流程规划</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
+                        <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
+                          <Code2 className="w-5 h-5 text-black" />
+                        </div>
+                        <span className="whitespace-nowrap">独立逻辑实现</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
+                        <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
+                          <Gamepad2 className="w-5 h-5 text-black" />
+                        </div>
+                        <span className="whitespace-nowrap">音美全栈制作</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
+                        <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
+                          <Cpu className="w-5 h-5 text-black" />
+                        </div>
+                        <span className="whitespace-nowrap">系统构架设计</span>
+                      </li>
                     </ul>
                   </div>
                 </div>
