@@ -355,7 +355,7 @@ export default function App() {
                   {t.hero.btnRepo} <ChevronRight size={20} />
                 </a>
                 <a 
-                  href="https://music.163.com/#/artist?id=57703531" 
+                  href="https://163cn.tv/6EIYNv4" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-brand-accent border-2 border-brand-black px-8 py-4 font-display font-black uppercase tracking-widest hover:bg-brand-black hover:text-white transition-all flex items-center gap-3 text-base brutalist-border"
