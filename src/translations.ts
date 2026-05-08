@@ -71,7 +71,7 @@ export const translations = {
       title: 'Breaking',
       titleAccent: 'Rules',
       roleGame: 'Game Designer',
-      roleMusic: 'Music Arranger',
+      roleMusic: 'Music Arrangement',
       subtitleGame: 'Specializing in game systems, balance, and level logic to create rigorous yet engaging player interactions.',
       subtitleMusic: 'Passionate about crafting emotional atmospheres through melody, giving soul to virtual spaces.',
       btnRepo: 'View Works',

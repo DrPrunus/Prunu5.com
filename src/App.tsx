@@ -311,7 +311,7 @@ export default function App() {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-6xl md:text-[8.5rem] font-display font-black leading-[0.75] tracking-tighter uppercase text-brand-black"
+                className="text-3xl md:text-[4.5rem] lg:text-[5.5rem] font-display font-black leading-[0.75] tracking-tighter uppercase text-brand-black whitespace-nowrap"
               >
                 {t.hero.roleGame}
               </motion.h1>
@@ -319,9 +319,9 @@ export default function App() {
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="flex items-center gap-4 md:gap-8 -mt-2 md:-mt-4 ml-6 md:ml-24"
+                className="flex items-center gap-4 md:gap-8 -mt-1 md:-mt-2 ml-4 md:ml-8"
               >
-                <h2 className="text-5xl md:text-[7rem] font-display font-black leading-[0.75] tracking-tighter uppercase text-brand-primary italic drop-shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+                <h2 className="text-2xl md:text-[3.5rem] lg:text-[4.5rem] font-display font-black leading-[0.75] tracking-tighter uppercase text-brand-primary italic drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] whitespace-nowrap">
                   {t.hero.roleMusic}
                 </h2>
               </motion.div>
