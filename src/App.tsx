@@ -303,8 +303,15 @@ export default function App() {
             animate={{ opacity: 1, x: 0 }}
             className="lg:col-span-8 z-10"
           >
-            <div className="inline-block bg-brand-primary text-white px-6 py-2 mb-8 -rotate-1 brutalist-shadow font-display font-black uppercase tracking-tighter text-4xl">
-              {t.hero.title} {t.hero.titleAccent}
+            <div className="inline-block bg-brand-primary text-white px-6 py-2 mb-8 -rotate-1 brutalist-shadow font-display font-black normal-case tracking-tighter text-4xl">
+              Hi, I'm <span className="relative group/name cursor-help inline-grid place-items-center ml-1">
+                <span className="transition-all duration-300 group-hover/name:opacity-0 group-hover/name:translate-y-2 group-hover/name:blur-sm">
+                  DrPrunus
+                </span>
+                <span className="absolute inset-0 opacity-0 group-hover/name:opacity-100 transition-all duration-300 flex items-center justify-center font-sans tracking-normal -translate-y-2 group-hover/name:translate-y-0 text-brand-accent">
+                  张溯峻
+                </span>
+              </span>
             </div>
             <div className="flex flex-col mb-12">
               <motion.h1 
@@ -553,16 +560,24 @@ export default function App() {
                         <span className="whitespace-nowrap">项目策划 // 通信</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
-                        <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
-                          <Monitor className="w-5 h-5 text-black" />
+                        <div className="w-8 h-8 bg-white flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small">
+                          <img 
+                            src="https://cdn.simpleicons.org/axure/ED2224" 
+                            alt="Axure" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
-                        <span className="whitespace-nowrap">原型设计 (AXURE)</span>
+                        <span className="whitespace-nowrap">原型设计 (axure)</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
-                        <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
-                          <Shapes className="w-5 h-5 text-black" />
+                        <div className="w-8 h-8 bg-white flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small">
+                          <img 
+                            src="https://cdn.simpleicons.org/xmind/ED1C24" 
+                            alt="XMind" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
-                        <span className="whitespace-nowrap">XMIND 流程规划</span>
+                        <span className="whitespace-nowrap">xmind 流程规划</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">

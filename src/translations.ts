@@ -10,8 +10,6 @@ export const translations = {
       status: '',
     },
     hero: {
-      title: '打破',
-      titleAccent: '常规',
       roleGame: '游戏策划',
       roleMusic: '音乐编曲',
       subtitleGame: '深耕系统的游戏关卡逻辑与数值平衡，致力于构建严谨且有趣的交互规则。',
@@ -68,8 +66,6 @@ export const translations = {
       status: '',
     },
     hero: {
-      title: 'Breaking',
-      titleAccent: 'Rules',
       roleGame: 'Game Designer',
       roleMusic: 'Music Arrangement',
       subtitleGame: 'Specializing in game systems, balance, and level logic to create rigorous yet engaging player interactions.',
@@ -126,8 +122,6 @@ export const translations = {
       status: '',
     },
     hero: {
-      title: '常識を',
-      titleAccent: '破壊',
       roleGame: 'ゲーム企画',
       roleMusic: '音楽編曲',
       subtitleGame: 'ゲームシステムとバランス、レベルロジックに特化し、厳密かつ魅力的なプレイヤー体験を構築。',
