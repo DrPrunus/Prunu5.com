@@ -484,7 +484,7 @@ export default function App() {
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <span className="whitespace-nowrap">UNITY // C#</span>
+                        <span className="whitespace-nowrap">unity // C#</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
@@ -494,7 +494,7 @@ export default function App() {
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <span className="whitespace-nowrap">GODOT ENGINE</span>
+                        <span className="whitespace-nowrap">Godot Engine</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
@@ -504,7 +504,7 @@ export default function App() {
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <span className="whitespace-nowrap">UNREAL ENGINE</span>
+                        <span className="whitespace-nowrap">Unreal Engine</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
@@ -514,17 +514,17 @@ export default function App() {
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <span className="whitespace-nowrap">PYTHON // REN'PY</span>
+                        <span className="whitespace-nowrap">Python // Ren'py</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
                           <img 
-                            src="https://api.iconify.design/logos:fl-studio.svg" 
+                            src="/FL.png" 
                             alt="FL Studio" 
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <span className="whitespace-nowrap">FL STUDIO</span>
+                        <span className="whitespace-nowrap">FL studio</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
@@ -534,7 +534,7 @@ export default function App() {
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <span className="whitespace-nowrap">ASEPRITE</span>
+                        <span className="whitespace-nowrap">Aseprite</span>
                       </li>
                     </ul>
                   </div>
