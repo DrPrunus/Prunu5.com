@@ -478,37 +478,61 @@ export default function App() {
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-black font-mono">
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
-                          <img src="/unity_icon.png" alt="Unity" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://api.iconify.design/logos:unity.svg'; }} />
+                          <img 
+                            src="https://cdn.simpleicons.org/unity/000000" 
+                            alt="Unity" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <span className="whitespace-nowrap">UNITY // C#</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
-                          <img src="/godot_icon.png" alt="Godot" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://api.iconify.design/logos:godot-icon.svg'; }} />
+                          <img 
+                            src="https://cdn.simpleicons.org/godotengine/478CBF" 
+                            alt="Godot" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <span className="whitespace-nowrap">GODOT ENGINE</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
-                          <img src="/unreal_icon.png" alt="Unreal" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://api.iconify.design/logos:unrealengine-icon.svg'; }} />
+                          <img 
+                            src="https://cdn.simpleicons.org/unrealengine/000000" 
+                            alt="Unreal" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <span className="whitespace-nowrap">UNREAL ENGINE</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
-                          <Terminal className="w-5 h-5 text-brand-primary" />
+                          <img 
+                            src="https://cdn.simpleicons.org/python/3776AB" 
+                            alt="Python" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <span className="whitespace-nowrap">PYTHON // REN'PY</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
-                          <img src="/flstudio_icon.png" alt="FL Studio" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.src = 'https://api.iconify.design/logos:fl-studio.svg'; }} />
+                          <img 
+                            src="https://api.iconify.design/logos:fl-studio.svg" 
+                            alt="FL Studio" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <span className="whitespace-nowrap">FL STUDIO</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
-                          <Palette className="w-5 h-5 text-brand-primary" />
+                          <img 
+                            src="https://cdn.simpleicons.org/aseprite/7D929E" 
+                            alt="Aseprite" 
+                            className="w-full h-full object-contain"
+                          />
                         </div>
                         <span className="whitespace-nowrap">ASEPRITE</span>
                       </li>
