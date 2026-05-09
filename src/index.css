@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
+@keyframes scan {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(500%); }
+}
+
+.animate-scan {
+  animation: scan 4s linear infinite;
+}
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", sans-serif;
@@ -57,5 +66,238 @@
 
 .diagonal-line {
   background: linear-gradient(45deg, transparent 49.5%, var(--color-brand-black) 49.5%, var(--color-brand-black) 50.5%, transparent 50.5%);
+}
+
+.halftone {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 6px 6px;
+}
+
+.halftone-dense {
+  background-image: radial-gradient(circle, currentColor 0.8px, transparent 0.8px);
+  background-size: 3px 3px;
+}
+
+.halftone-big {
+  background-image: radial-gradient(circle, currentColor 2px, transparent 2px);
+  background-size: 12px 12px;
+}
+
+.scanlines {
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.05) 51%
+  );
+  background-size: 100% 4px;
+}
+
+.tactical-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+
+.caution-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-brand-primary),
+    var(--color-brand-primary) 10px,
+    var(--color-brand-black) 10px,
+    var(--color-brand-black) 20px
+  );
+}
+
+.caution-stripes-subtle {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.tactical-border {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.tactical-border::before,
+.tactical-border::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--color-brand-primary);
+}
+
+.tactical-border::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.tactical-border::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+.tactical-corner-bracket {
+  position: relative;
+}
+
+.tactical-corner-bracket::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+}
+
+.tactical-corner-bracket::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.crosshair-bg {
+  background-image: 
+    radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+.dashed-line-horizontal {
+  background-image: linear-gradient(to right, currentColor 50%, transparent 50%);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+}
+
+.dashed-line-horizontal-thick {
+  background-image: linear-gradient(to right, currentColor 70%, transparent 30%);
+  background-size: 16px 2px;
+  background-repeat: repeat-x;
+}
+
+.dashed-line-vertical {
+  background-image: linear-gradient(to bottom, currentColor 50%, transparent 50%);
+  background-size: 1px 8px;
+  background-repeat: repeat-y;
+}
+
+.scanning-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, currentColor, transparent);
+  box-shadow: 0 0 15px currentColor;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.hud-angle {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 1px solid currentColor;
+}
+
+.hud-angle-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.hud-angle-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+.hud-angle-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+.hud-angle-br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+.geometric-stripe {
+  height: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    currentColor,
+    currentColor 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+.point-grid {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.tactical-bracket-l {
+  border-left: 2px solid currentColor;
+  position: relative;
+}
+.tactical-bracket-l::before, .tactical-bracket-l::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 8px;
+  height: 2px;
+  background: currentColor;
+}
+.tactical-bracket-l::before { top: 0; }
+.tactical-bracket-l::after { bottom: 0; }
+
+.rhombus-marker {
+  width: 12px;
+  height: 12px;
+  background: currentColor;
+  transform: rotate(45deg);
+  display: inline-block;
+  position: relative;
+}
+
+.rhombus-marker::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid currentColor;
+  opacity: 0.3;
+}
+
+.ui-frame-corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+}
+
+.ui-frame-corner-tl { top: 0; left: 0; border-top: 4px solid currentColor; border-left: 4px solid currentColor; }
+.ui-frame-corner-br { bottom: 0; right: 0; border-bottom: 4px solid currentColor; border-right: 4px solid currentColor; }
+
+.data-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.data-cluster .line {
+  height: 1px;
+  background: currentColor;
+}
+
+.layered-grid {
+  background-image: 
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.barcode-sim {
+  background: linear-gradient(90deg, currentColor 20%, transparent 20%, transparent 30%, currentColor 30%, currentColor 40%, transparent 40%, transparent 60%, currentColor 60%, currentColor 70%, transparent 70%, transparent 80%, currentColor 80%);
+  background-size: 100% 100%;
 }
 
