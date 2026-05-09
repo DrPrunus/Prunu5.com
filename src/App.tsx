@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Gamepad2, 
@@ -151,140 +151,124 @@ function InteractiveCore() {
   const ring1Ref = React.useRef<THREE.Mesh>(null!);
   const ring2Ref = React.useRef<THREE.Mesh>(null!);
   const ring3Ref = React.useRef<THREE.Mesh>(null!);
-  const ring4Ref = React.useRef<THREE.Group>(null!);
+  const scanRef = React.useRef<THREE.Mesh>(null!);
   const groupRef = React.useRef<THREE.Group>(null!);
   
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     
-    groupRef.current.rotation.y = time * 0.08;
+    groupRef.current.rotation.y = time * 0.05;
     
     if (innerRef.current) {
-      innerRef.current.rotation.x = time * 0.15;
-      innerRef.current.rotation.y = time * 0.25;
+      innerRef.current.rotation.x = time * 0.12;
+      innerRef.current.rotation.y = time * 0.22;
       // Irregular aggressive pulse
-      const pulse = 1 + (Math.sin(time * 2) * 0.02 + Math.sin(time * 5) * 0.01);
+      const pulse = 1 + (Math.sin(time * 3) * 0.015 + Math.sin(time * 7) * 0.005);
       innerRef.current.scale.set(pulse, pulse, pulse);
     }
     
     if (ring1Ref.current) {
-      ring1Ref.current.rotation.z = time * 0.4;
+      ring1Ref.current.rotation.z = time * 0.25;
     }
     if (ring2Ref.current) {
-      ring2Ref.current.rotation.z = -time * 0.6;
+      ring2Ref.current.rotation.z = -time * 0.35;
     }
     if (ring3Ref.current) {
-      ring3Ref.current.rotation.x = time * 0.3;
-      ring3Ref.current.rotation.y = time * 0.2;
+      ring3Ref.current.rotation.x = time * 0.2;
+      ring3Ref.current.rotation.y = time * 0.15;
     }
-    if (ring4Ref.current) {
-      ring4Ref.current.rotation.z = time * 1.2;
+    if (scanRef.current) {
+      scanRef.current.position.y = Math.sin(time * 0.8) * 1.8;
+      const mat = scanRef.current.material as THREE.MeshBasicMaterial;
+      if (mat) mat.opacity = (Math.cos(time * 0.8) + 1) * 0.1;
     }
   });
 
+  const hudLabels = [
+    { text: "PRTS_LINK_V7.2", pos: [2.2, 1.2, 0] },
+    { text: "CORE_STABILITY: 99.8%", pos: [-2.2, -1.2, 1] },
+    { text: "LOGIC_SYNC_ESTABLISHED", pos: [0, 2.5, -1] }
+  ];
+
   return (
     <group ref={groupRef}>
-      {/* Originium Crystal Cluster */}
+      {/* Tactical Originium Core */}
       <group ref={innerRef}>
         <mesh>
-          <icosahedronGeometry args={[1, 0]} />
+          <octahedronGeometry args={[1, 0]} />
           <meshStandardMaterial 
-            color="#080808" 
+            color="#050505" 
             emissive="#ED2224"
-            emissiveIntensity={1.2}
+            emissiveIntensity={1.5}
             flatShading
             metalness={1}
             roughness={0}
           />
         </mesh>
-        <mesh scale={1.1}>
-          <icosahedronGeometry args={[1, 0]} />
+        <mesh scale={1.05}>
+          <octahedronGeometry args={[1, 1]} />
           <meshStandardMaterial 
             color="#ED2224"
             transparent
-            opacity={0.15}
+            opacity={0.1}
             wireframe
           />
         </mesh>
-        {/* Floating internal dots */}
-        {[...Array(6)].map((_, i) => (
-          <mesh key={i} position={[Math.sin(i) * 0.5, Math.cos(i) * 0.5, Math.sin(i * 2) * 0.5]}>
-            <sphereGeometry args={[0.02, 8, 8]} />
+        {/* Floating internal bits */}
+        {[...Array(12)].map((_, i) => (
+          <mesh key={i} position={[Math.sin(i * 1.5) * 0.6, Math.cos(i * 1.5) * 0.6, Math.sin(i * 3) * 0.6]}>
+            <boxGeometry args={[0.03, 0.03, 0.03]} />
             <meshBasicMaterial color="#ED2224" />
           </mesh>
         ))}
       </group>
 
+      {/* Horizontal Scan Plane */}
+      <mesh ref={scanRef} rotation={[Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[4, 4]} />
+        <meshBasicMaterial color="#ED2224" transparent opacity={0.1} side={THREE.DoubleSide} />
+      </mesh>
+
       {/* Heavy Circular Logic Rings */}
       <mesh ref={ring1Ref}>
-        <torusGeometry args={[1.6, 0.01, 16, 4]} />
-        <meshStandardMaterial color="#ED2224" emissive="#ED2224" emissiveIntensity={5} />
+        <torusGeometry args={[1.6, 0.005, 12, 4]} />
+        <meshStandardMaterial color="#ED2224" emissive="#ED2224" emissiveIntensity={8} />
       </mesh>
 
-      <mesh ref={ring2Ref} rotation={[Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[1.8, 1.82, 32]} />
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.2} side={THREE.DoubleSide} />
+      <mesh ref={ring2Ref} rotation={[Math.PI / 2, 0, Math.PI / 4]}>
+        <torusGeometry args={[1.8, 0.005, 12, 4]} />
+        <meshStandardMaterial color="#ffffff" transparent opacity={0.1} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* Dashed outer ring simulation using points */}
-      <group ref={ring4Ref}>
-        {[...Array(32)].map((_, i) => {
-          const angle = (i / 32) * Math.PI * 2;
+      {/* Floating Tactical Labels with Html */}
+      {hudLabels.map((item, i) => (
+        <group key={i} position={item.pos as any}>
+          <Html center distanceFactor={10}>
+            <div className="flex flex-col items-center pointer-events-none select-none">
+              <div className="w-1.5 h-1.5 bg-brand-primary rhombus-fill mb-1 animate-pulse" />
+              <div className="bg-brand-black/90 backdrop-blur-sm border border-brand-primary/40 px-2 py-0.5 text-[6px] font-mono text-brand-primary whitespace-nowrap tracking-[0.2em] font-black shadow-[2px_2px_0px_rgba(0,0,0,0.5)]">
+                <span className="animate-flicker">{item.text}</span>
+              </div>
+              <div className="w-px h-12 bg-gradient-to-b from-brand-primary/40 to-transparent" />
+            </div>
+          </Html>
+        </group>
+      ))}
+
+      {/* Particle Shell */}
+      <CoreParticles count={120} />
+
+      {/* Rotating markers */}
+      <group rotation={[0, 0, Math.PI/4]}>
+        {[...Array(8)].map((_, i) => {
+          const angle = (i / 8) * Math.PI * 2;
           return (
-            <mesh key={i} position={[Math.cos(angle) * 2.1, Math.sin(angle) * 2.1, 0]}>
-              <boxGeometry args={[0.1, 0.01, 0.01]} />
-              <meshBasicMaterial color="#ffffff" transparent opacity={0.3} />
+            <mesh key={i} position={[Math.cos(angle) * 2.2, Math.sin(angle) * 2.2, 0]}>
+              <boxGeometry args={[0.05, 0.05, 0.005]} />
+              <meshBasicMaterial color="#ffffff" transparent opacity={0.2} />
             </mesh>
           );
         })}
-      </group>
-
-      {/* Floating Tactical Tags (No Text) */}
-      {[...Array(6)].map((_, i) => {
-        const radius = 2.4;
-        const angle = (i / 6) * Math.PI * 2;
-        return (
-          <Float key={i} speed={2} rotationIntensity={0} floatIntensity={1}>
-            <group position={[Math.cos(angle) * radius, Math.sin(angle) * radius, 0]}>
-               <mesh>
-                 <boxGeometry args={[0.01, 1, 0.01]} />
-                 <meshBasicMaterial color="#ED2224" transparent opacity={0.2} />
-               </mesh>
-               <mesh position={[0, 0.5, 0]}>
-                 <sphereGeometry args={[0.03, 8, 8]} />
-                 <meshBasicMaterial color="#ffffff" />
-               </mesh>
-            </group>
-          </Float>
-        );
-      })}
-
-      {/* Warning/Hazard Visual Layer */}
-      <mesh ref={ring3Ref}>
-        <octahedronGeometry args={[2.2, 0]} />
-        <meshStandardMaterial transparent opacity={0} />
-        <Wireframe 
-          stroke="#ED2224" 
-          thickness={0.01} 
-          transparent
-          opacity={0.1}
-        />
-      </mesh>
-
-      {/* Originium Dust/Particles */}
-      <group>
-        {[...Array(40)].map((_, i) => (
-          <Float key={i} speed={4} rotationIntensity={10}>
-            <mesh position={[
-              (Math.random() - 0.5) * 6,
-              (Math.random() - 0.5) * 6,
-              (Math.random() - 0.5) * 6
-            ]}>
-              <boxGeometry args={[0.02, 0.02, 0.02]} />
-              <meshBasicMaterial color="#ED2224" transparent opacity={Math.random() * 0.7} />
-            </mesh>
-          </Float>
-        ))}
       </group>
 
       <pointLight intensity={6} distance={8} color="#ED2224" />
@@ -292,6 +276,43 @@ function InteractiveCore() {
     </group>
   );
 }
+
+function CoreParticles({ count = 100 }) {
+  const pointsRef = React.useRef<THREE.Points>(null!);
+  
+  const positions = React.useMemo(() => {
+    const pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(Math.random() * 2 - 1);
+      const r = 2.4 + Math.random() * 0.4;
+      pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      pos[i * 3 + 2] = r * Math.cos(phi);
+    }
+    return pos;
+  }, [count]);
+
+  useFrame((state) => {
+    pointsRef.current.rotation.y = state.clock.getElapsedTime() * 0.04;
+    pointsRef.current.rotation.x = state.clock.getElapsedTime() * 0.02;
+  });
+
+  return (
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={positions.length / 3}
+          array={positions}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial size={0.02} color="#ED2224" transparent opacity={0.5} sizeAttenuation />
+    </points>
+  );
+}
+
 
 const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.ReactNode, icon?: any, subtitle?: string }) => (
   <div className="mb-8 md:mb-12 relative flex flex-col items-start group pt-6">
@@ -518,8 +539,20 @@ export default function App() {
   const [lang, setLang] = useState<Language>('zh');
   const [activeTab, setActiveTab] = useState<'all' | Project['category']>('all');
   const [copied, setCopied] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const t = translations[lang];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatLocalTime = (date: Date) => {
+    return date.toLocaleTimeString('en-GB', { hour12: false });
+  };
 
   const handleCopyWeChat = () => {
     navigator.clipboard.writeText(t.sections.contact.btnWechat);
@@ -545,8 +578,8 @@ export default function App() {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <span className="text-[8px] font-mono text-white/40 tracking-tighter hidden sm:block">LOCAL_TIME: {new Date().toISOString().split('T')[1].split('.')[0]}</span>
-          <span className="text-[8px] font-mono text-white/40 tracking-tighter">ID: PRN-000-0509-SYS</span>
+          <span className="text-[8px] font-mono text-white/40 tracking-tighter hidden sm:block uppercase">LOCAL_TIME: {formatLocalTime(currentTime)}</span>
+          <span className="text-[8px] font-mono text-white/40 tracking-tighter">ID: PRN-000-{currentTime.getMonth() + 1}{currentTime.getDate().toString().padStart(2, '0')}-SYS</span>
           <div className="h-4 w-24 caution-stripes opacity-30" />
         </div>
       </div>
