@@ -22,6 +22,9 @@ import {
   Shapes,
   MessageSquare
 } from 'lucide-react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Sphere, MeshDistortMaterial, Float } from '@react-three/drei';
+import * as THREE from 'three';
 import { translations, Language } from './translations';
 
 // --- Types ---
@@ -139,6 +142,67 @@ const PROJECTS: Project[] = [
 ];
 
 // --- Sub-components ---
+
+// --- Components ---
+
+function ParticleSphere() {
+  const pointsRef = React.useRef<THREE.Points>(null!);
+  const count = 2000;
+  
+  const particles = React.useMemo(() => {
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+    const color1 = new THREE.Color('#ED2224'); // brand-primary
+    const color2 = new THREE.Color('#FFD700'); // brand-accent
+    
+    for (let i = 0; i < count; i++) {
+      const theta = THREE.MathUtils.randFloatSpread(360); 
+      const phi = THREE.MathUtils.randFloatSpread(360); 
+
+      positions[i * 3] = 1.5 * Math.sin(theta) * Math.cos(phi);
+      positions[i * 3 + 1] = 1.5 * Math.sin(theta) * Math.sin(phi);
+      positions[i * 3 + 2] = 1.5 * Math.cos(theta);
+
+      const mixedColor = color1.clone().lerp(color2, Math.random());
+      colors[i * 3] = mixedColor.r;
+      colors[i * 3 + 1] = mixedColor.g;
+      colors[i * 3 + 2] = mixedColor.b;
+    }
+    return { positions, colors };
+  }, []);
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    pointsRef.current.rotation.y = time * 0.1;
+    pointsRef.current.rotation.x = time * 0.05;
+  });
+
+  return (
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={particles.positions.length / 3}
+          array={particles.positions}
+          itemSize={3}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          count={particles.colors.length / 3}
+          array={particles.colors}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.015}
+        vertexColors
+        transparent
+        opacity={0.8}
+        sizeAttenuation={true}
+      />
+    </points>
+  );
+}
 
 const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.ReactNode, icon?: any, subtitle?: string }) => (
   <div className="mb-12 border-b-8 border-brand-black pb-8">
@@ -382,18 +446,60 @@ export default function App() {
               </div>
           </motion.div>
 
-          <div className="lg:col-span-4 relative hidden lg:block">
-            <div className="w-full aspect-[4/5] bg-brand-black brutalist-shadow rotate-3 relative overflow-hidden">
-               <div className="absolute inset-4 border-2 border-white/20" />
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-brand-primary rotate-45" />
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-brand-accent -rotate-12 flex items-center justify-center">
-                 <Gamepad2 size={64} className="text-brand-black" />
-               </div>
+          <div className="lg:col-span-4 relative hidden lg:block h-[500px]">
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0, rotate: 5 }}
+              animate={{ scale: 1, opacity: 1, rotate: 3 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="w-full h-full bg-brand-black brutalist-shadow relative overflow-hidden group cursor-grab active:cursor-grabbing"
+            >
+              <div className="absolute inset-0 z-0">
+                <Canvas camera={{ position: [0, 0, 4], fov: 50 }}>
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} />
+                  <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+                    <ParticleSphere />
+                  </Float>
+                  <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+                </Canvas>
+              </div>
+              
+              <div className="absolute inset-4 border-2 border-white/10 pointer-events-none" />
+              
+              <div className="absolute top-6 left-6 bg-brand-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest brutalist-border-small border-white z-10">
+                Interactive Core
+              </div>
 
-            </div>
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-accent brutalist-border -rotate-6 z-20 flex items-center justify-center">
-               <Cpu size={64} className="text-brand-black" />
-            </div>
+              <motion.div 
+                animate={{ 
+                  y: [0, -10, 0],
+                  rotate: [-6, -4, -6]
+                }}
+                transition={{ 
+                  duration: 4, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                className="absolute -bottom-8 -left-8 w-32 h-32 bg-brand-accent brutalist-border z-20 flex items-center justify-center pointer-events-none"
+              >
+                <Cpu size={48} className="text-brand-black" />
+              </motion.div>
+
+              <motion.div 
+                animate={{ 
+                  y: [0, 10, 0],
+                  rotate: [12, 10, 12]
+                }}
+                transition={{ 
+                  duration: 5, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                className="absolute top-10 -right-10 w-24 h-24 bg-white brutalist-border z-20 flex items-center justify-center pointer-events-none"
+              >
+                <Gamepad2 size={32} className="text-brand-black" />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </header>
@@ -567,24 +673,24 @@ export default function App() {
                         <span className="whitespace-nowrap">项目策划 // 通信</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
-                        <div className="w-8 h-8 bg-white flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small">
+                        <div className="w-8 h-8 bg-white flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
                           <img 
-                            src="https://cdn.simpleicons.org/axure/ED2224" 
+                            src="/axure.png" 
                             alt="Axure" 
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <span className="whitespace-nowrap">原型设计 (axure)</span>
+                        <span className="whitespace-nowrap">Axure // 原型设计</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
-                        <div className="w-8 h-8 bg-white flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small">
+                        <div className="w-8 h-8 bg-white flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
                           <img 
-                            src="https://cdn.simpleicons.org/xmind/ED1C24" 
+                            src="/xmind.png" 
                             alt="XMind" 
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <span className="whitespace-nowrap">xmind 流程规划</span>
+                        <span className="whitespace-nowrap">XMind // 流程规划</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
