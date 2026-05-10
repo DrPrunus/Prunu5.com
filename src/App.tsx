@@ -20,12 +20,16 @@ import {
   Monitor,
   RefreshCcw,
   Shapes,
+  Volume2,
+  VolumeX,
   MessageSquare,
   Shield
 } from 'lucide-react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Float, Wireframe, Html } from '@react-three/drei';
+import { EffectComposer, Bloom, Noise, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
+import * as Tone from 'tone';
 import { translations, Language } from './translations';
 
 // --- Types ---
@@ -144,10 +148,210 @@ const PROJECTS: Project[] = [
 
 // --- Sub-components ---
 
+function AudioEngine({ enabled }: { enabled: boolean }) {
+  const synthRef = React.useRef<Tone.PolySynth | null>(null);
+  const droneRef = React.useRef<Tone.Oscillator | null>(null);
+  const filterRef = React.useRef<Tone.Filter | null>(null);
+
+  React.useEffect(() => {
+    if (enabled) {
+      Tone.start();
+      
+      // Filter for ambient sound
+      const filter = new Tone.Filter({
+        frequency: 400,
+        type: "lowpass",
+        rolloff: -24
+      }).toDestination();
+      filterRef.current = filter;
+
+      // Ambient Drones
+      const synth = new Tone.PolySynth(Tone.Synth, {
+        oscillator: { type: "sine" },
+        envelope: { attack: 3, decay: 2, sustain: 0.6, release: 5 }
+      }).connect(filter);
+      
+      synth.volume.value = -35;
+      synthRef.current = synth;
+
+      // Deep oscillating drone
+      const lfo = new Tone.LFO(0.1, 300, 800).start();
+      lfo.connect(filter.frequency);
+
+      const loop = new Tone.Loop((time) => {
+        synth.triggerAttackRelease("C2", "4m", time);
+        synth.triggerAttackRelease("G2", "4m", time + Tone.Time("2m").toSeconds());
+      }, "8m").start(0);
+
+      Tone.Transport.start();
+
+      return () => {
+        synth.dispose();
+        lfo.dispose();
+        filter.dispose();
+        loop.dispose();
+        Tone.Transport.stop();
+      };
+    } else {
+      Tone.Transport.stop();
+    }
+  }, [enabled]);
+
+  return null;
+}
+
 // --- Components ---
 
+const landChars = ['#', '*', '@', '8', 'æ'];
+const waterChars = ['%', '+', '.', ' ', '≈'];
+const denseChars = ['·', ':', 'ı', '°', '·', '¨', '·', ':', '!', ';', '|'];
+
+const PointChar = React.memo(({ position, id, refs }: { position: THREE.Vector3, id: number, refs: React.MutableRefObject<(HTMLSpanElement | null)[]> }) => {
+  return (
+    <Html position={position} center distanceFactor={8} zIndexRange={[10, 20]}>
+      <span 
+        ref={el => { refs.current[id] = el; }}
+        className="font-mono text-[7px] text-brand-primary font-black opacity-90 select-none pointer-events-none transition-opacity duration-300"
+      >
+        #
+      </span>
+    </Html>
+  );
+});
+
+const CoreChar = React.memo(({ position, id, refs }: { position: THREE.Vector3, id: number, refs: React.MutableRefObject<(HTMLSpanElement | null)[]> }) => {
+  return (
+    <Html position={position} center distanceFactor={10} zIndexRange={[-20, 5]}>
+      <span 
+        ref={el => { refs.current[id] = el; }}
+        className="font-mono text-[4px] text-brand-primary opacity-30 select-none pointer-events-none"
+      >
+        ·
+      </span>
+    </Html>
+  );
+});
+
+function TacticalAsciiPlanet() {
+  const groupRef = React.useRef<THREE.Group>(null!);
+  const meshRef = React.useRef<THREE.Mesh>(null!);
+  const surfaceRefs = React.useRef<(HTMLSpanElement | null)[]>([]);
+  const coreRefs = React.useRef<(HTMLSpanElement | null)[]>([]);
+  
+  // Outer shell points (Surface)
+  const surfacePoints = React.useMemo(() => {
+    const p = [];
+    const count = 60; // Optimized count
+    for (let i = 0; i < count; i++) {
+      const phi = Math.acos(-1 + (2 * i) / count);
+      const theta = Math.sqrt(count * Math.PI) * phi;
+      const x = Math.cos(theta) * Math.sin(phi);
+      const y = Math.sin(theta) * Math.sin(phi);
+      const z = Math.cos(phi);
+      const radius = 1.4; 
+      p.push(new THREE.Vector3(x, y, z).multiplyScalar(radius));
+    }
+    return p;
+  }, []);
+
+  // Inner shell points (Dense Core)
+  const corePoints = React.useMemo(() => {
+    const p = [];
+    const count = 100; // Optimized count
+    for (let i = 0; i < count; i++) {
+      const phi = Math.acos(-1 + (2 * i) / count);
+      const theta = Math.sqrt(count * Math.PI) * phi;
+      const x = Math.cos(theta) * Math.sin(phi);
+      const y = Math.sin(theta) * Math.sin(phi);
+      const z = Math.cos(phi);
+      const radius = 0.7; 
+      p.push(new THREE.Vector3(x, y, z).multiplyScalar(radius));
+    }
+    return p;
+  }, []);
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    groupRef.current.rotation.y = t * 0.1;
+    groupRef.current.rotation.x = Math.sin(t * 0.1) * 0.05;
+    
+    if (meshRef.current) {
+      meshRef.current.rotation.z = t * 0.02;
+      const s = 1 + Math.sin(t * 2) * 0.01;
+      meshRef.current.scale.set(s, s, s);
+    }
+
+    // Ultra-optimized batch update: only update 25% of characters per frame
+    const frameIdx = Math.floor(t * 60) % 4;
+    
+    surfacePoints.forEach((pos, i) => {
+      // Staggered update logic
+      if (i % 4 !== frameIdx) return;
+      
+      const el = surfaceRefs.current[i];
+      if (!el) return;
+      const val = Math.sin(pos.x * 2.2 + t * 0.4) * Math.cos(pos.y * 2.2) + Math.sin(pos.z * 3.2 + t * 0.3);
+      const isLand = val > 0.42;
+      const pool = isLand ? landChars : waterChars;
+      const charIdx = (Math.floor(t * 5) + i) % pool.length;
+      el.textContent = pool[charIdx % pool.length];
+    });
+
+    corePoints.forEach((pos, i) => {
+      // Staggered update logic
+      if (i % 4 !== frameIdx) return;
+
+      const el = coreRefs.current[i];
+      if (!el) return;
+      const val = Math.sin(pos.x * 5 + t * 1.2) * Math.cos(pos.y * 5 + t * 0.4) * Math.sin(pos.z * 5);
+      const charIdx = Math.floor(Math.abs(val) * denseChars.length);
+      el.textContent = denseChars[charIdx % denseChars.length];
+    });
+  });
+
+  return (
+    <group ref={groupRef}>
+      {/* Structural Geometry */}
+      <mesh ref={meshRef}>
+        <icosahedronGeometry args={[0.55, 1]} />
+        <meshStandardMaterial 
+          color="#020202" 
+          emissive="#ED2224" 
+          emissiveIntensity={0.35} 
+          flatShading 
+        />
+        {/* Facet Edge Highlights - Pure Black for maximum definition */}
+        <mesh scale={1.002}>
+          <icosahedronGeometry args={[0.55, 1]} />
+          <meshBasicMaterial color="#000000" wireframe transparent opacity={0.8} />
+        </mesh>
+        {/* Very subtle glow shell */}
+        <mesh scale={1.03}>
+          <icosahedronGeometry args={[0.55, 1]} />
+          <meshBasicMaterial color="#ED2224" wireframe transparent opacity={0.08} />
+        </mesh>
+      </mesh>
+
+      {/* Surface ASCII Shell */}
+      {surfacePoints.map((p, i) => (
+        <PointChar key={`s-${i}`} position={p} id={i} refs={surfaceRefs} />
+      ))}
+
+      {/* Compact Core ASCII Shell */}
+      {corePoints.map((p, i) => (
+        <CoreChar key={`c-${i}`} position={p} id={i} refs={coreRefs} />
+      ))}
+
+      {/* Internal Orbitals */}
+      <mesh rotation={[Math.PI / 4, 0, 0]}>
+        <torusGeometry args={[1.6, 0.0015, 16, 80]} />
+        <meshBasicMaterial color="#ED2224" transparent opacity={0.1} />
+      </mesh>
+    </group>
+  );
+}
+
 function InteractiveCore() {
-  const innerRef = React.useRef<THREE.Group>(null!);
   const ring1Ref = React.useRef<THREE.Mesh>(null!);
   const ring2Ref = React.useRef<THREE.Mesh>(null!);
   const ring3Ref = React.useRef<THREE.Mesh>(null!);
@@ -159,28 +363,16 @@ function InteractiveCore() {
     
     groupRef.current.rotation.y = time * 0.05;
     
-    if (innerRef.current) {
-      innerRef.current.rotation.x = time * 0.12;
-      innerRef.current.rotation.y = time * 0.22;
-      // Irregular aggressive pulse
-      const pulse = 1 + (Math.sin(time * 3) * 0.015 + Math.sin(time * 7) * 0.005);
-      innerRef.current.scale.set(pulse, pulse, pulse);
-    }
-    
     if (ring1Ref.current) {
       ring1Ref.current.rotation.z = time * 0.25;
     }
     if (ring2Ref.current) {
       ring2Ref.current.rotation.z = -time * 0.35;
     }
-    if (ring3Ref.current) {
-      ring3Ref.current.rotation.x = time * 0.2;
-      ring3Ref.current.rotation.y = time * 0.15;
-    }
     if (scanRef.current) {
       scanRef.current.position.y = Math.sin(time * 0.8) * 1.8;
       const mat = scanRef.current.material as THREE.MeshBasicMaterial;
-      if (mat) mat.opacity = (Math.cos(time * 0.8) + 1) * 0.1;
+      if (mat) mat.opacity = (Math.cos(time * 0.8) + 1) * 0.02;
     }
   });
 
@@ -192,41 +384,12 @@ function InteractiveCore() {
 
   return (
     <group ref={groupRef}>
-      {/* Tactical Originium Core */}
-      <group ref={innerRef}>
-        <mesh>
-          <octahedronGeometry args={[1, 0]} />
-          <meshStandardMaterial 
-            color="#050505" 
-            emissive="#ED2224"
-            emissiveIntensity={1.5}
-            flatShading
-            metalness={1}
-            roughness={0}
-          />
-        </mesh>
-        <mesh scale={1.05}>
-          <octahedronGeometry args={[1, 1]} />
-          <meshStandardMaterial 
-            color="#ED2224"
-            transparent
-            opacity={0.1}
-            wireframe
-          />
-        </mesh>
-        {/* Floating internal bits */}
-        {[...Array(12)].map((_, i) => (
-          <mesh key={i} position={[Math.sin(i * 1.5) * 0.6, Math.cos(i * 1.5) * 0.6, Math.sin(i * 3) * 0.6]}>
-            <boxGeometry args={[0.03, 0.03, 0.03]} />
-            <meshBasicMaterial color="#ED2224" />
-          </mesh>
-        ))}
-      </group>
+      <TacticalAsciiPlanet />
 
       {/* Horizontal Scan Plane */}
       <mesh ref={scanRef} rotation={[Math.PI / 2, 0, 0]}>
         <planeGeometry args={[4, 4]} />
-        <meshBasicMaterial color="#ED2224" transparent opacity={0.1} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ED2224" transparent opacity={0.03} side={THREE.DoubleSide} />
       </mesh>
 
       {/* Heavy Circular Logic Rings */}
@@ -312,7 +475,6 @@ function CoreParticles({ count = 100 }) {
     </points>
   );
 }
-
 
 const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.ReactNode, icon?: any, subtitle?: string }) => (
   <div className="mb-8 md:mb-12 relative flex flex-col items-start group pt-6">
@@ -458,8 +620,6 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
         <div className="w-1.5 h-1.5 rounded-none bg-brand-primary rotate-45" />
       </div>
 
-      {/* Tactical Marker Badge Removed */}
-
       {/* Barcode side decor */}
       <div className="absolute bottom-10 -right-6 w-32 h-4 rotate-90 opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none barcode-sim text-brand-black" />
       
@@ -478,12 +638,7 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           alt={project.title} 
           className="object-cover w-full h-full transition-all duration-700 rounded-none group-hover:scale-110"
           referrerPolicy="no-referrer"
-          onError={(e) => {
-            console.warn(`Failed to load image at: ${imageUrl}. Check if the file exists in public/covers/`);
-            if (!imageError) {
-              setImageError(true);
-            }
-          }}
+          onError={() => setImageError(true)}
         />
         <div className="absolute top-0 left-0 bg-brand-primary text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter">
           {(translations[lang].sections.portfolio as any).categories[project.category] || project.category}
@@ -515,7 +670,7 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
   );
 
   return (
-    <motion.div 
+    <motion.div
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -539,6 +694,7 @@ export default function App() {
   const [lang, setLang] = useState<Language>('zh');
   const [activeTab, setActiveTab] = useState<'all' | Project['category']>('all');
   const [copied, setCopied] = useState(false);
+  const [audioEnabled, setAudioEnabled] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
 
   const t = translations[lang];
@@ -567,6 +723,7 @@ export default function App() {
   return (
     <div className="min-h-screen selection:bg-brand-primary selection:text-white pb-10 overflow-x-hidden">
       {/* Arknights Global System Bar */}
+      <AudioEngine enabled={audioEnabled} />
       <div className="fixed top-0 left-0 right-0 h-6 bg-brand-black z-[60] flex items-center justify-between px-4 border-b border-brand-primary/40 pointer-events-none md:pointer-events-auto">
         <div className="flex items-center gap-4">
           <div className="w-2 h-2 bg-brand-primary rhombus-fill animate-pulse" />
@@ -587,6 +744,7 @@ export default function App() {
       {/* Background Decor */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-brand-bg" />
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] -z-10 tactical-grid" />
+      
       <div className="fixed inset-0 pointer-events-none opacity-[0.2] -z-10 scanlines" />
 
       {/* Global Drafting Lines */}
@@ -707,6 +865,18 @@ export default function App() {
                 </button>
               ))}
             </div>
+
+            {/* Audio Interface Toggle */}
+            <button
+              onClick={() => setAudioEnabled(!audioEnabled)}
+              className={`flex items-center gap-2 px-3 py-1.5 brutalist-border border-white/20 transition-all ${audioEnabled ? 'bg-brand-primary/20 text-brand-primary border-brand-primary' : 'bg-white/5 text-gray-500 hover:text-white'}`}
+              title="Tactical Audio Neural Link"
+            >
+              {audioEnabled ? <Volume2 size={14} className="animate-pulse" /> : <VolumeX size={14} />}
+              <span className="text-[10px] uppercase font-black tracking-tighter">
+                {audioEnabled ? 'Audio Active' : 'Audio Silenced'}
+              </span>
+            </button>
           </div>
         </div>
       </nav>
@@ -917,12 +1087,19 @@ export default function App() {
               />
 
               <div className="absolute inset-0 z-0">
-                <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-                  <ambientLight intensity={0.8} />
-                  <pointLight position={[10, 10, 10]} intensity={1} />
-                  <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ED2224" />
+                <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ antialias: false, stencil: false, alpha: true }}>
+                  <color attach="background" args={["#030303"]} />
+                  <ambientLight intensity={0.3} />
+                  <pointLight position={[10, 10, 10]} intensity={1.2} color="#ED2224" />
+                  <pointLight position={[-10, 5, -5]} intensity={0.4} color="#600000" />
                   <InteractiveCore />
-                  <OrbitControls enableZoom={false} autoRotate={false} />
+                  <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+                  
+                  <EffectComposer multisampling={0}>
+                    <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.7} mipmapBlur intensity={0.8} />
+                    <Noise opacity={0.03} />
+                    <Vignette eskil={false} offset={0.2} darkness={1.2} />
+                  </EffectComposer>
                 </Canvas>
               </div>
               
@@ -1238,11 +1415,11 @@ export default function App() {
                 </div>
 
                 <div className="lg:col-span-6">
-                  <div className="bg-brand-black text-white p-8 brutalist-border h-full">
+                  <div className="bg-brand-black text-white p-8 brutalist-border h-full flex flex-col">
                     <h4 className="text-brand-accent font-display font-black uppercase mb-8 text-2xl border-b-4 border-brand-accent pb-2 flex items-center gap-3">
                       <Briefcase className="w-6 h-6" /> {t.sections.about.disciplines}
                     </h4>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-black font-mono">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-black font-mono flex-1">
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
                           <Layout className="w-5 h-5 text-black" />
