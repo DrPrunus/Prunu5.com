@@ -360,10 +360,22 @@ function InteractiveCore() {
   const ring3Ref = React.useRef<THREE.Mesh>(null!);
   const scanRef = React.useRef<THREE.Mesh>(null!);
   const groupRef = React.useRef<THREE.Group>(null!);
+  const hudRefs = React.useRef<(HTMLDivElement | null)[]>([]);
   
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
+    const mouse = state.pointer;
     
+    // Performance: Directly update DOM via CSS variables to avoid React re-renders in useFrame
+    const tiltX = mouse.y * 15;
+    const tiltY = -mouse.x * 15;
+
+    hudRefs.current.forEach(el => {
+      if (el) {
+        el.style.transform = `perspective(500px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+      }
+    });
+
     groupRef.current.rotation.y = time * 0.05;
     
     if (ring1Ref.current) {
@@ -406,13 +418,20 @@ function InteractiveCore() {
         <meshStandardMaterial color="#ffffff" transparent opacity={0.1} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* Floating Tactical Labels with Html */}
+      {/* Floating Tactical Labels with 3D Mouse Tilt */}
       {hudLabels.map((item, i) => (
         <group key={i} position={item.pos as any}>
           <Html center distanceFactor={10}>
-            <div className="flex flex-col items-center pointer-events-none select-none">
-              <div className="w-1.5 h-1.5 bg-brand-primary rhombus-fill mb-1 animate-pulse" />
-              <div className="bg-brand-black/90 backdrop-blur-sm border border-brand-primary/40 px-2 py-0.5 text-[6px] font-mono text-brand-primary whitespace-nowrap tracking-[0.2em] font-black shadow-[2px_2px_0px_rgba(0,0,0,0.5)]">
+            <div 
+              ref={el => { hudRefs.current[i] = el; }}
+              className="flex flex-col items-center pointer-events-none select-none transition-transform duration-150 ease-out"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <div className="w-1.5 h-1.5 bg-brand-primary rhombus-fill mb-1 animate-pulse" style={{ transform: 'translateZ(20px)' }} />
+              <div 
+                className="bg-brand-black/90 backdrop-blur-sm border border-brand-primary/40 px-2 py-0.5 text-[6px] font-mono text-brand-primary whitespace-nowrap tracking-[0.2em] font-black shadow-[4px_4px_10px_rgba(0,0,0,0.5)]"
+                style={{ transform: 'translateZ(10px)' }}
+              >
                 <span className="animate-flicker">{item.text}</span>
               </div>
               <div className="w-px h-12 bg-gradient-to-b from-brand-primary/40 to-transparent" />
@@ -694,6 +713,57 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
 };
 
 
+function MouseCodeStream() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const mouseRef = React.useRef({ x: 0, y: 0 });
+  const [code, setCode] = React.useState<string[]>([]);
+
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+
+    let animationId: number;
+    const updatePosition = () => {
+      if (containerRef.current) {
+        containerRef.current.style.transform = `translate3d(${mouseRef.current.x}px, ${mouseRef.current.y}px, 0)`;
+      }
+      animationId = requestAnimationFrame(updatePosition);
+    };
+    updatePosition();
+
+    const chars = "0123456789ABCDEF<>[]/_*-";
+    const interval = setInterval(() => {
+      const newLine = "0x" + Array(4).fill(0).map(() => chars[Math.floor(Math.random() * chars.length)]).join('');
+      setCode(prev => [newLine, ...prev].slice(0, 4));
+    }, 120);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationId);
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="fixed pointer-events-none z-[100] top-0 left-0 flex flex-col font-mono text-[7px] text-black/80 mix-blend-multiply will-change-transform"
+      style={{ paddingLeft: '15px', paddingTop: '15px' }}
+    >
+      {code.map((line, i) => (
+        <div key={i} className="whitespace-nowrap tracking-wider font-black" style={{ opacity: 0.9 - i * 0.2 }}>
+          {line}
+        </div>
+      ))}
+      <div className="flex justify-between text-[6px] opacity-40 mt-1 gap-4">
+        <span>PTRS_LIVE</span>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [lang, setLang] = useState<Language>('zh');
   const [activeTab, setActiveTab] = useState<'all' | Project['category']>('all');
@@ -727,6 +797,7 @@ export default function App() {
   return (
     <div className="min-h-screen selection:bg-brand-primary selection:text-white pb-10 overflow-x-hidden relative">
       <div className="crt-overlay" />
+      <MouseCodeStream />
       {/* Arknights Global System Bar */}
       <div className="fixed top-0 left-0 right-0 h-6 bg-brand-black z-[60] flex items-center justify-between px-4 border-b border-brand-primary/40 pointer-events-none md:pointer-events-auto">
         <div className="flex items-center gap-4">
