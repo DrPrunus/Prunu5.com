@@ -280,12 +280,36 @@
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
 
+/* CRT Scanline & Screen Effects */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  ),
+  linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.05),
+    rgba(0, 255, 0, 0.02),
+    rgba(0, 0, 255, 0.05)
+  );
+  background-size: 100% 4px, 4px 100%;
+  pointer-events: none;
+  z-index: 2000;
+  opacity: 0.4;
+}
+
 .angle-bracket {
   width: 8px;
   height: 8px;
   border-top: 2px solid currentColor;
   border-left: 2px solid currentColor;
 }
+
 
 .point-grid {
   background-image: radial-gradient(circle, currentColor 1px, transparent 1px);

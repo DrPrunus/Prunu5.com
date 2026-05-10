@@ -148,56 +148,59 @@ const PROJECTS: Project[] = [
 
 // --- Sub-components ---
 
-function AudioEngine({ enabled }: { enabled: boolean }) {
-  const synthRef = React.useRef<Tone.PolySynth | null>(null);
-  const droneRef = React.useRef<Tone.Oscillator | null>(null);
-  const filterRef = React.useRef<Tone.Filter | null>(null);
+function NeuralWaveform() {
+  const [points, setPoints] = React.useState<string>("");
+  const frameRef = React.useRef<number>(0);
 
   React.useEffect(() => {
-    if (enabled) {
-      Tone.start();
-      
-      // Filter for ambient sound
-      const filter = new Tone.Filter({
-        frequency: 400,
-        type: "lowpass",
-        rolloff: -24
-      }).toDestination();
-      filterRef.current = filter;
+    let lastY = 20;
+    const animate = () => {
+      frameRef.current++;
+      if (frameRef.current % 3 === 0) {
+        let newPoints = "M0 20 ";
+        for (let i = 1; i <= 20; i++) {
+          const x = i * 5;
+          // Stochastic jump logic
+          const rand = Math.random();
+          let y = 20;
+          if (rand > 0.92) y = 5 + Math.random() * 5;      // High peak
+          else if (rand > 0.84) y = 30 + Math.random() * 5; // Low peak
+          else y = 18 + Math.random() * 4;                 // Noise
 
-      // Ambient Drones
-      const synth = new Tone.PolySynth(Tone.Synth, {
-        oscillator: { type: "sine" },
-        envelope: { attack: 3, decay: 2, sustain: 0.6, release: 5 }
-      }).connect(filter);
-      
-      synth.volume.value = -35;
-      synthRef.current = synth;
+          // Smooth transition slightly
+          const targetY = y;
+          lastY = lastY + (targetY - lastY) * 0.8;
+          newPoints += `L${x} ${lastY} `;
+        }
+        setPoints(newPoints);
+      }
+      requestAnimationFrame(animate);
+    };
+    const id = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(id);
+  }, []);
 
-      // Deep oscillating drone
-      const lfo = new Tone.LFO(0.1, 300, 800).start();
-      lfo.connect(filter.frequency);
-
-      const loop = new Tone.Loop((time) => {
-        synth.triggerAttackRelease("C2", "4m", time);
-        synth.triggerAttackRelease("G2", "4m", time + Tone.Time("2m").toSeconds());
-      }, "8m").start(0);
-
-      Tone.Transport.start();
-
-      return () => {
-        synth.dispose();
-        lfo.dispose();
-        filter.dispose();
-        loop.dispose();
-        Tone.Transport.stop();
-      };
-    } else {
-      Tone.Transport.stop();
-    }
-  }, [enabled]);
-
-  return null;
+  return (
+    <div className="w-24 h-6 relative overflow-hidden bg-brand-primary/5 border border-brand-primary/20 rounded-sm">
+      <svg viewBox="0 0 100 40" className="w-full h-full preserve-3d">
+        <path
+          d={points}
+          fill="none"
+          stroke="#ED2224"
+          strokeWidth="2"
+          className="transition-all duration-75 ease-linear opacity-80"
+        />
+        {/* Glow duplication */}
+        <path
+          d={points}
+          fill="none"
+          stroke="#ED2224"
+          strokeWidth="4"
+          className="opacity-20 blur-[2px]"
+        />
+      </svg>
+    </div>
+  );
 }
 
 // --- Components ---
@@ -690,6 +693,7 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
   );
 };
 
+
 export default function App() {
   const [lang, setLang] = useState<Language>('zh');
   const [activeTab, setActiveTab] = useState<'all' | Project['category']>('all');
@@ -721,9 +725,9 @@ export default function App() {
     : PROJECTS.filter(p => p.category === activeTab);
 
   return (
-    <div className="min-h-screen selection:bg-brand-primary selection:text-white pb-10 overflow-x-hidden">
+    <div className="min-h-screen selection:bg-brand-primary selection:text-white pb-10 overflow-x-hidden relative">
+      <div className="crt-overlay" />
       {/* Arknights Global System Bar */}
-      <AudioEngine enabled={audioEnabled} />
       <div className="fixed top-0 left-0 right-0 h-6 bg-brand-black z-[60] flex items-center justify-between px-4 border-b border-brand-primary/40 pointer-events-none md:pointer-events-auto">
         <div className="flex items-center gap-4">
           <div className="w-2 h-2 bg-brand-primary rhombus-fill animate-pulse" />
@@ -867,16 +871,18 @@ export default function App() {
             </div>
 
             {/* Audio Interface Toggle */}
-            <button
-              onClick={() => setAudioEnabled(!audioEnabled)}
-              className={`flex items-center gap-2 px-3 py-1.5 brutalist-border border-white/20 transition-all ${audioEnabled ? 'bg-brand-primary/20 text-brand-primary border-brand-primary' : 'bg-white/5 text-gray-500 hover:text-white'}`}
-              title="Tactical Audio Neural Link"
-            >
-              {audioEnabled ? <Volume2 size={14} className="animate-pulse" /> : <VolumeX size={14} />}
-              <span className="text-[10px] uppercase font-black tracking-tighter">
-                {audioEnabled ? 'Audio Active' : 'Audio Silenced'}
-              </span>
-            </button>
+            <div className="flex items-center gap-3 px-3 py-1.5 brutalist-border border-white/10 bg-brand-primary/5">
+              <div className="flex flex-col items-start gap-1">
+                <span className="text-[7px] uppercase font-black tracking-widest text-brand-primary/60 leading-none">
+                  Neural_Link_Status
+                </span>
+                <NeuralWaveform />
+              </div>
+              <div className="flex flex-col text-brand-primary">
+                <div className="text-[10px] font-mono font-black animate-pulse">SYNC_OK</div>
+                <div className="text-[6px] opacity-40 uppercase">Gate_V7.2</div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
