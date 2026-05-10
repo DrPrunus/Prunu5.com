@@ -727,6 +727,7 @@ function MouseCodeStream() {
     let animationId: number;
     const updatePosition = () => {
       if (containerRef.current) {
+        // 使用 translate3d 触发 GPU 加速，确保极致流畅
         containerRef.current.style.transform = `translate3d(${mouseRef.current.x}px, ${mouseRef.current.y}px, 0)`;
       }
       animationId = requestAnimationFrame(updatePosition);
@@ -749,16 +750,20 @@ function MouseCodeStream() {
   return (
     <div 
       ref={containerRef}
-      className="fixed pointer-events-none z-[100] top-0 left-0 flex flex-col font-mono text-[7px] text-black/80 mix-blend-multiply will-change-transform"
-      style={{ paddingLeft: '15px', paddingTop: '15px' }}
+      className="fixed pointer-events-none z-[2100] top-0 left-0 flex flex-col font-mono text-[8px] text-gray-800/60 transition-opacity duration-300 will-change-transform"
+      style={{ 
+        paddingLeft: '18px', 
+        paddingTop: '18px',
+        textShadow: '0.5px 0.5px 0px rgba(255,255,255,0.4)' // 在深色背景下通过阴影增强边缘，浅色下不影响
+      }}
     >
       {code.map((line, i) => (
-        <div key={i} className="whitespace-nowrap tracking-wider font-black" style={{ opacity: 0.9 - i * 0.2 }}>
+        <div key={i} className="whitespace-nowrap tracking-wider font-bold" style={{ opacity: 0.9 - i * 0.2 }}>
           {line}
         </div>
       ))}
       <div className="flex justify-between text-[6px] opacity-40 mt-1 gap-4">
-        <span>PTRS_LIVE</span>
+        <span className="animate-pulse">PTRS_LIVE</span>
       </div>
     </div>
   );
