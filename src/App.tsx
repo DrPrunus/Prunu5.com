@@ -143,6 +143,20 @@ const PROJECTS: Project[] = [
     tags: ['关卡设计', '解谜逻辑', '道具系统'],
     link: 'https://034gamejam.uneoon.com/games/24',
     github: '#'
+  },
+  {
+    id: '11',
+    title: '跟你豹了',
+    category: 'PC',
+    description: {
+      zh: '本作品参加奇点律动Vol2GameJam活动，围绕“充气 / 放气”能力制作游戏，流程较短，但是展现了各能力的可拓展性。',
+      en: 'Developed for the Singularity Rhythm Vol2 GameJam, this game focuses on "inflation/deflation" mechanics. Although short, it demonstrates the scalability of its abilities.',
+      ja: '奇点律動Vol2 GameJam向けに制作された作品。「膨張・収縮」の能力を核としたゲームプレイ。短いながらも、各能力の拡張性を示しています。'
+    },
+    image: '/covers/gnbl.png',
+    tags: ['GameJam', '能力设计', '游戏原型'],
+    link: 'https://www.bilibili.com/video/BV1QoFNzUETM/',
+    github: '#'
   }
 ];
 
