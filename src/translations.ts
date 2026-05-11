@@ -35,7 +35,7 @@ export const translations = {
         p2: '在开发之余，我也是一名音乐爱好者与像素画创作者。我习惯使用 FL Studio 捕捉灵感片段，并用 Aseprite 勾勒奇思妙想。我始终相信，多维度的感官体验是塑造游戏灵魂的关键。',
         p3: '无论是独立的逻辑攻坚，还是复杂的流程规划，我都能以全栈思维切入。我正不断探索跨引擎开发的无限可能，力求将每一个概念草图转化为触手可及的数字现实。',
         tech: '软件与技术',
-        disciplines: '专业领域',
+        disciplines: '游戏经历',
       },
       pipeline: {
         title: '生产流水线状态',
@@ -91,7 +91,7 @@ export const translations = {
         p2: 'Beyond development, I am a music enthusiast and pixel artist. I regularly use FL Studio to capture melodic inspirations and Aseprite to illustrate imaginative ideas. I believe multi-sensory experiences are vital to a game\'s soul.',
         p3: 'Whether tackling solo logic challenges or complex workflow planning, I bring a full-stack mindset to every project. I am constantly exploring cross-engine possibilities to transform concept sketches into tangible digital realities.',
         tech: 'Software & Tech',
-        disciplines: 'Core Disciplines',
+        disciplines: 'Game Experience',
       },
       pipeline: {
         title: 'Production_Pipeline',
@@ -147,7 +147,7 @@ export const translations = {
         p2: '開発の傍ら、音楽制作やピクセルアートにも没頭。FL StudioとAsepriteを駆使し、多角的な感覚体験こそがゲームの魂を形作ると信じている。',
         p3: '単独のロジック開発から複雑なワークフロー設計まで、フルスタックな視点で挑む。常にエンジンを超えた可能性を模索し、コンセプトをデジタルな現実へと昇華させる。',
         tech: 'スキルセット',
-        disciplines: '専門分野',
+        disciplines: 'ゲーム歴',
       },
       pipeline: {
         title: '制作パイプライン',

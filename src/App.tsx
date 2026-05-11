@@ -23,7 +23,11 @@ import {
   Volume2,
   VolumeX,
   MessageSquare,
-  Shield
+  Shield,
+  Sword,
+  Zap,
+  Users,
+  Target
 } from 'lucide-react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Float, Wireframe, Html } from '@react-three/drei';
@@ -830,7 +834,7 @@ export default function App() {
         </div>
         <div className="flex items-center gap-6">
           <span className="text-[8px] font-mono text-white/40 tracking-tighter hidden sm:block uppercase">LOCAL_TIME: {formatLocalTime(currentTime)}</span>
-          <span className="text-[8px] font-mono text-white/40 tracking-tighter">ID: PRN-000-{currentTime.getMonth() + 1}{currentTime.getDate().toString().padStart(2, '0')}-SYS</span>
+          <span className="text-[8px] font-mono text-white/40 tracking-tighter">ID: {currentTime.getFullYear()}${(currentTime.getMonth() + 1).toString().padStart(2, '0')}{currentTime.getDate().toString().padStart(2, '0')}</span>
           <div className="h-4 w-24 caution-stripes opacity-30" />
         </div>
       </div>
@@ -1497,7 +1501,7 @@ export default function App() {
                         <span className="whitespace-nowrap">FL studio</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
-                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
+                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
                           <img 
                             src="https://cdn.simpleicons.org/aseprite/7D929E" 
                             alt="Aseprite" 
@@ -1505,6 +1509,26 @@ export default function App() {
                           />
                         </div>
                         <span className="whitespace-nowrap">Aseprite</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
+                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
+                          <img 
+                            src="/axure.png" 
+                            alt="Axure" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                        <span className="whitespace-nowrap">Axure</span>
+                      </li>
+                      <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
+                        <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
+                          <img 
+                            src="/xmind.png" 
+                            alt="XMind" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                        <span className="whitespace-nowrap">XMind</span>
                       </li>
                     </ul>
                   </div>
@@ -1518,47 +1542,27 @@ export default function App() {
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-black font-mono flex-1">
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
-                          <Layout className="w-5 h-5 text-black" />
+                          <Sword className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">项目策划 // 通信</span>
-                      </li>
-                      <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
-                        <div className="w-8 h-8 bg-white flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
-                          <img 
-                            src="/axure.png" 
-                            alt="Axure" 
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                        <span className="whitespace-nowrap">Axure // 原型设计</span>
-                      </li>
-                      <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
-                        <div className="w-8 h-8 bg-white flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
-                          <img 
-                            src="/xmind.png" 
-                            alt="XMind" 
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                        <span className="whitespace-nowrap">XMind // 流程规划</span>
+                        <span className="whitespace-nowrap">RPG</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
-                          <Code2 className="w-5 h-5 text-black" />
+                          <Zap className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">独立逻辑实现</span>
+                        <span className="whitespace-nowrap">平台跳跃</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
-                          <Gamepad2 className="w-5 h-5 text-black" />
+                          <Users className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">音美全栈制作</span>
+                        <span className="whitespace-nowrap">社交 / 在线 / 竞技</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
-                          <Cpu className="w-5 h-5 text-black" />
+                          <Target className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">系统构架设计</span>
+                        <span className="whitespace-nowrap">策略类</span>
                       </li>
                     </ul>
                   </div>
@@ -1686,7 +1690,7 @@ export default function App() {
               {[...Array(8)].map((_, i) => <div key={i} className="w-4 h-1 bg-brand-primary/20" />)}
            </div>
           <p className="text-white/40 text-lg font-medium tracking-wide font-mono">
-            © 2026 DrPrunus // RI_TERMINAL_V7.2
+            © {new Date().getFullYear()} DrPrunus
           </p>
         </div>
       </footer>
