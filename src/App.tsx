@@ -47,20 +47,6 @@ interface Project {
 // --- Mock Data ---
 const PROJECTS: Project[] = [
   {
-    id: '8',
-    title: 'GhostCookies',
-    category: 'PC',
-    description: {
-      zh: '2D 益智类网页游戏 | Unity 引擎 | 2025 Brackeys Jam 7 天极限创作赛事参赛作品。以 “鬼魂吃饼干” 为核心玩法，针对 H5 平台特性深度适配优化，独自完成策划、程序开发及音乐与音效设计。',
-      en: '2D Puzzle Web Game developed in Unity for 2025 Brackeys Jam 7-day challenge. Features "Ghost eating cookies" core gameplay, deeply optimized for H5 platforms. Roles: Design, Development, Music & Sound.',
-      ja: 'Unityで制作された2Dパズルウェブゲーム。2025 Brackeys Jam 7日間ジャム参加作品。「幽霊がクッキーを食べる」核心的な遊び。H5プラットフォーム向けに最適化。役割：企画、開発、音楽、効果音。'
-    },
-    image: '/covers/gc.png', // Path: /covers/gc.png
-    tags: ['策划', '程序开发', '音乐', 'Unity'],
-    link: 'https://volticx.itch.io/ghostcookies',
-    github: '#'
-  },
-  {
     id: '4',
     title: '404 Princess Not Found',
     category: 'PC',
@@ -75,59 +61,45 @@ const PROJECTS: Project[] = [
     github: '#'
   },
   {
-    id: '5',
-    title: '《杀戮尖塔》核心模块拆解',
-    category: '游戏拆解',
-    description: {
-      zh: '该拆解案聚焦《杀戮尖塔》的战斗、卡牌、关卡三大核心系统，深度解析其“可控随机性+卡组构筑成长+风险收益选择”的核心设计逻辑。',
-      en: 'Focusing on the combat, card, and level systems of Slay the Spire, deeply analyzing its core design logic of "controlled randomness + deck construction growth + risk-reward choice."',
-      ja: '「Slay the Spire」の戦闘、カード、ステージの3大コアシステムに焦点を当て、「コントロールされたランダム性＋デッキ構築の成長＋リスク・リターンの選択」というコアな設計ロジックを深く解析。'
-    },
-    image: '/covers/sts.png', // Path: /covers/sts.png
-    tags: ['系统设计', '卡牌构筑', '数值平衡'],
-    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/VZLQfKfxhlBxHkdw3ykcwPCwn7g',
-    github: '#'
-  },
-  {
-    id: '6',
-    title: '《深岩银河》赛季通行证系统拆解',
-    category: '游戏拆解',
-    description: {
-      zh: '该拆解案聚焦《深岩银河》通行证 “可自由切换任意永久赛季 + 线性进度 + 非线性奖励树” 的核心设计，剖析其如何通过去时间压力、高自主解锁机制，实现长期友好的玩家体验与正向社群效应。',
-      en: 'Focuses on Deep Rock Galactic\'s "switchable permanent seasons + linear progress + non-linear reward tree" design, analyzing how it achieves long-term player friendly experience through high autonomy.',
-      ja: '「Deep Rock Galactic」の「いつでも切り替え可能な永久シーズン＋線形進捗＋非線形報酬ツリー」のコア設計に焦点を当て、時間制約の排除と高い自主性による長期的なプレイヤー体験を分析。'
-    },
-    image: '/covers/dr.png',
-    tags: ['通行证设计', '系统分析', '数值构架'],
-    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/BnVjfi28ulUhZkdw4NIcoFimnid',
-    github: '#'
-  },
-  {
-    id: '7',
-    title: '《光·遇》社交系统拆解案',
-    category: '游戏拆解',
-    description: {
-      zh: '该拆解案聚焦《光·遇》以“情绪连接”为核心的社交系统，深度解析陌生人互动、好友关系、情绪动作、礼物互赠等六大模块，剖析其“非语言沟通+轻量协作+双向付出”的关系构建路径。',
-      en: 'Deeply analyzes Sky: Children of the Light\'s social system focused on "emotional connection," exploring non-verbal communication, lightweight cooperation, and the design trade-offs of the anonymity mechanism.',
-      ja: '「Sky 星を紡ぐ子どもたち」の「情緒的な繋がり」を核心としたソーシャルシステムを深く解析。非言語コミュニケーション、軽量な協調、匿名メカニズムの設計上の選択を剖析。'
-    },
-    image: '/covers/gy.png',
-    tags: ['社交系统', '交互设计', '3C逻辑'],
-    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
-    github: '#'
-  },
-  {
     id: '9',
     title: 'Connection',
     category: 'PC',
     description: {
-      zh: '一款深度的角色养成模拟游戏，玩家通过管理多种属性指标来引导女儿的成长轨迹，探索成长过程中的可能性与羁绊。',
+      zh: '一款深度的角色养成模拟游戏，玩家通过管理多种属性指标来引导女儿的成长轨迹，探索成长过程中的可能性 with 羁绊。',
       en: 'A deep character growth simulation game where players guide their daughter\'s growth through a variety of attributes, exploring possibilities and connections.',
       ja: '深いキャラクター育成シミュレーションゲーム。プレイヤーはさまざまな属性を管理することで娘の成長を導き、成長過程における可能性と絆を探索します。'
     },
     image: '/covers/c.jpg',
     tags: ['养成模拟', '角色设计', '数值策划'],
     link: 'https://tzzsleep.itch.io/connection',
+    github: '#'
+  },
+  {
+    id: '11',
+    title: '跟你豹了',
+    category: 'PC',
+    description: {
+      zh: '本作品参加奇点律动Vol2GameJam活动，围绕“充气 / 放气”能力制作游戏，流程较短，但是展现了各能力的可拓展性。',
+      en: 'Developed for the Singularity Rhythm Vol2 GameJam, this game focuses on "inflation/deflation" mechanics. Although short, it demonstrates the scalability of its abilities.',
+      ja: '奇点律動Vol2 GameJam向けに制作された作品。「膨張・収縮」の能力を核としたゲームプレイ。短いながらも、各能力の拡張性を示しています。'
+    },
+    image: '/covers/gnbl.png',
+    tags: ['GameJam', '能力设计', '游戏原型'],
+    link: 'https://www.bilibili.com/video/BV1QoFNzUETM/',
+    github: '#'
+  },
+  {
+    id: '8',
+    title: 'GhostCookies',
+    category: 'PC',
+    description: {
+      zh: '2D 益智类网页游戏 | Unity 引擎 | 2025 Brackeys Jam 7 天极限创作赛事参赛作品。以 “鬼魂吃饼干” 为核心玩法，针对 H5 平台特性深度适配优化，独自完成策划、程序开发及音乐与音效设计。',
+      en: '2D Puzzle Web Game developed in Unity for 2025 Brackeys Jam 7-day challenge. Features "Ghost eating cookies" core gameplay, deeply optimized for H5 platforms. Roles: Design, Development, Music & Sound.',
+      ja: 'Unityで制作された2Dパズルウェブゲーム。2025 Brackeys Jam 7日間ジャム参加作品。「幽霊がクッキーを食べる」核心的な遊び。H5プラットフォーム向けに最適化。役割：企画、開発、音楽、効果音。'
+    },
+    image: '/covers/gc.png', // Path: /covers/gc.png
+    tags: ['策划', '程序开发', '音乐', 'Unity'],
+    link: 'https://volticx.itch.io/ghostcookies',
     github: '#'
   },
   {
@@ -145,17 +117,45 @@ const PROJECTS: Project[] = [
     github: '#'
   },
   {
-    id: '11',
-    title: '跟你豹了',
-    category: 'PC',
+    id: '6',
+    title: 'Deep Rock Galactic 通行证设计拆解',
+    category: '游戏拆解',
     description: {
-      zh: '本作品参加奇点律动Vol2GameJam活动，围绕“充气 / 放气”能力制作游戏，流程较短，但是展现了各能力的可拓展性。',
-      en: 'Developed for the Singularity Rhythm Vol2 GameJam, this game focuses on "inflation/deflation" mechanics. Although short, it demonstrates the scalability of its abilities.',
-      ja: '奇点律動Vol2 GameJam向けに制作された作品。「膨張・収縮」の能力を核としたゲームプレイ。短いながらも、各能力の拡張性を示しています。'
+      zh: '以《Deep Rock Galactic》中“随时切回的永久赛季+线形进度+非线形奖励树”的核心设计为切入点，分析其如何通过剥离时间压力、高自主解锁机制，实现长期友好的玩家体验与正向社群效应。',
+      en: 'Focuses on Deep Rock Galactic\'s "switchable permanent seasons + linear progress + non-linear reward tree" design, analyzing how it achieves long-term player friendly experience through high autonomy.',
+      ja: '「Deep Rock Galactic」の「いつでも切り替え可能な永久赛季＋线形进捗＋非线形報酬ツリー」のコア设计に焦点を当て、时间制约の排除と高い自主性による长期的なプレイヤー体验を分析。'
     },
-    image: '/covers/gnbl.png',
-    tags: ['GameJam', '能力设计', '游戏原型'],
-    link: 'https://www.bilibili.com/video/BV1QoFNzUETM/',
+    image: '/covers/dr.png',
+    tags: ['通行证设计', '系统分析', '数值构架'],
+    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/BnVjfi28ulUhZkdw4NIcoFimnid',
+    github: '#'
+  },
+  {
+    id: '7',
+    title: '《光·遇》社交系统拆解案',
+    category: '游戏拆解',
+    description: {
+      zh: '该拆解案聚焦《光·遇》以“情绪连接”为核心的社交系统，深度解析陌生人互动、好友关系、情绪动作、礼物互赠等六大模块，剖析其“非语言沟通+轻量协作+双向付出”的关系构建路径。',
+      en: 'Deeply analyzes Sky: Children of the Light\'s social system focused on "emotional connection," exploring non-verbal communication, lightweight cooperation, and the design trade-offs of the anonymity mechanism.',
+      ja: '「Sky 星を紡ぐ子どもたち」の「情緒的な繋がり」を核心としたソーシャルシステムを深く解析。非言語コミュニケーション、軽量な協調、匿名メカニズムの設計上の选择を剖析。'
+    },
+    image: '/covers/gy.png',
+    tags: ['社交系统', '交互设计', '3C逻辑'],
+    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
+    github: '#'
+  },
+  {
+    id: '5',
+    title: '《杀戮尖塔》核心模块拆解',
+    category: '游戏拆解',
+    description: {
+      zh: '深度解析《杀戮尖塔》战斗、地图与圣遗物系统，剖析极简规则下的无限重玩价值（Replayability），并探讨系统耦合度对策略维度的影响，产出详尽的 3C 逻辑及关卡节奏分析。',
+      en: 'Deep analysis of Slay the Spire\'s combat, map, and relic systems. Explores infinite replayability under minimalist rules and investigates how system coupling affects strategic depth.',
+      ja: '「Slay the Spire」の戦闘、マップ、レリックシステムを深く解析。ミニマルなルール下での無限のリプレイ性を探求し、システム間の結合が戦略的深みに与える影響を調査。'
+    },
+    image: '/covers/sts.png',
+    tags: ['Roguelike', '数值平衡', '机制拆解'],
+    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
     github: '#'
   }
 ];
