@@ -27,7 +27,8 @@ import {
   Sword,
   Zap,
   Users,
-  Target
+  Target,
+  Trophy
 } from 'lucide-react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Float, Wireframe, Html } from '@react-three/drei';
@@ -46,6 +47,7 @@ interface Project {
   tags: string[];
   link?: string;
   github?: string;
+  awards?: Record<Language, string>;
 }
 
 // --- Mock Data ---
@@ -55,7 +57,7 @@ const PROJECTS: Project[] = [
     title: '404 Princess Not Found',
     category: 'PC',
     description: {
-      zh: 'HD2D 探索解谜游戏 | Unity 引擎 | 2025 TapTap 聚光灯 GameJam 21 天极限创作赛事参赛作品。以“勇者修复残缺游戏世界 Bug、追寻不存在的公主”为主线，担任策划、程序开发与音乐制作，上线 TapTap PC 端。',
+      zh: 'HD2D 探索解谜 | Unity 引擎 | 2025 TapTap 聚光灯 GameJam。以“勇者修复残缺游戏世界 Bug、追寻不存在的公主”为主线，担任策划、程序开发与音乐制作，上线 TapTap PC 端。',
       en: 'HD2D Exploration Puzzle Game developed in Unity for 2025 TapTap Spotlight GameJam 21-day challenge. A meta-narrative adventure about a hero fixing system bugs to find a non-existent princess. Roles: Design, Dev, Music.',
       ja: 'Unityで制作されたHD2D探索パズルゲーム。2025 TapTap Spotlight GameJam 21日間チャレンジ参加作品。勇者がバグを修正しながら存在しない王女を探すメタフィクション。役割：企画、開発、音楽。'
     },
@@ -69,7 +71,7 @@ const PROJECTS: Project[] = [
     title: 'Connection',
     category: 'PC',
     description: {
-      zh: '一款深度的角色养成模拟游戏，玩家通过管理多种属性指标来引导女儿的成长轨迹，探索成长过程中的可能性 with 羁绊。',
+      zh: '角色养成模拟 | 羁绊系统 | 数值驱动。通过管理多种属性指标来引导女儿的成长轨迹，在成长的过程中探索羁绊与各种可能性。',
       en: 'A deep character growth simulation game where players guide their daughter\'s growth through a variety of attributes, exploring possibilities and connections.',
       ja: '深いキャラクター育成シミュレーションゲーム。プレイヤーはさまざまな属性を管理することで娘の成長を導き、成長過程における可能性と絆を探索します。'
     },
@@ -83,7 +85,7 @@ const PROJECTS: Project[] = [
     title: '跟你豹了',
     category: 'PC',
     description: {
-      zh: '本作品参加奇点律动Vol2GameJam活动，围绕“充气 / 放气”能力制作游戏，流程较短，但是展现了各能力的可拓展性。',
+      zh: '能力驱动解谜 | 机制拓展性 | 奇点律动 Vol2 GameJam。围绕“充气 / 放气”能力制作的游戏原型，展现了基础能力在关卡设计中的多种应用可能性。',
       en: 'Developed for the Singularity Rhythm Vol2 GameJam, this game focuses on "inflation/deflation" mechanics. Although short, it demonstrates the scalability of its abilities.',
       ja: '奇点律動Vol2 GameJam向けに制作された作品。「膨張・収縮」の能力を核としたゲームプレイ。短いながらも、各能力の拡張性を示しています。'
     },
@@ -97,7 +99,7 @@ const PROJECTS: Project[] = [
     title: 'GhostCookies',
     category: 'PC',
     description: {
-      zh: '2D 益智类网页游戏 | Unity 引擎 | 2025 Brackeys Jam 7 天极限创作赛事参赛作品。以 “鬼魂吃饼干” 为核心玩法，针对 H5 平台特性深度适配优化，独自完成策划、程序开发及音乐与音效设计。',
+      zh: '2D 益智类网页游戏 | Unity 引擎 | 2025 Brackeys Jam。以 “鬼魂吃饼干” 为核心玩法，针对 H5 平台特性深度适配优化，独自完成策划、程序开发及音乐与音效设计。',
       en: '2D Puzzle Web Game developed in Unity for 2025 Brackeys Jam 7-day challenge. Features "Ghost eating cookies" core gameplay, deeply optimized for H5 platforms. Roles: Design, Development, Music & Sound.',
       ja: 'Unityで制作された2Dパズルウェブゲーム。2025 Brackeys Jam 7日間ジャム参加作品。「幽霊がクッキーを食べる」核心的な遊び。H5プラットフォーム向けに最適化。役割：企画、開発、音楽、効果音。'
     },
@@ -111,12 +113,17 @@ const PROJECTS: Project[] = [
     title: '完美通关',
     category: 'PC',
     description: {
-      zh: '有时候通关并不是游戏的终点，试试利用道具，达成完美通关吧！玩家需要通过鼠标点击规划路径，并在特定关卡巧用获得的道具来达成“完美”成就。',
+      zh: '2D 益智闯关 | 路径规划 | 034 GameJam 参赛作品。通过鼠标点击规划路径，并在特定关卡巧用获得的道具来达成“完美”成就。',
       en: 'Clearing the level is just the beginning. Use items strategically to achieve a "Perfect Clear"! A puzzle game focused on path planning and item management.',
       ja: 'クリアは終わりではありません。アイテムを駆使して「パーフェクトクリア」を目指しましょう！パスプランニングとアイテム使用が鍵となるパズルゲーム。'
     },
     image: '/covers/pc.png',
     tags: ['关卡设计', '解谜逻辑', '道具系统'],
+    awards: {
+      zh: '最魂like的顶级游戏',
+      en: 'Top Soul-like Game',
+      ja: '最高にソウルライクなトップゲーム'
+    },
     link: 'https://034gamejam.uneoon.com/games/24',
     github: '#'
   },
@@ -125,7 +132,7 @@ const PROJECTS: Project[] = [
     title: 'Deep Rock Galactic 通行证设计拆解',
     category: '游戏拆解',
     description: {
-      zh: '以《Deep Rock Galactic》中“随时切回的永久赛季+线形进度+非线形奖励树”的核心设计为切入点，分析其如何通过剥离时间压力、高自主解锁机制，实现长期友好的玩家体验与正向社群效应。',
+      zh: '系统拆解 | 通行证设计 | 赛季机制分析。以《Deep Rock Galactic》中“随时切回的永久赛季+线形进度+非线形奖励树”的核心设计为切入点，分析其实现长期友好的玩家体验的路径。',
       en: 'Focuses on Deep Rock Galactic\'s "switchable permanent seasons + linear progress + non-linear reward tree" design, analyzing how it achieves long-term player friendly experience through high autonomy.',
       ja: '「Deep Rock Galactic」の「いつでも切り替え可能な永久赛季＋线形进捗＋非线形報酬ツリー」のコア设计に焦点を当て、时间制约の排除と高い自主性による长期的なプレイヤー体验を分析。'
     },
@@ -139,7 +146,7 @@ const PROJECTS: Project[] = [
     title: '《光·遇》社交系统拆解案',
     category: '游戏拆解',
     description: {
-      zh: '该拆解案聚焦《光·遇》以“情绪连接”为核心的社交系统，深度解析陌生人互动、好友关系、情绪动作、礼物互赠等六大模块，剖析其“非语言沟通+轻量协作+双向付出”的关系构建路径。',
+      zh: '系统拆解 | 社交机制 | 情感化设计分析。深度报告聚焦《光·遇》以“情绪连接”为核心的社交系统，解析“非语言沟通+轻量协作+双向付出”的关系构建路径。',
       en: 'Deeply analyzes Sky: Children of the Light\'s social system focused on "emotional connection," exploring non-verbal communication, lightweight cooperation, and the design trade-offs of the anonymity mechanism.',
       ja: '「Sky 星を紡ぐ子どもたち」の「情緒的な繋がり」を核心としたソーシャルシステムを深く解析。非言語コミュニケーション、軽量な協調、匿名メカニズムの設計上の选择を剖析。'
     },
@@ -153,7 +160,7 @@ const PROJECTS: Project[] = [
     title: '《杀戮尖塔》核心模块拆解',
     category: '游戏拆解',
     description: {
-      zh: '深度解析《杀戮尖塔》战斗、地图与圣遗物系统，剖析极简规则下的无限重玩价值（Replayability），并探讨系统耦合度对策略维度的影响，产出详尽的 3C 逻辑及关卡节奏分析。',
+      zh: '系统拆解 | 战斗逻辑 | 重玩价值分析。深度解析《杀戮尖塔》的核心循环，探讨系统耦合度对策略维度的影响，产出详尽 of 3C 逻辑及关卡节奏分析。',
       en: 'Deep analysis of Slay the Spire\'s combat, map, and relic systems. Explores infinite replayability under minimalist rules and investigates how system coupling affects strategic depth.',
       ja: '「Slay the Spire」の戦闘、マップ、レリックシステムを深く解析。ミニマルなルール下での無限のリプレイ性を探求し、システム間の結合が戦略的深みに与える影響を調査。'
     },
@@ -689,8 +696,24 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           {project.title}
         </h3>
         <p className="text-brand-black font-medium text-sm mb-6 leading-relaxed">
-          {project.description[lang]}
+          {lang === 'zh' && project.description[lang].includes('。') ? (
+            <>
+              <span className="font-black block mb-2">{project.description[lang].split('。')[0]}</span>
+              <span className="opacity-80 leading-relaxed block">{project.description[lang].split('。').slice(1).join('。')}</span>
+            </>
+          ) : (
+            project.description[lang]
+          )}
         </p>
+
+        {project.awards && (
+          <div className="mb-4 bg-brand-primary/10 border-l-2 border-brand-primary p-2 flex items-start gap-2">
+            <Trophy className="w-4 h-4 text-brand-primary mt-0.5 shrink-0" />
+            <span className="text-[11px] font-black italic text-brand-primary uppercase tracking-wider">
+              {project.awards[lang]}
+            </span>
+          </div>
+        )}
         
         <div className="flex flex-wrap gap-2 items-center">
           {project.tags.map(tag => (
