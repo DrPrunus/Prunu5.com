@@ -57,12 +57,12 @@ const PROJECTS: Project[] = [
     title: '404 Princess Not Found',
     category: 'PC',
     description: {
-      zh: 'HD2D 探索解谜 | Unity 引擎 | 2025 TapTap 聚光灯 GameJam。以“勇者修复残缺游戏世界 Bug、追寻不存在的公主”为主线，担任策划、程序开发与音乐制作，上线 TapTap PC 端。',
+      zh: 'HD2D 探索解谜 | Unity 引擎 | 2025 TapTap 聚光灯 GameJam。以“勇者修复残缺游戏世界 Bug、追寻不存在的公主”为主线，担任策划、程序与音乐制作，上线 TapTap PC 端。',
       en: 'HD2D Exploration Puzzle Game developed in Unity for 2025 TapTap Spotlight GameJam 21-day challenge. A meta-narrative adventure about a hero fixing system bugs to find a non-existent princess. Roles: Design, Dev, Music.',
       ja: 'Unityで制作されたHD2D探索パズルゲーム。2025 TapTap Spotlight GameJam 21日間チャレンジ参加作品。勇者がバグを修正しながら存在しない王女を探すメタフィクション。役割：企画、開発、音楽。'
     },
     image: '/covers/404.jpg', // Path: /covers/404.jpg
-    tags: ['策划', '程序开发', '音乐', 'Unity'],
+    tags: ['策划', '程序', '音乐', 'Unity'],
     link: 'https://www.taptap.cn/app/779210?os=pc',
     github: '#'
   },
@@ -99,12 +99,12 @@ const PROJECTS: Project[] = [
     title: 'GhostCookies',
     category: 'PC',
     description: {
-      zh: '2D 益智类网页游戏 | Unity 引擎 | 2025 Brackeys Jam。以 “鬼魂吃饼干” 为核心玩法，针对 H5 平台特性深度适配优化，独自完成策划、程序开发及音乐与音效设计。',
+      zh: '2D 益智类网页游戏 | Unity 引擎 | 2025 Brackeys Jam。以 “鬼魂吃饼干” 为核心玩法，针对 H5 平台特性深度适配优化，独自完成策划、程序及音乐与音效设计。',
       en: '2D Puzzle Web Game developed in Unity for 2025 Brackeys Jam 7-day challenge. Features "Ghost eating cookies" core gameplay, deeply optimized for H5 platforms. Roles: Design, Development, Music & Sound.',
       ja: 'Unityで制作された2Dパズルウェブゲーム。2025 Brackeys Jam 7日間ジャム参加作品。「幽霊がクッキーを食べる」核心的な遊び。H5プラットフォーム向けに最適化。役割：企画、開発、音楽、効果音。'
     },
     image: '/covers/gc.png', // Path: /covers/gc.png
-    tags: ['策划', '程序开发', '音乐', 'Unity'],
+    tags: ['策划', '程序', '音乐', 'Unity'],
     link: 'https://volticx.itch.io/ghostcookies',
     github: '#'
   },
@@ -118,7 +118,7 @@ const PROJECTS: Project[] = [
       ja: 'クリアは終わりではありません。アイテムを駆使して「パーフェクトクリア」を目指しましょう！パスプランニングとアイテム使用が鍵となるパズルゲーム。'
     },
     image: '/covers/pc.png',
-    tags: ['关卡设计', '解谜逻辑', '道具系统'],
+    tags: ['策划', '音乐', '关卡设计', 'UNITY'],
     awards: {
       zh: '最魂like的顶级游戏',
       en: 'Top Soul-like Game',
@@ -166,7 +166,7 @@ const PROJECTS: Project[] = [
     },
     image: '/covers/sts.png',
     tags: ['Roguelike', '数值平衡', '机制拆解'],
-    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
+    link: 'https://xcnselbxoekt.feishu.cn/drive/folder/VZLQfKfxhlBxHkdw3ykcwPCwn7g',
     github: '#'
   }
 ];
