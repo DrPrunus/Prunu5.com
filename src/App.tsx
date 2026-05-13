@@ -114,7 +114,7 @@ const PROJECTS: Project[] = [
     title: '完美通关',
     category: 'PC',
     description: {
-      zh: '2D解谜闯关 | Unity | 034 GameJam 参赛作品。通过鼠标点击规划路径，并在特定关卡巧用获得的道具来达成“完美”成就。',
+      zh: '2D解谜闯关 | Unity | 034 GameJam。通过鼠标点击规划路径，并在特定关卡巧用获得的道具来达成“完美”成就。',
       en: 'Clearing the level is just the beginning. Use items strategically to achieve a "Perfect Clear"! A puzzle game focused on path planning and item management.',
       ja: 'クリアは終わりではありません。アイテムを駆使して「パーフェクトクリア」を目指しましょう！パスプランニングとアイテム使用が鍵となるパズルゲーム。'
     },
