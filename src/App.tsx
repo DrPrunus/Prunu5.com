@@ -48,6 +48,7 @@ interface Project {
   link?: string;
   github?: string;
   awards?: Record<Language, string>;
+  awardImage?: string;
 }
 
 // --- Mock Data ---
@@ -57,7 +58,7 @@ const PROJECTS: Project[] = [
     title: '404 Princess Not Found',
     category: 'PC',
     description: {
-      zh: 'HD2D 探索解谜 | Unity 引擎 | 2025 TapTap 聚光灯 GameJam。以“勇者修复残缺游戏世界 Bug、追寻不存在的公主”为主线，担任策划、程序与音乐制作，上线 TapTap PC 端。',
+      zh: 'HD2D 箱庭解谜 | Unity | 2025 TapTap 聚光灯 GameJam。以“勇者修复残缺游戏世界 Bug、追寻不存在的公主”为主线，担任策划、程序与音乐制作，上线 TapTap PC 端。',
       en: 'HD2D Exploration Puzzle Game developed in Unity for 2025 TapTap Spotlight GameJam 21-day challenge. A meta-narrative adventure about a hero fixing system bugs to find a non-existent princess. Roles: Design, Dev, Music.',
       ja: 'Unityで制作されたHD2D探索パズルゲーム。2025 TapTap Spotlight GameJam 21日間チャレンジ参加作品。勇者がバグを修正しながら存在しない王女を探すメタフィクション。役割：企画、開発、音楽。'
     },
@@ -71,12 +72,12 @@ const PROJECTS: Project[] = [
     title: 'Connection',
     category: 'PC',
     description: {
-      zh: '角色养成模拟 | 羁绊系统 | 数值驱动。通过管理多种属性指标来引导女儿的成长轨迹，在成长的过程中探索羁绊与各种可能性。',
-      en: 'A deep character growth simulation game where players guide their daughter\'s growth through a variety of attributes, exploring possibilities and connections.',
-      ja: '深いキャラクター育成シミュレーションゲーム。プレイヤーはさまざまな属性を管理することで娘の成長を導き、成長過程における可能性と絆を探索します。'
+      zh: '角色扮演 + 视觉小说 | Unity | 2026 thatgamejam。通过管理多种属性指标来引导女儿的成长轨迹，在成长的过程中探索羁绊与各种可能性。',
+      en: 'A deep character growth simulation developed for 2026 thatgamejam. Players guide their daughter\'s growth through a variety of attributes, exploring possibilities and connections.',
+      ja: '2026 thatgamejamにて制作されたキャラクター育成シミュレーション。プレイヤーはさまざまな属性を管理することで娘の成長を導き、成長過程における可能性と絆を探索します。'
     },
     image: '/covers/c.jpg',
-    tags: ['养成模拟', '角色设计', '数值策划'],
+    tags: ['策划', '音乐', 'Unity'],
     link: 'https://tzzsleep.itch.io/connection',
     github: '#'
   },
@@ -85,12 +86,12 @@ const PROJECTS: Project[] = [
     title: '跟你豹了',
     category: 'PC',
     description: {
-      zh: '能力驱动解谜 | 机制拓展性 | 奇点律动 Vol2 GameJam。围绕“充气 / 放气”能力制作的游戏原型，展现了基础能力在关卡设计中的多种应用可能性。',
-      en: 'Developed for the Singularity Rhythm Vol2 GameJam, this game focuses on "inflation/deflation" mechanics. Although short, it demonstrates the scalability of its abilities.',
-      ja: '奇点律動Vol2 GameJam向けに制作された作品。「膨張・収縮」の能力を核としたゲームプレイ。短いながらも、各能力の拡張性を示しています。'
+      zh: '平台跳跃 + 解谜 | Unity | 2026 奇点律动 Vol2 GameJam。围绕“充气 / 放气”能力制作的游戏原型，展现了基础能力在关卡设计中的多种应用可能性。',
+      en: 'Developed for the 2026 Singularity Rhythm Vol2 GameJam, this game focuses on "inflation/deflation" mechanics. Although short, it demonstrates the scalability of its abilities.',
+      ja: '2026 奇点律動Vol2 GameJam向けに制作された作品。「膨張・収縮」の能力を核としたゲームプレイ。短いながらも、各能力の拡張性を示しています。'
     },
     image: '/covers/gnbl.png',
-    tags: ['GameJam', '能力设计', '游戏原型'],
+    tags: ['GameJam', '能力设计', '游戏原型', 'Unity'],
     link: 'https://www.bilibili.com/video/BV1QoFNzUETM/',
     github: '#'
   },
@@ -99,7 +100,7 @@ const PROJECTS: Project[] = [
     title: 'GhostCookies',
     category: 'PC',
     description: {
-      zh: '2D 益智类网页游戏 | Unity 引擎 | 2025 Brackeys Jam。以 “鬼魂吃饼干” 为核心玩法，针对 H5 平台特性深度适配优化，独自完成策划、程序及音乐与音效设计。',
+      zh: '2D 益智类网页游戏 | Unity | 2025 Brackeys Jam。以 “鬼魂吃饼干” 为核心玩法，针对 H5 平台特性深度适配优化，独自完成策划、程序及音乐与音效设计。',
       en: '2D Puzzle Web Game developed in Unity for 2025 Brackeys Jam 7-day challenge. Features "Ghost eating cookies" core gameplay, deeply optimized for H5 platforms. Roles: Design, Development, Music & Sound.',
       ja: 'Unityで制作された2Dパズルウェブゲーム。2025 Brackeys Jam 7日間ジャム参加作品。「幽霊がクッキーを食べる」核心的な遊び。H5プラットフォーム向けに最適化。役割：企画、開発、音楽、効果音。'
     },
@@ -113,17 +114,18 @@ const PROJECTS: Project[] = [
     title: '完美通关',
     category: 'PC',
     description: {
-      zh: '2D 益智闯关 | 路径规划 | 034 GameJam 参赛作品。通过鼠标点击规划路径，并在特定关卡巧用获得的道具来达成“完美”成就。',
+      zh: '2D解谜闯关 | Unity | 034 GameJam 参赛作品。通过鼠标点击规划路径，并在特定关卡巧用获得的道具来达成“完美”成就。',
       en: 'Clearing the level is just the beginning. Use items strategically to achieve a "Perfect Clear"! A puzzle game focused on path planning and item management.',
       ja: 'クリアは終わりではありません。アイテムを駆使して「パーフェクトクリア」を目指しましょう！パスプランニングとアイテム使用が鍵となるパズルゲーム。'
     },
     image: '/covers/pc.png',
-    tags: ['策划', '音乐', '关卡设计', 'UNITY'],
+    tags: ['策划', '音乐', '关卡设计', 'Unity'],
     awards: {
       zh: '最魂like的顶级游戏',
       en: 'Top Soul-like Game',
       ja: '最高にソウルライクなトップゲーム'
     },
+    awardImage: '/soullike.jpg',
     link: 'https://034gamejam.uneoon.com/games/24',
     github: '#'
   },
@@ -626,6 +628,7 @@ const getImageUrl = (path: string) => {
 
 const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string; key?: string | number }) => {
   const [imageError, setImageError] = useState(false);
+  const [showAwardImage, setShowAwardImage] = useState(false);
   const imageUrl = getImageUrl(project.image);
 
   const CardContent = (
@@ -707,11 +710,45 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
         </p>
 
         {project.awards && (
-          <div className="mb-4 bg-brand-primary/10 border-l-2 border-brand-primary p-2 flex items-start gap-2">
+          <div 
+            className="mb-4 bg-brand-primary/10 border-l-2 border-brand-primary p-2 flex items-start gap-2 relative cursor-help group/award"
+            onMouseEnter={() => setShowAwardImage(true)}
+            onMouseLeave={() => setShowAwardImage(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setShowAwardImage(!showAwardImage);
+            }}
+          >
             <Trophy className="w-4 h-4 text-brand-primary mt-0.5 shrink-0" />
             <span className="text-[11px] font-black italic text-brand-primary uppercase tracking-wider">
               {project.awards[lang]}
             </span>
+
+            {/* Award Image Popup */}
+            <AnimatePresence>
+              {showAwardImage && project.awardImage && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                  className="absolute bottom-full left-0 mb-2 z-[100] w-64 p-1 bg-white border-2 border-brand-primary shadow-[10px_10px_0px_rgba(0,0,0,1)] pointer-events-none"
+                >
+                  <img 
+                    src={project.awardImage} 
+                    alt="Award" 
+                    className="w-full h-auto"
+                    onError={(e) => {
+                      // Fallback if image doesn't exist
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=400';
+                    }}
+                  />
+                  <div className="bg-brand-primary text-white text-[8px] font-mono p-1 uppercase text-center font-black">
+                    {project.awards[lang]}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         )}
         
