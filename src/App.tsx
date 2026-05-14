@@ -1212,7 +1212,7 @@ export default function App() {
                 <div className="absolute -left-4 md:-left-13 top-1/2 -translate-y-1/2 w-1.5 md:w-2 h-1.5 md:h-2 bg-brand-primary rhombus-fill" />
 
                 <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-brand-black text-white px-2 md:px-3 py-0.5 md:py-1 text-[10px] md:text-xs uppercase font-mono brutalist-shadow-small">
-                  Logic
+                  Game
                 </div>
                 {t.hero.subtitleGame}
               </motion.div>
@@ -1223,7 +1223,7 @@ export default function App() {
                 className="text-brand-black text-base md:text-lg leading-tight font-black p-6 md:p-8 border-l-[8px] md:border-l-[12px] border-brand-accent bg-white brutalist-border mt-0 md:mt-8 relative"
               >
                 <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-brand-black text-white px-2 md:px-3 py-0.5 md:py-1 text-[10px] md:text-xs uppercase font-mono brutalist-shadow-small">
-                  Vibe
+                  Music
                 </div>
                 {t.hero.subtitleMusic}
               </motion.div>
