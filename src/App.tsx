@@ -738,9 +738,10 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
                     src={project.awardImage} 
                     alt="Award" 
                     className="w-full h-auto"
+                    referrerPolicy="no-referrer"
                     onError={(e) => {
                       // Fallback if image doesn't exist
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=400';
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1594914141274-12933758e5ff?w=400&q=80';
                     }}
                   />
                   <div className="bg-brand-primary text-white text-[8px] font-mono p-1 uppercase text-center font-black">
