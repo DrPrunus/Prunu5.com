@@ -131,15 +131,15 @@ const PROJECTS: Project[] = [
   },
   {
     id: '6',
-    title: 'Deep Rock Galactic 通行证设计拆解',
+    title: '《深岩银河》赛季通行证系统拆解案',
     category: '游戏拆解',
     description: {
-      zh: '系统拆解 | 通行证设计 | 赛季机制分析。以《Deep Rock Galactic》中“随时切回的永久赛季+线形进度+非线形奖励树”的核心设计为切入点，分析其实现长期友好的玩家体验的路径。',
+      zh: '系统拆解 | 多人合作射击 | 赛季通行证系统。该拆解案聚焦《深岩银河》通行证 “可自由切换任意永久赛季 + 线性进度 + 非线性奖励树” 的核心设计，剖析其如何通过去时间压力、高自主解锁机制，实现长期友好的玩家体验与正向社群效应。',
       en: 'Focuses on Deep Rock Galactic\'s "switchable permanent seasons + linear progress + non-linear reward tree" design, analyzing how it achieves long-term player friendly experience through high autonomy.',
-      ja: '「Deep Rock Galactic」の「いつでも切り替え可能な永久赛季＋线形进捗＋非线形報酬ツリー」のコア设计に焦点を当て、时间制约の排除と高い自主性による长期的なプレイヤー体验を分析。'
+      ja: '「Deep Rock Galactic」の「いつでも切り替え可能な永久赛季＋线形进捗＋非线形報酬ツリー」のコア设计に焦点を当て、时间制约の排除和高い自主性による长期的なプレイヤー体验を分析。'
     },
     image: '/covers/dr.png',
-    tags: ['通行证设计', '系统分析', '数值构架'],
+    tags: ['通行证设计', '系统分析', '数值构架', '拆解分析'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/BnVjfi28ulUhZkdw4NIcoFimnid',
     github: '#'
   },
@@ -148,12 +148,12 @@ const PROJECTS: Project[] = [
     title: '《光·遇》社交系统拆解案',
     category: '游戏拆解',
     description: {
-      zh: '系统拆解 | 社交机制 | 情感化设计分析。深度报告聚焦《光·遇》以“情绪连接”为核心的社交系统，解析“非语言沟通+轻量协作+双向付出”的关系构建路径。',
+      zh: '系统拆解 | 社交冒险 | 情感化社交系统。该拆解案聚焦《光·遇》以“情绪连接”为核心的社交系统，深度解析陌生人互动、好友关系、情绪动作、礼物互赠等六大模块，结合3C设计逻辑，剖析其“非语言沟通+轻量协作+双向付出”的关系构建路径与匿名机制的设计取舍。',
       en: 'Deeply analyzes Sky: Children of the Light\'s social system focused on "emotional connection," exploring non-verbal communication, lightweight cooperation, and the design trade-offs of the anonymity mechanism.',
       ja: '「Sky 星を紡ぐ子どもたち」の「情緒的な繋がり」を核心としたソーシャルシステムを深く解析。非言語コミュニケーション、軽量な協調、匿名メカニズムの設計上の选择を剖析。'
     },
     image: '/covers/gy.png',
-    tags: ['社交系统', '交互设计', '3C逻辑'],
+    tags: ['社交系统', '交互设计', '3C逻辑', '拆解分析'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
     github: '#'
   },
@@ -162,12 +162,12 @@ const PROJECTS: Project[] = [
     title: '《杀戮尖塔》核心模块拆解',
     category: '游戏拆解',
     description: {
-      zh: '系统拆解 | 战斗逻辑 | 重玩价值分析。深度解析《杀戮尖塔》的核心循环，探讨系统耦合度对策略维度的影响，产出详尽 of 3C 逻辑及关卡节奏分析。',
+      zh: '系统拆解 | Roguelike卡牌 | 核心战斗与数值系统。该拆解案聚焦《杀戮尖塔》的战斗、卡牌、关卡三大核心系统，深度解析其“可控随机性+卡组构筑成长+风险收益选择”的核心设计逻辑，包括战斗机制、卡牌连携与数值规范、关卡路线与房间设计。',
       en: 'Deep analysis of Slay the Spire\'s combat, map, and relic systems. Explores infinite replayability under minimalist rules and investigates how system coupling affects strategic depth.',
       ja: '「Slay the Spire」の戦闘、マップ、レリックシステムを深く解析。ミニマルなルール下での無限のリプレイ性を探求し、システム間の結合が戦略的深みに与える影響を調査。'
     },
     image: '/covers/sts.png',
-    tags: ['Roguelike', '数值平衡', '机制拆解'],
+    tags: ['Roguelike', '数值平衡', '机制拆解', '拆解分析'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/VZLQfKfxhlBxHkdw3ykcwPCwn7g',
     github: '#'
   }
@@ -699,13 +699,32 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           {project.title}
         </h3>
         <p className="text-brand-black font-medium text-sm mb-6 leading-relaxed">
-          {lang === 'zh' && project.description[lang].includes('。') ? (
+          {project.description[lang].includes('。') && project.description[lang].indexOf('。') < project.description[lang].length - 1 ? (
             <>
-              <span className="font-black block mb-2">{project.description[lang].split('。')[0]}</span>
+              <span className="block mb-2 text-brand-black">
+                {project.description[lang].split('。')[0].split('|').map((part, i, arr) => (
+                  <span key={i}>
+                    <span className="font-black">{part.trim()}</span>
+                    {i < arr.length - 1 && <span className="mx-2 opacity-30 font-normal">|</span>}
+                  </span>
+                ))}
+                <span className="font-normal opacity-60">。</span>
+              </span>
               <span className="opacity-80 leading-relaxed block">{project.description[lang].split('。').slice(1).join('。')}</span>
             </>
           ) : (
-            project.description[lang]
+            <span className="opacity-80 block">
+              {project.description[lang].includes('|') ? (
+                project.description[lang].split('|').map((part, i, arr) => (
+                  <span key={i}>
+                    <span className="font-black">{part.trim()}</span>
+                    {i < arr.length - 1 && <span className="mx-2 opacity-30 font-normal">|</span>}
+                  </span>
+                ))
+              ) : (
+                project.description[lang]
+              )}
+            </span>
           )}
         </p>
 
