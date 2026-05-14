@@ -230,6 +230,21 @@ function NeuralWaveform() {
   );
 }
 
+const GENRES = ['TRAP', 'DUBSTEP', 'TECHNO', 'HOUSE', 'HARDSTYLE', 'FUTURE BASS', 'DRUM & BASS', 'PHONK', 'GLITCH HOP', 'RIDDIM', 'PSYTRANCE', 'EDM', 'CORE', 'BASS'];
+
+function GenreTicker() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex(Math.floor(Math.random() * GENRES.length));
+    }, 120);
+    return () => clearInterval(timer);
+  }, []);
+
+  return <>{GENRES[index]}</>;
+}
+
 // --- Components ---
 
 const landChars = ['#', '*', '@', '8', 'æ'];
@@ -1047,12 +1062,14 @@ export default function App() {
             <div className="flex items-center gap-3 px-3 py-1.5 brutalist-border border-white/10 bg-brand-primary/5">
               <div className="flex flex-col items-start gap-1">
                 <span className="text-[7px] uppercase font-black tracking-widest text-brand-primary/60 leading-none">
-                  Neural_Link_Status
+                  Electronic_Music
                 </span>
                 <NeuralWaveform />
               </div>
-              <div className="flex flex-col text-brand-primary">
-                <div className="text-[10px] font-mono font-black animate-pulse">SYNC_OK</div>
+              <div className="flex flex-col text-brand-primary w-[80px]">
+                <div className="text-[10px] font-mono font-black animate-pulse uppercase truncate">
+                  <GenreTicker />
+                </div>
                 <div className="text-[6px] opacity-40 uppercase">Gate_V7.2</div>
               </div>
             </div>
