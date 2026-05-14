@@ -139,7 +139,7 @@ const PROJECTS: Project[] = [
       ja: '「Deep Rock Galactic」の「いつでも切り替え可能な永久赛季＋线形进捗＋非线形報酬ツリー」のコア设计に焦点を当て、时间制约の排除和高い自主性による长期的なプレイヤー体验を分析。'
     },
     image: '/covers/dr.png',
-    tags: ['通行证设计', '系统分析', '数值构架', '拆解分析'],
+    tags: ['奖励系统', '拆解分析'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/BnVjfi28ulUhZkdw4NIcoFimnid',
     github: '#'
   },
@@ -153,7 +153,7 @@ const PROJECTS: Project[] = [
       ja: '「Sky 星を紡ぐ子どもたち」の「情緒的な繋がり」を核心としたソーシャルシステムを深く解析。非言語コミュニケーション、軽量な協調、匿名メカニズムの設計上の选择を剖析。'
     },
     image: '/covers/gy.png',
-    tags: ['社交系统', '交互设计', '3C逻辑', '拆解分析'],
+    tags: ['社交系统', '拆解分析'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
     github: '#'
   },
@@ -167,7 +167,7 @@ const PROJECTS: Project[] = [
       ja: '「Slay the Spire」の戦闘、マップ、レリックシステムを深く解析。ミニマルなルール下での無限のリプレイ性を探求し、システム間の結合が戦略的深みに与える影響を調査。'
     },
     image: '/covers/sts.png',
-    tags: ['Roguelike', '数值平衡', '机制拆解', '拆解分析'],
+    tags: ['战斗系统', '数值系统', '拆解分析'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/VZLQfKfxhlBxHkdw3ykcwPCwn7g',
     github: '#'
   }
