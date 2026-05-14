@@ -91,7 +91,7 @@ const PROJECTS: Project[] = [
       ja: '2026 奇点律動Vol2 GameJam向けに制作された作品。「膨張・収縮」の能力を核としたゲームプレイ。短いながらも、各能力の拡張性を示しています。'
     },
     image: '/covers/gnbl.png',
-    tags: ['GameJam', '能力设计', '游戏原型', 'Unity'],
+    tags: ['策划', '音乐', '关卡设计', 'Unity'],
     link: 'https://www.bilibili.com/video/BV1QoFNzUETM/',
     github: '#'
   },
@@ -708,7 +708,6 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
                     {i < arr.length - 1 && <span className="mx-2 opacity-30 font-normal">|</span>}
                   </span>
                 ))}
-                <span className="font-normal opacity-60">。</span>
               </span>
               <span className="opacity-80 leading-relaxed block">{project.description[lang].split('。').slice(1).join('。')}</span>
             </>
