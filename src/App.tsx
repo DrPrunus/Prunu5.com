@@ -30,7 +30,8 @@ import {
   Target,
   Trophy,
   CassetteTape,
-  Joystick
+  Joystick,
+  ExternalLink
 } from 'lucide-react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Float, Wireframe, Html } from '@react-three/drei';
@@ -646,6 +647,7 @@ const getImageUrl = (path: string) => {
 const ProjectCard = ({ project, lang, className }: { project: Project; lang: Language; className?: string; key?: string | number }) => {
   const [imageError, setImageError] = useState(false);
   const [showAwardImage, setShowAwardImage] = useState(false);
+  const [showLinkPreview, setShowLinkPreview] = useState(false);
   const imageUrl = getImageUrl(project.image);
 
   const CardContent = (
@@ -788,17 +790,92 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
           </div>
         )}
         
-        <div className="flex flex-wrap gap-2 items-center">
-          {project.tags.map(tag => (
-            <span key={tag} className="text-[9px] font-black bg-brand-black text-white px-2 py-0.5 uppercase tracking-tighter">
-              {tag}
-            </span>
-          ))}
-          {/* Functional status indicator (dots) */}
-          <div className="segmented-bar ml-auto text-brand-primary/40 group-hover:text-brand-primary transition-colors">
-            <div className="segmented-bar-item" />
-            <div className="segmented-bar-item" />
-            <div className="segmented-bar-item h-2" />
+        <div className="flex flex-col gap-4">
+          <div className="space-y-2">
+            {project.category !== '游戏拆解' && (
+              <div className="flex items-center gap-2 border-b border-brand-black/5 pb-1">
+                <div className="w-1.5 h-1.5 bg-brand-primary rhombus-fill" />
+                <span className="text-[9px] font-mono font-black text-brand-primary/80 uppercase tracking-widest">
+                  {translations[lang].sections.portfolio.roleLabel}
+                </span>
+              </div>
+            )}
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map(tag => (
+                <span key={tag} className="text-[10px] font-black bg-brand-black text-white px-2 py-0.5 uppercase tracking-tighter shadow-[2px_2px_0px_rgba(0,0,0,0.2)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between pt-2">
+             {project.link && project.link !== '#' && (
+               <div 
+                 className="relative group/link"
+                 onMouseEnter={() => setShowLinkPreview(true)}
+                 onMouseLeave={() => setShowLinkPreview(false)}
+               >
+                 <div className="flex items-center gap-2 text-brand-primary group-hover/link:scale-105 transition-transform origin-left">
+                   <div className="w-6 h-[1px] bg-brand-primary" />
+                   <span className="text-[10px] font-black uppercase tracking-tighter italic">{translations[lang].sections.portfolio.visitBtn}</span>
+                   <ChevronRight size={14} />
+                 </div>
+
+                 {/* Link Preview Popup */}
+                 <AnimatePresence>
+                   {showLinkPreview && (
+                     <motion.div
+                       initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                       animate={{ opacity: 1, y: 0, scale: 1 }}
+                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                       className="absolute bottom-full left-0 mb-4 z-[110] w-72 bg-white brutalist-border shadow-[15px_15px_0px_rgba(0,0,0,0.1)] p-1 pointer-events-none"
+                     >
+                       <div className="aspect-video bg-brand-black/5 relative overflow-hidden">
+                          <img 
+                            src={imageUrl} 
+                            alt="Preview" 
+                            className="w-full h-full object-cover opacity-60 grayscale group-hover/link:grayscale-0 transition-all"
+                            referrerPolicy="no-referrer"
+                          />
+                          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                            <div className="w-12 h-12 rounded-full border-2 border-brand-primary flex items-center justify-center mb-2 bg-white/80 animate-pulse">
+                              <ExternalLink size={20} className="text-brand-primary" />
+                            </div>
+                            <div className="text-[10px] font-black text-brand-black uppercase bg-white/90 px-2 py-0.5 border border-brand-black shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                              Target: {(() => {
+                                try {
+                                  return new URL(project.link).hostname;
+                                } catch (e) {
+                                  return project.link;
+                                }
+                              })()}
+                            </div>
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/20 to-transparent" />
+                          {/* Scan line effect */}
+                          <div className="absolute inset-x-0 h-1 bg-brand-primary/40 shadow-[0_0_10px_brand-primary] animate-scan-fast" />
+                       </div>
+                       <div className="p-3 border-t border-brand-black bg-brand-black text-white flex items-center justify-between">
+                          <span className="text-[9px] font-mono font-bold tracking-widest">LIVE_PREVIEW.exe</span>
+                          <div className="flex gap-1">
+                            <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                          </div>
+                       </div>
+                     </motion.div>
+                   )}
+                 </AnimatePresence>
+               </div>
+             )}
+             
+             {/* Functional status indicator (dots) */}
+             <div className="segmented-bar ml-auto text-brand-primary/40 group-hover:text-brand-primary transition-colors">
+               <div className="segmented-bar-item" />
+               <div className="segmented-bar-item" />
+               <div className="segmented-bar-item h-2" />
+             </div>
           </div>
         </div>
       </div>

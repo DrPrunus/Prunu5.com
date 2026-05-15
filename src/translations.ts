@@ -23,6 +23,8 @@ export const translations = {
         title: '项目作品',
         subtitle: '',
         all: '全部类别',
+        roleLabel: '项目角色',
+        visitBtn: '直达项目',
         categories: {
           '游戏拆解': '游戏拆解',
           'PC': 'PC',
@@ -79,6 +81,8 @@ export const translations = {
         title: 'Projects',
         subtitle: '',
         all: 'All Categories',
+        roleLabel: 'Project Role',
+        visitBtn: 'Visit Site',
         categories: {
           '游戏拆解': 'Game Deconstruction',
           'PC': 'PC',
@@ -135,6 +139,8 @@ export const translations = {
         title: '作戦履歴',
         subtitle: '',
         all: '全カテゴリー',
+        roleLabel: 'プロジェクト役割',
+        visitBtn: 'サイトへ',
         categories: {
           '游戏拆解': 'ゲーム分析',
           'PC': 'PC版',
