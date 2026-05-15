@@ -1494,7 +1494,7 @@ export default function App() {
                            <div className="w-2 h-2 bg-brand-primary" />
                            <div className="h-[2px] w-12 bg-brand-primary/40" />
                         </div>
-                        <p className="text-lg md:text-2xl font-bold leading-tight decoration-brand-primary/30 decoration-8 underline-offset-8">
+                        <p className="text-lg md:text-xl font-bold leading-tight">
                           {t.sections.about.p1}
                         </p>
                       </div>
