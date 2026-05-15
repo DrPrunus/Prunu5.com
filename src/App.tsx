@@ -28,7 +28,9 @@ import {
   Zap,
   Users,
   Target,
-  Trophy
+  Trophy,
+  CassetteTape,
+  Joystick
 } from 'lucide-react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Float, Wireframe, Html } from '@react-three/drei';
@@ -935,6 +937,31 @@ export default function App() {
 
       {/* Background Decor */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-brand-bg" />
+      <div className="fixed inset-0 pointer-events-none -z-[9] y2k-mesh-bg" />
+      
+      {/* Y2K Floating Blobs */}
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] rounded-full bg-[#00f2ff] opacity-[0.05] blur-[100px] animate-blob" />
+        <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] rounded-full bg-[#ff00ea] opacity-[0.05] blur-[80px] animate-blob [animation-delay:2s]" />
+        <div className="absolute top-[60%] left-[40%] w-[300px] h-[300px] rounded-full bg-[#7000ff] opacity-[0.03] blur-[90px] animate-blob [animation-delay:4s]" />
+      </div>
+
+      {/* Retro Tech Decorations */}
+      <div className="fixed inset-0 pointer-events-none -z-[8] overflow-hidden opacity-20">
+        <div className="absolute top-40 -left-10 rotate-12 p-4 y2k-glass border border-white/20 rounded-2xl scale-75">
+           <Gamepad2 className="text-[#00f2ff]" size={48} />
+        </div>
+        <div className="absolute bottom-60 -right-8 -rotate-12 p-3 y2k-glass border border-white/20 rounded-xl">
+           <CassetteTape className="text-[#ff00ea]" size={40} />
+        </div>
+        <div className="absolute top-1/2 left-4 -translate-y-1/2 opacity-40">
+           <Cpu className="text-white/20" size={120} />
+        </div>
+        <div className="absolute top-[20%] right-10 p-2 y2k-glass border border-white/20 rounded-full animate-pulse">
+           <Joystick className="text-white/40" size={24} />
+        </div>
+      </div>
+
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] -z-10 tactical-grid" />
       
       <div className="fixed inset-0 pointer-events-none opacity-[0.2] -z-10 scanlines" />
@@ -1046,17 +1073,60 @@ export default function App() {
               ))}
             </div>
 
-            <div className="flex items-center gap-1 bg-white/10 p-1 brutalist-border border-white/20">
-              {(['zh', 'en', 'ja'] as const).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLang(l)}
-                  className={`px-3 py-1 text-[10px] uppercase font-black transition-all ${lang === l ? 'bg-brand-primary text-white' : 'text-gray-400 hover:text-white'}`}
-                >
-                  {l}
-                </button>
-              ))}
+            {/* Cassette Tape Language Switcher - Translucent Tech Edition */}
+            <div className="relative h-10 w-[180px] bg-white/5 backdrop-blur-md rounded-lg border border-white/20 shadow-2xl flex items-center px-2 py-1 overflow-hidden group/cassette">
+              {/* Inner tech pattern */}
+              <div className="absolute inset-0 opacity-10 pointer-events-none tactical-grid scale-150" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/10 to-transparent pointer-events-none" />
+              
+              {/* Left Reel - Glowing */}
+              <div className="w-7 h-7 rounded-full bg-black/60 border border-white/20 flex items-center justify-center relative flex-shrink-0">
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  className="w-5 h-5 rounded-full border border-brand-primary/40 border-t-brand-primary border-dashed"
+                />
+                <div className="absolute w-1.5 h-1.5 bg-brand-primary rounded-full shadow-[0_0_8px_#ff0055]" />
+              </div>
+
+              {/* Tape Label / Switcher Buttons - Tech Plate Style */}
+              <div className="flex-1 mx-2 h-[85%] rounded bg-black/40 border border-white/10 flex items-center justify-around overflow-hidden relative">
+                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-primary to-transparent opacity-50" />
+                 
+                 {(['zh', 'en', 'ja'] as const).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => setLang(l)}
+                      className={`relative z-10 h-full flex-1 flex items-center justify-center text-[10px] font-display font-black transition-all ${lang === l ? 'text-white' : 'text-white/30 hover:text-white/60'}`}
+                    >
+                      {l.toUpperCase()}
+                      {lang === l && (
+                        <motion.div 
+                          layoutId="activeLang"
+                          className="absolute inset-0 bg-brand-primary/20 border-x border-brand-primary/40" 
+                        />
+                      )}
+                    </button>
+                  ))}
+              </div>
+
+              {/* Right Reel - Glowing */}
+              <div className="w-7 h-7 rounded-full bg-black/60 border border-white/20 flex items-center justify-center relative flex-shrink-0">
+                <motion.div 
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  className={`w-5 h-5 rounded-full border border-white/10 border-t-white/40 border-dashed ${lang === 'ja' ? 'border-t-brand-primary' : ''}`}
+                />
+                <div className="absolute w-1.5 h-1.5 bg-white/20 rounded-full" />
+              </div>
+
+              {/* Decorative side screws */}
+              <div className="absolute top-1 right-1 w-1 h-1 rounded-full bg-white/10" />
+              <div className="absolute bottom-1 right-1 w-1 h-1 rounded-full bg-white/10" />
+              <div className="absolute top-1 left-1 w-1 h-1 rounded-full bg-white/10" />
+              <div className="absolute bottom-1 left-1 w-1 h-1 rounded-full bg-white/10" />
             </div>
+
 
             {/* Audio Interface Toggle */}
             <div className="flex items-center gap-3 px-3 py-1.5 brutalist-border border-white/10 bg-brand-primary/5">
@@ -1418,12 +1488,17 @@ export default function App() {
               {t.sections.portfolio.title}
             </SectionHeading>
             
-            <div className="flex items-center gap-2 md:gap-3 mb-10 overflow-x-auto no-scrollbar lg:overflow-visible pb-2 max-w-full">
+            <div className="flex items-center gap-2 md:gap-3 mb-10 overflow-x-auto no-scrollbar lg:overflow-visible pb-2 max-w-full relative">
               <button
                 onClick={() => setActiveTab('all')}
-                className={`relative px-4 md:px-6 py-2 md:py-3 font-display font-black uppercase text-[10px] md:text-sm brutalist-border transition-all flex items-center gap-2 group whitespace-nowrap flex-shrink-0 ${activeTab === 'all' ? 'bg-brand-primary text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white hover:bg-brand-accent'}`}
+                className={`relative px-4 md:px-6 py-2 md:py-3 font-display font-black uppercase text-[10px] md:text-sm brutalist-border transition-all flex items-center gap-2 group whitespace-nowrap flex-shrink-0 ${activeTab === 'all' ? 'bg-brand-primary text-white translate-x-1 translate-y-1 shadow-none overflow-hidden' : 'bg-white hover:bg-brand-accent'}`}
               >
-                {activeTab === 'all' && <div className="w-2 md:w-2.5 h-2 md:h-2.5 bg-white rhombus-fill" />}
+                {activeTab === 'all' && (
+                  <>
+                    <div className="w-2 md:w-2.5 h-2 md:h-2.5 bg-white rhombus-fill" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent pointer-events-none" />
+                  </>
+                )}
                 {t.sections.portfolio.all}
                 <div className="absolute top-1 left-1 w-2 h-2 border-t border-l border-current opacity-0 group-hover:opacity-40" />
               </button>
@@ -1431,9 +1506,14 @@ export default function App() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`relative px-4 md:px-6 py-2 md:py-3 font-display font-black uppercase text-[10px] md:text-sm brutalist-border transition-all flex items-center gap-2 group whitespace-nowrap flex-shrink-0 ${activeTab === tab ? 'bg-brand-primary text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white hover:bg-brand-accent'}`}
+                  className={`relative px-4 md:px-6 py-2 md:py-3 font-display font-black uppercase text-[10px] md:text-sm brutalist-border transition-all flex items-center gap-2 group whitespace-nowrap flex-shrink-0 ${activeTab === tab ? 'bg-brand-primary text-white translate-x-1 translate-y-1 shadow-none overflow-hidden' : 'bg-white hover:bg-brand-accent'}`}
                 >
-                  {activeTab === tab && <div className="w-2 md:w-2.5 h-2 md:h-2.5 bg-white rhombus-fill" />}
+                  {activeTab === tab && (
+                    <>
+                      <div className="w-2 md:w-2.5 h-2 md:h-2.5 bg-white rhombus-fill" />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent pointer-events-none" />
+                    </>
+                  )}
                   {(t.sections.portfolio as any).categories[tab] || tab}
                   <div className="absolute top-1 left-1 w-2 h-2 border-t border-l border-current opacity-0 group-hover:opacity-40" />
                 </button>

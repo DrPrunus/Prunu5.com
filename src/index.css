@@ -381,3 +381,50 @@
   background-size: 100% 100%;
 }
 
+/* Y2K Aesthetics */
+.y2k-glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.y2k-chrome-text {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #e1e1e1 45%,
+    #7a7a7a 50%,
+    #4a4a4a 55%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
+.y2k-gradient-bg {
+  background: linear-gradient(135deg, #00f2ff 0%, #ff00ea 100%);
+  opacity: 0.1;
+}
+
+@keyframes blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.animate-blob {
+  animation: blob-float 15s infinite alternate ease-in-out;
+}
+
+.y2k-mesh-bg {
+  background-color: transparent;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(197,100%,82%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 100%, hsla(282,100%,82%,1) 0, transparent 50%),
+    radial-gradient(at 50% 50%, hsla(339,100%,82%,1) 0, transparent 50%);
+  filter: blur(80px);
+  opacity: 0.15;
+}
+
