@@ -834,8 +834,8 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
                        animate={{ opacity: 1, y: 0, scale: 1 }}
                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        className="absolute bottom-full left-0 mb-4 z-[110] w-72 bg-white brutalist-border shadow-[15px_15px_0px_rgba(0,0,0,0.1)] p-1 pointer-events-none"
-                      >
+                       className="absolute bottom-full left-0 mb-4 z-[110] w-72 bg-white brutalist-border shadow-[15px_15px_0px_rgba(0,0,0,0.1)] p-1 pointer-events-none"
+                     >
                         <div className="p-3 border-t border-brand-black bg-brand-black text-white flex items-center justify-between">
                            <span className="text-[9px] font-mono font-bold tracking-widest">LIVE_PREVIEW.exe</span>
                            <div className="flex gap-1">
@@ -844,7 +844,25 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
                              <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
                            </div>
                         </div>
-                      </motion.div>
+                        <div className="aspect-video relative overflow-hidden bg-brand-black/5">
+                           <img 
+                             src={imageUrl} 
+                             alt="Preview" 
+                             className="w-full h-full object-cover grayscale transition-all duration-700" 
+                             referrerPolicy="no-referrer"
+                           />
+                           <div className="absolute inset-0 bg-brand-primary/10 mix-blend-overlay" />
+                        </div>
+                        <div className="p-2 bg-white border-t border-brand-black/10">
+                           <div className="flex items-center gap-2 mb-1">
+                              <div className="w-2 h-2 bg-brand-primary animate-pulse" />
+                              <span className="text-[8px] font-mono font-black text-brand-black uppercase">Socket: Connected</span>
+                           </div>
+                           <span className="text-[7px] font-mono text-brand-black/50 block truncate uppercase tracking-tighter">
+                              Target: {project.link.replace('https://', '').replace('http://', '')}
+                           </span>
+                        </div>
+                     </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
