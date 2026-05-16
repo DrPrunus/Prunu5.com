@@ -17,6 +17,14 @@ export const translations = {
       btnRepo: '查看项目',
       btnContact: '联系我',
       btnMusic: '音乐主页',
+      quote: 'First, I am a player. Then, I am a developer. And above all, a gameplay researcher.',
+      education: {
+        title: '教育背景',
+        school: '沈阳航空航天大学',
+        date: '2023年8月 – 至今',
+        major: '主修：计算机科学与技术；辅修：日语',
+        courses: '核心课程：数据结构，计算机组成原理，操作系统，计算机网络'
+      }
     },
     sections: {
       portfolio: {
@@ -37,7 +45,7 @@ export const translations = {
         p2: '业余热衷音美创作，熟练使用 FL Studio 进行音频制作与编辑、Aseprite 进行像素美术创作，具备从玩法到视听的全链路游戏制作体验，对跨职能协作有更深的同理心。',
         p3: '无论是独立的逻辑攻坚，还是复杂的流程规划，我都能以全栈思维切入。我正不断探索跨引擎开发的无限可能，力求将每一个概念草图转化为触手可及的数字现实。',
         tech: '软件与技术',
-        disciplines: '游戏经历',
+        disciplines: '游戏偏好',
       },
       pipeline: {
         title: '生产流水线状态',
@@ -56,6 +64,20 @@ export const translations = {
         btnEmail: '2279670554@qq.com',
         btnWechat: 'DrPrunus',
         btnGmail: 'prunu5h3ad@gmail.com',
+      },
+      steam: {
+        title: '游戏偏好',
+        subtitle: '游戏偏好',
+        level: '等级',
+        games: '游戏数量',
+        recent: '最近游玩',
+        played: '累计时长',
+        hours: '小时',
+        viewMore: '在 Steam 上查看完整档案',
+        viewLibrary: '查看我的完整 Steam 库',
+        all: '全部游玩',
+        toggleShow: '显示档案',
+        toggleHide: '隐藏档案'
       }
     }
   },
@@ -75,6 +97,14 @@ export const translations = {
       btnRepo: 'View Works',
       btnContact: 'Contact Me',
       btnMusic: 'NetEase Music',
+      quote: 'First, I am a player. Then, I am a developer. And above all, a gameplay researcher.',
+      education: {
+        title: 'Education',
+        school: 'Shenyang Aerospace University',
+        date: 'Aug. 2023 – Present',
+        major: 'Major: Computer Science & Tech; Minor: Japanese',
+        courses: 'Core: Data Structures, Computer Architecture, OS, Networking'
+      }
     },
     sections: {
       portfolio: {
@@ -91,21 +121,21 @@ export const translations = {
       about: {
         title: 'About Me',
         subtitle: '',
-        p1: 'Passionate about games with a broad range of experience, combining player intuition with a designer\'s mindset. Familiar with Unity/UE structures and operations, proficient in XML, JSON, and Lua for configuration and scripting. Capable of independent implementation of data tables and script logic, with high collaboration efficiency with developers. Strong communicator with a high proactivity, skilled in multitasking and priority management.',
-        p2: 'Outside of work, I am passionate about music and art creation, proficiently using FL Studio for audio production and editing, and Aseprite for pixel art. I possess end-to-end game production experience from gameplay to audiovisuals, giving me deeper empathy for cross-functional collaboration.',
-        p3: 'Whether tackling solo logic challenges or complex workflow planning, I bring a full-stack mindset to every project. I am constantly exploring cross-engine possibilities to transform concept sketches into tangible digital realities.',
+        p1: `Passionate about games with a broad range of experience, combining player intuition with a designer's mindset. Familiar with Unity/UE structures and operations, proficient in XML, JSON, and Lua for configuration and scripting. Capable of independent implementation of data tables and script logic, with high collaboration efficiency with developers. Strong communicator with a high proactivity, skilled in multitasking and priority management.`,
+        p2: `Outside of work, I am passionate about music and art creation, proficiently using FL Studio for audio production and editing, and Aseprite for pixel art creation. I have full-cycle game development experience from gameplay to audiovisuals.`,
+        p3: `From independent logic challenges to complex workflow planning, I approach everything with a full-stack mindset. Constantly exploring possibilities across engines to turn conceptual sketches into digital reality.`,
         tech: 'Software & Tech',
-        disciplines: 'Game Experience',
+        disciplines: 'Gaming Preferences',
       },
       pipeline: {
-        title: 'Production_Pipeline',
-        latestBuild: 'Latest Release',
-        coverage: 'System Coverage',
-        coffee: 'Energy Levels',
-        optimization: 'OPTIMIZATION',
-        reliability: 'RELIABILITY',
+        title: 'Pipeline Status',
+        latestBuild: 'Latest Publish',
+        coverage: 'Coverage',
+        coffee: 'Energy Level',
+        optimization: 'Optimization',
+        reliability: 'Stability Index',
         success: 'SUCCESS',
-        refill: 'WARNING: REFILL NOW',
+        refill: 'WARNING: LOW ENERGY',
       },
       contact: {
         title: 'Contact Me',
@@ -114,6 +144,20 @@ export const translations = {
         btnEmail: '2279670554@qq.com',
         btnWechat: 'DrPrunus',
         btnGmail: 'prunu5h3ad@gmail.com',
+      },
+      steam: {
+        title: 'Game Preferences',
+        subtitle: 'Gaming Experience',
+        level: 'LEVEL',
+        games: 'GAMES',
+        recent: 'RECENTLY PLAYED',
+        played: 'TOTAL TIME',
+        hours: 'HRS',
+        viewMore: 'View Full Profile on Steam',
+        viewLibrary: 'View Full Steam Library',
+        all: 'All Played',
+        toggleShow: 'Show Experience',
+        toggleHide: 'Hide Experience'
       }
     }
   },
@@ -127,12 +171,20 @@ export const translations = {
     },
     hero: {
       roleGame: 'ゲームプランナー',
-      roleMusic: '音楽・編曲',
+      roleMusic: '音乐・編曲',
       subtitleGame: 'システム設計、バランス調整、レベルデザインに特化し、論理的かつ没入感のあるプレイ体験を構築。',
-      subtitleMusic: '情緒的なメロディで空間を彩り、旋律によって仮想世界に魂を吹き込む。',
+      subtitleMusic: '情绪的なメロディで空間を彩り、旋律によって仮想世界に魂を吹き込む。',
       btnRepo: 'アーカイブ閲覧',
       btnContact: '通信開始',
-      btnMusic: '音楽ファイル',
+      btnMusic: '音乐ファイル',
+      quote: 'First, I am a player. Then, I am a developer. And above all, a gameplay researcher.',
+      education: {
+        title: '教育背景',
+        school: '瀋陽航空航天大学',
+        date: '2023年8月 – 现在',
+        major: '主専攻：コンピュータサイエンス；副専攻：日本語',
+        courses: '核心科目：データ構造、コンピュータ構成、オペレーティングシステム、ネットワーク'
+      }
     },
     sections: {
       portfolio: {
@@ -172,6 +224,20 @@ export const translations = {
         btnEmail: '2279670554@qq.com',
         btnWechat: 'DrPrunus',
         btnGmail: 'prunu5h3ad@gmail.com',
+      },
+      steam: {
+        title: 'ゲーム体験',
+        subtitle: '設計思想に影響を与えたゲーム',
+        level: 'レベル',
+        games: 'ゲーム数',
+        recent: '最近のプレイ',
+        played: '累计時間',
+        hours: '時間',
+        viewMore: 'Steamでプロフィールを見る',
+        viewLibrary: 'Steamライブラリを表示',
+        all: 'すべてのゲーム',
+        toggleShow: 'アーカイブを表示',
+        toggleHide: 'アーカイブを非表示'
       }
     }
   }

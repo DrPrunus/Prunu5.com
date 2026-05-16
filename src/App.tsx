@@ -8,6 +8,7 @@ import {
   Twitter, 
   Mail, 
   ChevronRight,
+  ChevronDown,
   Layers,
   Terminal,
   User,
@@ -31,7 +32,11 @@ import {
   Trophy,
   CassetteTape,
   Joystick,
-  ExternalLink
+  ExternalLink,
+  Clock,
+  Infinity as InfinityIcon,
+  Star,
+  ArrowDown
 } from 'lucide-react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Float, Wireframe, Html } from '@react-three/drei';
@@ -829,53 +834,28 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
                        animate={{ opacity: 1, y: 0, scale: 1 }}
                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                       className="absolute bottom-full left-0 mb-4 z-[110] w-72 bg-white brutalist-border shadow-[15px_15px_0px_rgba(0,0,0,0.1)] p-1 pointer-events-none"
-                     >
-                       <div className="aspect-video bg-brand-black/5 relative overflow-hidden">
-                          <img 
-                            src={imageUrl} 
-                            alt="Preview" 
-                            className="w-full h-full object-cover opacity-60 grayscale group-hover/link:grayscale-0 transition-all"
-                            referrerPolicy="no-referrer"
-                          />
-                          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                            <div className="w-12 h-12 rounded-full border-2 border-brand-primary flex items-center justify-center mb-2 bg-white/80 animate-pulse">
-                              <ExternalLink size={20} className="text-brand-primary" />
-                            </div>
-                            <div className="text-[10px] font-black text-brand-black uppercase bg-white/90 px-2 py-0.5 border border-brand-black shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                              Target: {(() => {
-                                try {
-                                  return new URL(project.link).hostname;
-                                } catch (e) {
-                                  return project.link;
-                                }
-                              })()}
-                            </div>
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/20 to-transparent" />
-                          {/* Scan line effect */}
-                          <div className="absolute inset-x-0 h-1 bg-brand-primary/40 shadow-[0_0_10px_brand-primary] animate-scan-fast" />
-                       </div>
-                       <div className="p-3 border-t border-brand-black bg-brand-black text-white flex items-center justify-between">
-                          <span className="text-[9px] font-mono font-bold tracking-widest">LIVE_PREVIEW.exe</span>
-                          <div className="flex gap-1">
-                            <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                          </div>
-                       </div>
-                     </motion.div>
-                   )}
-                 </AnimatePresence>
-               </div>
-             )}
-             
-             {/* Functional status indicator (dots) */}
-             <div className="segmented-bar ml-auto text-brand-primary/40 group-hover:text-brand-primary transition-colors">
-               <div className="segmented-bar-item" />
-               <div className="segmented-bar-item" />
-               <div className="segmented-bar-item h-2" />
-             </div>
+                        className="absolute bottom-full left-0 mb-4 z-[110] w-72 bg-white brutalist-border shadow-[15px_15px_0px_rgba(0,0,0,0.1)] p-1 pointer-events-none"
+                      >
+                        <div className="p-3 border-t border-brand-black bg-brand-black text-white flex items-center justify-between">
+                           <span className="text-[9px] font-mono font-bold tracking-widest">LIVE_PREVIEW.exe</span>
+                           <div className="flex gap-1">
+                             <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                             <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+                             <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                           </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
+              
+              {/* Functional status indicator (dots) */}
+              <div className="segmented-bar ml-auto text-brand-primary/40 group-hover:text-brand-primary transition-colors">
+                <div className="segmented-bar-item" />
+                <div className="segmented-bar-item" />
+                <div className="segmented-bar-item h-2" />
+              </div>
           </div>
         </div>
       </div>
@@ -918,7 +898,6 @@ function MouseCodeStream() {
     let animationId: number;
     const updatePosition = () => {
       if (containerRef.current) {
-        // 使用 translate3d 触发 GPU 加速，确保极致流畅
         containerRef.current.style.transform = `translate3d(${mouseRef.current.x}px, ${mouseRef.current.y}px, 0)`;
       }
       animationId = requestAnimationFrame(updatePosition);
@@ -945,7 +924,7 @@ function MouseCodeStream() {
       style={{ 
         paddingLeft: '18px', 
         paddingTop: '18px',
-        textShadow: '0.5px 0.5px 0px rgba(255,255,255,0.4)' // 在深色背景下通过阴影增强边缘，浅色下不影响
+        textShadow: '0.5px 0.5px 0px rgba(255,255,255,0.4)'
       }}
     >
       {code.map((line, i) => (
@@ -1344,37 +1323,58 @@ export default function App() {
                 </h2>
               </motion.div>
             </div>
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
+            <div className="flex flex-col gap-8 md:gap-12 relative max-w-4xl py-4">
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="text-brand-black text-base md:text-lg leading-tight font-black p-6 md:p-8 border-l-[8px] md:border-l-[12px] border-brand-primary bg-white brutalist-border relative"
+                className="relative pl-12 border-l-2 border-brand-black/10"
               >
-                {/* Baseline Drafting Line */}
-                <div className="absolute bottom-4 left-0 w-full md:w-[150%] h-[1px] bg-brand-primary/10 -z-10 pointer-events-none" />
+                {/* Timeline Node */}
+                <div className="absolute left-[-11px] top-0 w-5 h-5 rounded-full bg-brand-black border-4 border-white shadow-md" />
+                
+                <div className="bg-white brutalist-border p-6 hover:translate-x-1 transition-all group brutalist-shadow-small relative">
+                   {/* Education Badge */}
+                  <div className="absolute -top-3 -right-3 bg-brand-black text-white px-3 py-1 text-[11px] font-mono font-black uppercase brutalist-shadow-small z-10">
+                    教育背景
+                  </div>
 
-                {/* Technical Callout Line */}
-                <div className="absolute -left-12 top-1/2 w-12 h-[1px] bg-brand-primary/40 -z-10 hidden md:block" />
-                <div className="absolute -left-4 md:-left-13 top-1/2 -translate-y-1/2 w-1.5 md:w-2 h-1.5 md:h-2 bg-brand-primary rhombus-fill" />
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+                    <h3 className="text-xl md:text-2xl font-display font-black text-brand-black group-hover:text-brand-primary transition-colors">
+                      {t.hero.education.school}
+                    </h3>
+                    <span className="text-[10px] md:text-sm font-black text-brand-black/50 font-mono">
+                      {t.hero.education.date}
+                    </span>
+                  </div>
+                  
+                  <p className="text-sm md:text-lg font-black text-brand-black/80 mb-4 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-primary" />
+                    {t.hero.education.major}
+                  </p>
 
-                <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-brand-black text-white px-2 md:px-3 py-0.5 md:py-1 text-[10px] md:text-xs uppercase font-mono brutalist-shadow-small">
-                  Game
+                  <div className="mt-4 pt-4 border-t border-brand-black/5 relative">
+                    <p className="text-xl font-black text-brand-black/80 leading-relaxed">
+                      {t.hero.education.courses}
+                    </p>
+                  </div>
                 </div>
-                {t.hero.subtitleGame}
-              </motion.div>
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-                className="text-brand-black text-base md:text-lg leading-tight font-black p-6 md:p-8 border-l-[8px] md:border-l-[12px] border-brand-accent bg-white brutalist-border mt-0 md:mt-8 relative"
-              >
-                <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-brand-black text-white px-2 md:px-3 py-0.5 md:py-1 text-[10px] md:text-xs uppercase font-mono brutalist-shadow-small">
-                  Music
-                </div>
-                {t.hero.subtitleMusic}
               </motion.div>
             </div>
+
+            {/* New Quote Section */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="mb-12 relative"
+            >
+              <div className="absolute -left-4 top-0 w-1 h-full bg-brand-primary/20" />
+              <p className="text-xl md:text-2xl font-display font-black italic text-brand-black/60 tracking-tight leading-relaxed">
+                "{t.hero.quote}"
+              </p>
+            </motion.div>
+
             <div className="flex flex-wrap gap-4 md:gap-6 pt-4">
               <div className="relative group">
                 <div className="absolute -inset-2 border border-brand-primary/0 group-hover:border-brand-primary/40 transition-all pointer-events-none invisible lg:visible" />
@@ -1631,7 +1631,7 @@ export default function App() {
               <SectionHeading icon={User} subtitle={t.sections.about.subtitle}>
                 {t.sections.about.title}
               </SectionHeading>
-              
+
               <div className="grid lg:grid-cols-12 gap-12 mt-16">
                 {/* Text Content */}
                 <div className="lg:col-span-12 space-y-8">
@@ -1797,25 +1797,25 @@ export default function App() {
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
                           <Sword className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">RPG</span>
+                        <span className="whitespace-nowrap">{lang === 'zh' ? 'RPG' : 'RPG'}</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
                           <Zap className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">平台跳跃</span>
+                        <span className="whitespace-nowrap">{lang === 'zh' ? '平台跳跃' : 'Platformer'}</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
                           <Users className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">社交 / 在线 / 竞技</span>
+                        <span className="whitespace-nowrap">{lang === 'zh' ? '社交 / 在线 / 竞技' : 'Social / Online / Competitive'}</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
                           <Target className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">策略类</span>
+                        <span className="whitespace-nowrap">{lang === 'zh' ? '策略类' : 'Strategy'}</span>
                       </li>
                     </ul>
                   </div>
