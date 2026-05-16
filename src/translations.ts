@@ -66,7 +66,7 @@ export const translations = {
         btnGmail: 'prunu5h3ad@gmail.com',
       },
       steam: {
-        title: '游戏偏好',
+        title: '游戏经历',
         subtitle: '游戏偏好',
         level: '等级',
         games: '游戏数量',
@@ -146,7 +146,7 @@ export const translations = {
         btnGmail: 'prunu5h3ad@gmail.com',
       },
       steam: {
-        title: 'Game Preferences',
+        title: 'Gaming Experience',
         subtitle: 'Gaming Experience',
         level: 'LEVEL',
         games: 'GAMES',
