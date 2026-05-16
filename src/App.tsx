@@ -976,72 +976,72 @@ interface SteamStats {
 
 const STEAM_CATEGORIES = [
   { id: 'all', zh: '全部', en: 'All' },
-  { id: 'multiplayer', zh: '多人游玩', en: 'Multiplayer' },
-  { id: 'strategy', zh: '策略', en: 'Strategy' },
+  { id: 'rpg', zh: '角色扮演', en: 'RPG' },
   { id: 'platformer', zh: '平台跳跃', en: 'Platformer' },
-  { id: 'puzzle', zh: '益智', en: 'Puzzle' },
-  { id: 'adventure', zh: '冒险', en: 'Adventure' },
-  { id: 'horror', zh: '恐怖', en: 'Horror' },
-  { id: 'simulation', zh: '模拟', en: 'Simulation' },
-  { id: 'survival', zh: '生存', en: 'Survival' },
+  { id: 'competitive', zh: '社交/在线/竞技', en: 'Social/Competitive' },
+  { id: 'strategy', zh: '策略', en: 'Strategy' },
 ];
 
 const STEAM_GAMES_FALLBACK: SteamGame[] = [
-  { name: "Palworld", appid: "1623730", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg", hours: "162+", categories: ['multiplayer', 'survival', 'adventure'] },
-  { name: "Monster Hunter: World", appid: "582010", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg", hours: "450", categories: ['multiplayer', 'adventure'] },
-  { name: "ELDEN RING", appid: "1245620", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg", hours: "320", categories: ['adventure', 'multiplayer'] },
-  { name: "Final Fantasy XIV", appid: "39210", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/39210/header.jpg", hours: "1200", categories: ['multiplayer', 'adventure'] },
-  { name: "Cyberpunk 2077", appid: "1091500", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg", hours: "180", categories: ['adventure'] },
-  { name: "Sekiro: Shadows Die Twice", appid: "814380", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg", hours: "140", categories: ['adventure'] },
-  { name: "Persona 5 Royal", appid: "1687950", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/header.jpg", hours: "120", categories: ['strategy', 'adventure'] },
-  { name: "Hollow Knight", appid: "367520", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg", hours: "110", categories: ['platformer', 'adventure'] },
-  { name: "Stardew Valley", appid: "413150", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg", hours: "210", categories: ['simulation', 'survival'] },
+  { name: "Palworld", appid: "1623730", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg", hours: "162+", categories: ['competitive', 'rpg'] },
+  { name: "Monster Hunter: World", appid: "582010", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg", hours: "450", categories: ['competitive', 'rpg'] },
+  { name: "ELDEN RING", appid: "1245620", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg", hours: "320", categories: ['rpg', 'competitive'] },
+  { name: "Final Fantasy XIV", appid: "39210", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/39210/header.jpg", hours: "1200", categories: ['competitive', 'rpg'] },
+  { name: "Cyberpunk 2077", appid: "1091500", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg", hours: "180", categories: ['rpg'] },
+  { name: "Sekiro: Shadows Die Twice", appid: "814380", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg", hours: "140", categories: ['rpg'] },
+  { name: "Persona 5 Royal", appid: "1687950", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/header.jpg", hours: "120", categories: ['strategy', 'rpg'] },
+  { name: "Hollow Knight", appid: "367520", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg", hours: "110", categories: ['platformer', 'rpg'] },
+  { name: "Stardew Valley", appid: "413150", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg", hours: "210", categories: ['strategy'] },
 ];
 
 const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: Language }) => {
-  const rotation = (i % 3 === 0) ? -2 : (i % 3 === 1) ? 1 : 2;
+  const rotation = (i % 3 === 0) ? -1.5 : (i % 3 === 1) ? 1.2 : -0.8;
   
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, rotate: rotation * 2 }}
       whileInView={{ opacity: 1, y: 0, rotate: rotation }}
-      whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
-      transition={{ delay: i * 0.05, type: "spring", stiffness: 100 }}
+      whileHover={{ scale: 1.02, rotate: 0, zIndex: 10 }}
+      transition={{ delay: i * 0.05, type: "spring", stiffness: 80 }}
       viewport={{ once: true }}
-      className="bg-white p-3 pb-8 md:pb-12 shadow-[0_10px_25px_rgba(0,0,0,0.1)] border border-gray-100 flex flex-col gap-4 relative group"
+      className="bg-white p-2.5 pb-10 md:pb-16 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col gap-3 relative group"
     >
-      {/* Tape Effect */}
-      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-8 bg-brand-primary/10 backdrop-blur-sm -rotate-2 group-hover:rotate-0 transition-transform hidden md:block" />
-      
-      <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
+      <div className="aspect-square bg-gray-50 overflow-hidden relative border border-gray-100">
         <img 
           src={game.image} 
           alt={game.name}
-          className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-500"
+          className="w-full h-full object-cover transition-all duration-700"
           referrerPolicy="no-referrer"
         />
-        {/* Play Icon Hidden until hover */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-brand-black/20">
-           <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-              <ExternalLink size={18} className="text-brand-black" />
+        <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/10 transition-colors" />
+        
+        {/* Steam Link Overlay */}
+        <a 
+          href={`https://store.steampowered.com/app/${game.appid}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+           <div className="w-12 h-12 rounded-full bg-white/95 flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
+              <ExternalLink size={20} className="text-brand-black" />
            </div>
-        </div>
+        </a>
       </div>
 
-      <div className="flex flex-col items-center text-center px-1">
-        <h4 className="text-brand-black font-display font-black text-sm md:text-base leading-tight mb-1 truncate w-full">
+      <div className="flex flex-col items-center text-center">
+        <h4 className="text-brand-black font-display font-black text-xs md:text-sm leading-tight mb-0.5 truncate w-full px-2">
           {game.name}
         </h4>
-        <p className="text-[10px] md:text-sm font-medium text-brand-black/40 mb-3">
-          {game.hours} {lang === 'zh' ? '小时' : 'hours'}
+        <p className="text-[10px] md:text-xs font-bold text-brand-primary tracking-tight mb-2">
+          {game.hours} {lang === 'zh' ? '小时' : 'HOURS'}
         </p>
         
-        {/* Category Tags */}
-        <div className="flex flex-wrap justify-center gap-1.5">
-          {(game.categories || ['Gaming']).slice(0, 2).map((catId) => {
+        {/* Minimal Tags */}
+        <div className="flex flex-wrap justify-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
+          {(game.categories || ['Game']).slice(0, 2).map((catId) => {
             const cat = STEAM_CATEGORIES.find(c => c.id === catId);
             return (
-              <span key={catId} className="text-[8px] md:text-[10px] font-bold bg-brand-bg px-2 py-0.5 rounded-full text-brand-black/60 border border-gray-100 whitespace-nowrap">
+              <span key={catId} className="text-[7px] md:text-[9px] font-black bg-brand-bg px-2 py-0.5 rounded-sm text-brand-black/40 uppercase tracking-tighter">
                 {cat ? (lang === 'zh' ? cat.zh : cat.en) : catId}
               </span>
             );
@@ -1049,9 +1049,9 @@ const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: La
         </div>
       </div>
 
-      {/* Decorative Serial Number */}
-      <div className="absolute bottom-2 left-4 text-[6px] font-mono text-gray-300">
-        REF_ID_{game.appid || "UNKNOWN"}
+      {/* Hand-written style number */}
+      <div className="absolute bottom-3 left-4 text-[7px] font-mono text-gray-200 select-none">
+        00{i + 1} // S_ID_{game.appid}
       </div>
     </motion.div>
   );
@@ -1061,31 +1061,79 @@ function SteamExperience({ lang }: { lang: Language }) {
   const [games, setGames] = useState<SteamGame[]>([]);
   const [stats, setStats] = useState<SteamStats | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [isExpanded, setIsExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   
   useEffect(() => {
     const fetchSteam = async () => {
       try {
+        setError(null);
         const res = await fetch('/api/steam');
+        if (!res.ok) {
+          const errData = await res.json();
+          throw new Error(errData.error || 'Failed to fetch Steam data');
+        }
+        
         const data = await res.json();
         if (data.games) {
-          // In a real scenario, we'd fetch categories/tags from Steam or store details.
-          // For this layout demo, we'll assign some based on common keywords if possible.
-          const processedGames = data.games.map((g: any) => {
-            const cats = [];
+          // Filtering logic: Remove games without images, matching keywords, or specific blacklisted titles
+          const idleKeywords = ['idle', 'clicker', '放置', '挂机'];
+          const eroticaKeywords = ['hentai', 'porn', 'sex', 'erotica', '色情', 'adult', 'mature', '羞辱'];
+          const blacklistedTitles = ['bongo cat banana', 'the artisan of glimmith', 'summer memories', 'summer memorise'];
+          
+          const filteredGames = data.games.filter((g: any) => {
+            const lowName = (g.name || "").toLowerCase();
+            const hasImage = g.image && g.image.includes('steamstatic');
+            const isIdle = idleKeywords.some(k => lowName.includes(k));
+            const isErotica = eroticaKeywords.some(k => lowName.includes(k));
+            const isBlacklisted = blacklistedTitles.some(t => lowName.includes(t));
+            return hasImage && !isIdle && !isErotica && !isBlacklisted;
+          });
+
+          const processedGames = filteredGames.map((g: any) => {
+            const cats: string[] = [];
             const lowName = g.name.toLowerCase();
-            if (lowName.includes('soul') || lowName.includes('ring') || lowName.includes('sekiro')) cats.push('adventure');
-            if (lowName.includes('hunter') || lowName.includes('fantasy') || lowName.includes('duty')) cats.push('multiplayer');
-            if (lowName.includes('spire') || lowName.includes('persona')) cats.push('strategy');
-            if (lowName.includes('ark') || lowName.includes('craft')) cats.push('survival');
-            if (cats.length === 0) cats.push('adventure');
+            
+            // RPG keywords
+            if (lowName.includes('soul') || lowName.includes('ring') || lowName.includes('sekiro') || lowName.includes('eld') || lowName.includes('witcher') || lowName.includes('fantasy') || lowName.includes('rpg') || lowName.includes('persona')) {
+              cats.push('rpg');
+            }
+            
+            // Platformer keywords
+            if (lowName.includes('jump') || lowName.includes('hollow') || lowName.includes('knight') || lowName.includes('celeste') || lowName.includes('platform') || lowName.includes('dead cells') || lowName.includes('ori')) {
+              cats.push('platformer');
+            }
+            
+            // Competitive/Social keywords
+            if (lowName.includes('multi') || lowName.includes('online') || lowName.includes('pvp') || lowName.includes('duty') || lowName.includes('cs') || lowName.includes('league') || lowName.includes('apex') || lowName.includes('war') || lowName.includes('battle') || lowName.includes('counter')) {
+              cats.push('competitive');
+            }
+            
+            // Strategy/Card keywords
+            if (lowName.includes('spire') || lowName.includes('strategy') || lowName.includes('tact') || lowName.includes('card') || lowName.includes('civ') || lowName.includes('sim') || lowName.includes('management')) {
+              cats.push('strategy');
+            }
+            
+            // Default if no match
+            if (cats.length === 0) cats.push('strategy'); 
+            
             return { ...g, categories: cats };
           });
+
+          // Sort by hours (descending)
+          processedGames.sort((a: any, b: any) => {
+            const hA = parseFloat(String(a.hours).replace(/,/g, ''));
+            const hB = parseFloat(String(b.hours).replace(/,/g, ''));
+            return hB - hA;
+          });
+          
           setGames(processedGames);
           setStats(data.stats);
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("Steam Error:", err);
+        setError(err.message || 'Steam Library Offline');
       } finally {
         setLoading(false);
       }
@@ -1093,60 +1141,139 @@ function SteamExperience({ lang }: { lang: Language }) {
     fetchSteam();
   }, []);
 
-  const displayedGames = (games.length > 0 ? games : STEAM_GAMES_FALLBACK).filter(g => 
+  const sourceGames = games.length > 0 ? games : STEAM_GAMES_FALLBACK;
+  
+  // Only show categories that actually have games
+  const availableCategories = STEAM_CATEGORIES.filter(cat => {
+    if (cat.id === 'all') return true;
+    return sourceGames.some(g => g.categories?.includes(cat.id));
+  });
+
+  const filteredGames = sourceGames.filter(g => 
     activeCategory === 'all' || (g.categories && g.categories.includes(activeCategory))
-  ).slice(0, 16);
+  );
+
+  const displayedGames = isExpanded ? filteredGames : filteredGames.slice(0, 10);
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 mb-24">
       {/* Title Area */}
       <div className="flex flex-col items-center text-center mb-12">
-        <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-3xl md:text-5xl font-display font-black text-brand-black tracking-tight flex items-center gap-4">
-            游戏经历
-            <div className="flex items-center gap-2 bg-brand-bg px-3 py-1 rounded-full border border-gray-200">
-               <div className="w-5 h-5 bg-brand-black rounded-full flex items-center justify-center">
-                  <Gamepad2 size={12} className="text-white" /> {/* Steam logo placeholder */}
-               </div>
-               <span className="text-xs font-black text-brand-black/60 font-mono tracking-tight">Steam 个人主页</span>
-            </div>
-          </h2>
+        <div className="flex flex-wrap items-center justify-center gap-6 mb-4">
+          {/* Avatar & Level HUD */}
+          {stats && (
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="relative"
+            >
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-white p-1 rotate-3 shadow-lg border border-gray-100">
+                <img 
+                  src={stats.avatar || ""} 
+                  alt="Avatar" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="absolute -bottom-2 -left-2 bg-brand-primary text-white text-[10px] font-mono px-2 py-0.5 font-black z-10 shadow-sm">
+                LVL_{stats.level}
+              </div>
+            </motion.div>
+          )}
+
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <h2 className="text-3xl md:text-5xl font-display font-black text-brand-black tracking-tight flex flex-wrap items-center justify-center gap-4">
+              游戏经历
+              <div className="flex items-center gap-2 bg-brand-bg px-3 py-1 rounded-full border border-gray-200">
+                 <div className="w-5 h-5 bg-brand-black rounded-full flex items-center justify-center">
+                    <Gamepad2 size={12} className="text-white" />
+                 </div>
+                 <span className="text-xs font-black text-brand-black/60 font-mono tracking-tight uppercase">
+                   {stats?.status === 'ONLINE' ? 'ONLINE_READY' : 'STEAM_PROFILE'}
+                 </span>
+              </div>
+            </h2>
+            <p className="text-brand-black/60 font-medium text-lg text-center md:text-left">
+              启发我设计哲学的游戏
+            </p>
+          </div>
         </div>
-        <p className="text-brand-black/60 font-medium text-lg md:text-xl">
-          启发我设计哲学的游戏
-        </p>
       </div>
 
-      {/* Categories Filter */}
-      <div className="flex justify-center mb-12">
-        <div className="flex items-center gap-2 md:gap-4 overflow-x-auto no-scrollbar pb-4 max-w-full">
-          {STEAM_CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`px-5 py-2 rounded-full font-black text-xs md:text-sm transition-all whitespace-nowrap border-2 ${
-                activeCategory === cat.id 
-                  ? 'bg-brand-black text-white border-brand-black' 
-                  : 'bg-white text-brand-black/40 border-transparent hover:border-gray-200 hover:text-brand-black'
-              }`}
-            >
-              {lang === 'zh' ? cat.zh : cat.en}
-            </button>
-          ))}
+      {/* Categories Filter - Only visible if there are tabs with games */}
+      {availableCategories.length > 1 && (
+        <div className="flex justify-center mb-12">
+          <div className="flex items-center gap-2 md:gap-4 overflow-x-auto no-scrollbar pb-4 max-w-full">
+            {availableCategories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  setActiveCategory(cat.id);
+                  setIsExpanded(false); // Reset expansion when switching categories
+                }}
+                className={`px-5 py-2 rounded-full font-black text-xs md:text-sm transition-all whitespace-nowrap border-2 ${
+                  activeCategory === cat.id 
+                    ? 'bg-brand-black text-white border-brand-black' 
+                    : 'bg-white text-brand-black/40 border-transparent hover:border-gray-200 hover:text-brand-black'
+                }`}
+              >
+                {lang === 'zh' ? cat.zh : cat.en}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Grid Layout */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-10">
-        <AnimatePresence mode="popLayout">
-          {displayedGames.map((game, i) => (
-            <SteamGameCard key={game.appid || game.name} game={game} i={i} lang={lang} />
-          ))}
-        </AnimatePresence>
-      </div>
+      {error ? (
+        <div className="flex flex-col items-center justify-center py-20 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
+          <Gamepad2 size={48} className="text-gray-300 mb-4" />
+          <p className="text-brand-black/60 font-medium mb-6 uppercase tracking-wider text-sm mx-4 text-center">
+            {lang === 'zh' ? 'Steam 库目前不可用' : 'Steam Library temporarily unavailable'} 
+            <br />
+            <span className="text-[10px] opacity-40 font-mono mt-2 block">{error}</span>
+          </p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="px-6 py-2 bg-brand-black text-white text-xs font-black rounded-lg hover:translate-y-1 transition-transform"
+          >
+            {lang === 'zh' ? '重新加载' : 'REFRESH'}
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-10">
+          <AnimatePresence mode="popLayout">
+            {displayedGames.map((game, i) => (
+              <SteamGameCard key={game.appid || game.name} game={game} i={i} lang={lang} />
+            ))}
+          </AnimatePresence>
+        </div>
+      )}
+
+      {/* Expand/Collapse Toggle */}
+      {filteredGames.length > 10 && (
+        <div className="mt-12 flex justify-center">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex flex-col items-center gap-2 group"
+          >
+            <div className="bg-white border-2 border-brand-black px-8 py-2 md:py-3 font-display font-black uppercase text-xs md:text-sm tracking-widest hover:bg-brand-black hover:text-white transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.1)] group-hover:shadow-none group-hover:translate-x-1 group-hover:translate-y-1">
+              {isExpanded 
+                ? (lang === 'zh' ? '收起库' : 'COLLAPSE LIBRARY') 
+                : (lang === 'zh' ? `展示更多 (${filteredGames.length - 10}+)` : `SHOW MORE (${filteredGames.length - 10}+)`)}
+            </div>
+            <motion.div
+              animate={{ y: isExpanded ? -2 : 2 }}
+              transition={{ repeat: Infinity, duration: 1.5, repeatType: "reverse" }}
+            >
+              <ChevronDown className={`w-5 h-5 text-brand-primary transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+            </motion.div>
+          </button>
+        </div>
+      )}
 
       {/* Footer Link */}
-      <div className="mt-16 flex justify-center">
+      <div className="mt-20 flex justify-center">
          <a 
           href="https://steamcommunity.com/id/prunu5h3ad/"
           target="_blank"
@@ -1157,7 +1284,7 @@ function SteamExperience({ lang }: { lang: Language }) {
                <Joystick size={20} />
             </div>
             <span className="font-display font-black uppercase text-base tracking-widest">
-              查看完整的 Steam 库
+              {lang === 'zh' ? '在 Steam 上查看更多' : 'View More on Steam'}
             </span>
          </a>
       </div>
@@ -1574,16 +1701,14 @@ export default function App() {
                     </span>
                   </div>
                   
-                  <p className="text-sm md:text-lg font-black text-brand-black/80 mb-4 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-primary" />
+                  <p className="text-xs md:text-base font-black text-brand-black/70 mb-3 flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-brand-primary opacity-60" />
                     {t.hero.education.major}
                   </p>
 
-                  <div className="mt-4 pt-4 border-t border-brand-black/5 relative">
-                    <p className="text-xl font-black text-brand-black/80 leading-relaxed">
-                      {t.hero.education.courses}
-                    </p>
-                  </div>
+                  <p className="text-[10px] md:text-sm font-black text-brand-black/40 leading-relaxed max-w-2xl">
+                    {t.hero.education.courses}
+                  </p>
                 </div>
               </motion.div>
             </div>
