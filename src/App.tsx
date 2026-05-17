@@ -1682,7 +1682,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="mb-12 relative"
+              className="-mb-4 relative"
             >
               <div className="absolute -left-4 top-0 w-1 h-full bg-brand-primary/20" />
               <p className="text-xl md:text-2xl font-display font-black italic text-brand-black/60 tracking-tight leading-relaxed">
@@ -1690,43 +1690,43 @@ export default function App() {
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
-              className="relative pl-12 border-l-2 border-brand-black/10"
+              className="relative pl-12 border-l-2 border-brand-black/10 mb-6 mt-0"
             >
               {/* Timeline Node */}
               <div className="absolute left-[-11px] top-0 w-5 h-5 rounded-full bg-brand-black border-4 border-white shadow-md" />
               
-              <div className="bg-white brutalist-border p-6 hover:translate-x-1 transition-all group brutalist-shadow-small relative">
+              <div className="bg-white brutalist-border p-4 hover:translate-x-1 transition-all group brutalist-shadow-small relative">
                 {/* Education Badge */}
                 <div className="absolute -top-3 -right-3 bg-brand-black text-white px-3 py-1 text-[11px] font-mono font-black uppercase brutalist-shadow-small z-10">
                   教育背景
                 </div>
 
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
-                  <h3 className="text-xl md:text-2xl font-display font-black text-brand-black group-hover:text-brand-primary transition-colors">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-1 mb-1">
+                  <h3 className="text-lg md:text-xl font-display font-black text-brand-black group-hover:text-brand-primary transition-colors">
                     {t.hero.education.school}
                   </h3>
-                  <span className="text-[10px] md:text-sm font-black text-brand-black/50 font-mono">
+                  <span className="text-[10px] md:text-xs font-black text-brand-black/50 font-mono">
                     {t.hero.education.date}
                   </span>
                 </div>
                 
-                <p className="text-xs md:text-base font-black text-brand-black/70 mb-3 flex items-center gap-2">
+                <p className="text-xs md:text-sm font-black text-brand-black/70 mb-1 flex items-center gap-2">
                   <span className="w-1 h-1 rounded-full bg-brand-primary opacity-60" />
                   {t.hero.education.major}
                 </p>
 
-                <p className="text-[10px] md:text-sm font-black text-brand-black/40 leading-relaxed max-w-2xl">
+                <p className="text-[10px] md:text-xs font-black text-brand-black/40 leading-relaxed max-w-2xl">
                   {t.hero.education.courses}
                 </p>
               </div>
             </motion.div>
             </div>
 
-            <div className="flex flex-wrap gap-4 md:gap-6 pt-4">
+            <div className="flex flex-wrap gap-4 md:gap-6 pt-2">
               <div className="relative group">
                 <div className="absolute -inset-2 border border-brand-primary/0 group-hover:border-brand-primary/40 transition-all pointer-events-none invisible lg:visible" />
                 {/* Tactical Points */}
