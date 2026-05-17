@@ -45,6 +45,8 @@ import * as THREE from 'three';
 import * as Tone from 'tone';
 import { translations, Language } from './translations';
 
+declare const __STEAM_API_KEY__: string;
+
 // --- Types ---
 interface Project {
   id: string;
@@ -1070,7 +1072,7 @@ function SteamExperience({ lang }: { lang: Language }) {
     const fetchSteam = async () => {
       try {
         setError(null);
-        const apiKey = (process.env as any).STEAM_API_KEY;
+        const apiKey = (typeof __STEAM_API_KEY__ !== 'undefined' ? __STEAM_API_KEY__ : '') as string;
         const vanityId = "prunu5h3ad";
         
         if (!apiKey) {
