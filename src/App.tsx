@@ -1775,7 +1775,7 @@ export default function App() {
               <div className="absolute inset-0 z-0">
                 <Canvas 
                   camera={{ position: [0, 0, 5], fov: 45 }} 
-                  gl={{ antialias: false, stencil: false, alpha: true, powerPreference: 'low-graphics' }}
+                  gl={{ antialias: false, stencil: false, alpha: true, powerPreference: 'low-power' }}
                   dpr={[1, 1.5]}
                 >
                   <color attach="background" args={["#030303"]} />
