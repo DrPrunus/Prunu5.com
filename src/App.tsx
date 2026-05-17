@@ -87,9 +87,9 @@ const PROJECTS: Project[] = [
     title: 'Connection',
     category: 'PC',
     description: {
-      zh: '角色扮演 + 视觉小说 | Unity | 2026 thatgamejam。通过管理多种属性指标来引导女儿的成长轨迹，在成长的过程中探索羁绊与各种可能性。',
-      en: 'A deep character growth simulation developed for 2026 thatgamejam. Players guide their daughter\'s growth through a variety of attributes, exploring possibilities and connections.',
-      ja: '2026 thatgamejamにて制作されたキャラクター育成シミュレーション。プレイヤーはさまざまな属性を管理することで娘の成長を導き、成長過程における可能性と絆を探索します。'
+      zh: '养成 + 视觉小说 | Unity | 2026 thatgamejam。每日5点行动力，规划课程、工作、探索与社交，从童年引导女儿走向8种独特结局。',
+      en: 'Life sim & vn for 2026 thatgamejam. 5 daily action points across 20 semesters. Guide your daughter from childhood to teen through 8 unique endings.',
+      ja: 'ライフシミュレーション&ビジュアルノベル|2026 thatgamejam出品。每日5つの行動ポイントで20学期を過ごし、娘を成長させて8つのエンディングへ導きます。'
     },
     image: '/covers/c.jpg',
     tags: ['策划', '音乐', 'Unity'],
