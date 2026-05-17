@@ -976,22 +976,23 @@ interface SteamStats {
 
 const STEAM_CATEGORIES = [
   { id: 'all', zh: '全部', en: 'All' },
-  { id: 'rpg', zh: '角色扮演', en: 'RPG' },
-  { id: 'platformer', zh: '平台跳跃', en: 'Platformer' },
-  { id: 'competitive', zh: '社交/在线/竞技', en: 'Social/Competitive' },
+  { id: 'metroidvania', zh: '类银河恶魔城', en: 'Metroidvania' },
+  { id: 'action-rpg', zh: '动作角色扮演', en: 'Action RPG' },
+  { id: 'multiplayer', zh: '多人/竞技', en: 'Multiplayer' },
+  { id: 'rpg', zh: 'RPG/叙事', en: 'RPG/Narrative' },
   { id: 'strategy', zh: '策略', en: 'Strategy' },
+  { id: 'indie', zh: '独立游戏', en: 'Indie' },
+  { id: 'puzzle', zh: '解谜', en: 'Puzzle' },
 ];
 
 const STEAM_GAMES_FALLBACK: SteamGame[] = [
-  { name: "Palworld", appid: "1623730", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg", hours: "162+", categories: ['competitive', 'rpg'] },
-  { name: "Monster Hunter: World", appid: "582010", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg", hours: "450", categories: ['competitive', 'rpg'] },
-  { name: "ELDEN RING", appid: "1245620", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg", hours: "320", categories: ['rpg', 'competitive'] },
-  { name: "Final Fantasy XIV", appid: "39210", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/39210/header.jpg", hours: "1200", categories: ['competitive', 'rpg'] },
-  { name: "Cyberpunk 2077", appid: "1091500", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg", hours: "180", categories: ['rpg'] },
-  { name: "Sekiro: Shadows Die Twice", appid: "814380", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg", hours: "140", categories: ['rpg'] },
-  { name: "Persona 5 Royal", appid: "1687950", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/header.jpg", hours: "120", categories: ['strategy', 'rpg'] },
-  { name: "Hollow Knight", appid: "367520", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg", hours: "110", categories: ['platformer', 'rpg'] },
-  { name: "Stardew Valley", appid: "413150", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg", hours: "210", categories: ['strategy'] },
+  { name: "Palworld", appid: "1623730", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg", hours: "162+", categories: ['multiplayer'] },
+  { name: "Hollow Knight", appid: "367520", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg", hours: "110", categories: ['metroidvania'] },
+  { name: "Hades", appid: "1145360", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg", hours: "94", categories: ['action-rpg'] },
+  { name: "Baldur's Gate 3", appid: "1086940", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg", hours: "82", categories: ['rpg'] },
+  { name: "Stardew Valley", appid: "413150", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg", hours: "70", categories: ['rpg'] },
+  { name: "Black Myth: Wukong", appid: "2358720", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg", hours: "65", categories: ['action-rpg'] },
+  { name: "Outer Wilds", appid: "753640", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/753640/header.jpg", hours: "48", categories: ['indie'] },
 ];
 
 const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: Language }) => {
@@ -1080,7 +1081,7 @@ function SteamExperience({ lang }: { lang: Language }) {
           // Filtering logic: Remove games without images, matching keywords, or specific blacklisted titles
           const idleKeywords = ['idle', 'clicker', '放置', '挂机'];
           const eroticaKeywords = ['hentai', 'porn', 'sex', 'erotica', '色情', 'adult', 'mature', '羞辱'];
-          const blacklistedTitles = ['bongo cat banana', 'the artisan of glimmith', 'summer memories', 'summer memorise'];
+          const blacklistedTitles = ['bongo cat', 'banana', 'the artisan of glimmith', 'summer memories', 'summer memorise', 'escape from duckov', 'tiny pasture', 'cato: buttered cat', 'squeakross', 'wallpaper engine'];
           
           const filteredGames = data.games.filter((g: any) => {
             const lowName = (g.name || "").toLowerCase();
@@ -1092,32 +1093,7 @@ function SteamExperience({ lang }: { lang: Language }) {
           });
 
           const processedGames = filteredGames.map((g: any) => {
-            const cats: string[] = [];
-            const lowName = g.name.toLowerCase();
-            
-            // RPG keywords
-            if (lowName.includes('soul') || lowName.includes('ring') || lowName.includes('sekiro') || lowName.includes('eld') || lowName.includes('witcher') || lowName.includes('fantasy') || lowName.includes('rpg') || lowName.includes('persona')) {
-              cats.push('rpg');
-            }
-            
-            // Platformer keywords
-            if (lowName.includes('jump') || lowName.includes('hollow') || lowName.includes('knight') || lowName.includes('celeste') || lowName.includes('platform') || lowName.includes('dead cells') || lowName.includes('ori')) {
-              cats.push('platformer');
-            }
-            
-            // Competitive/Social keywords
-            if (lowName.includes('multi') || lowName.includes('online') || lowName.includes('pvp') || lowName.includes('duty') || lowName.includes('cs') || lowName.includes('league') || lowName.includes('apex') || lowName.includes('war') || lowName.includes('battle') || lowName.includes('counter')) {
-              cats.push('competitive');
-            }
-            
-            // Strategy/Card keywords
-            if (lowName.includes('spire') || lowName.includes('strategy') || lowName.includes('tact') || lowName.includes('card') || lowName.includes('civ') || lowName.includes('sim') || lowName.includes('management')) {
-              cats.push('strategy');
-            }
-            
-            // Default if no match
-            if (cats.length === 0) cats.push('strategy'); 
-            
+            const cats: string[] = ['all']; // Single category for all games
             return { ...g, categories: cats };
           });
 
@@ -1200,7 +1176,7 @@ function SteamExperience({ lang }: { lang: Language }) {
         </div>
       </div>
 
-      {/* Categories Filter - Only visible if there are tabs with games */}
+      {/* Categories Filter */}
       {availableCategories.length > 1 && (
         <div className="flex justify-center mb-12">
           <div className="flex items-center gap-2 md:gap-4 overflow-x-auto no-scrollbar pb-4 max-w-full">
@@ -1209,7 +1185,7 @@ function SteamExperience({ lang }: { lang: Language }) {
                 key={cat.id}
                 onClick={() => {
                   setActiveCategory(cat.id);
-                  setIsExpanded(false); // Reset expansion when switching categories
+                  setIsExpanded(false);
                 }}
                 className={`px-5 py-2 rounded-full font-black text-xs md:text-sm transition-all whitespace-nowrap border-2 ${
                   activeCategory === cat.id 
