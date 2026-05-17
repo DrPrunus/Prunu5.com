@@ -4,7 +4,6 @@ import path from 'path';
 import {defineConfig} from 'vite';
 import fs from 'fs';
 
-// 优先从 .env 文件读取（本地开发），否则从 process.env 读取（Vercel 构建）
 const envPath = path.resolve(process.cwd(), '.env');
 let steamApiKey = process.env.STEAM_API_KEY || '';
 let geminiApiKey = process.env.GEMINI_API_KEY || '';
@@ -32,9 +31,24 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    build: {
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'three': ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
+            'vendor': ['react', 'react-dom', 'motion'],
+          },
+        },
+      },
+    },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
     },
   };

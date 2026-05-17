@@ -416,9 +416,9 @@ function InteractiveCore() {
     const time = state.clock.getElapsedTime();
     const mouse = state.pointer;
     
-    // Performance: Directly update DOM via CSS variables to avoid React re-renders in useFrame
-    const tiltX = mouse.y * 15;
-    const tiltY = -mouse.x * 15;
+    // 简化动画：只做必要的更新
+    const tiltX = mouse.y * 8;
+    const tiltY = -mouse.x * 8;
 
     hudRefs.current.forEach(el => {
       if (el) {
@@ -426,18 +426,21 @@ function InteractiveCore() {
       }
     });
 
-    groupRef.current.rotation.y = time * 0.05;
+    // 降低旋转速度
+    if (groupRef.current) {
+      groupRef.current.rotation.y = time * 0.02;
+    }
     
     if (ring1Ref.current) {
-      ring1Ref.current.rotation.z = time * 0.25;
+      ring1Ref.current.rotation.z = time * 0.1;
     }
     if (ring2Ref.current) {
-      ring2Ref.current.rotation.z = -time * 0.35;
+      ring2Ref.current.rotation.z = -time * 0.15;
     }
     if (scanRef.current) {
-      scanRef.current.position.y = Math.sin(time * 0.8) * 1.8;
+      scanRef.current.position.y = Math.sin(time * 0.5) * 1.5;
       const mat = scanRef.current.material as THREE.MeshBasicMaterial;
-      if (mat) mat.opacity = (Math.cos(time * 0.8) + 1) * 0.02;
+      if (mat) mat.opacity = (Math.cos(time * 0.5) + 1) * 0.015;
     }
   });
 
@@ -996,6 +999,8 @@ const STEAM_GAMES_FALLBACK: SteamGame[] = [
 ];
 
 const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: Language }) => {
+  const [imgError, setImgError] = React.useState(false);
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -1005,13 +1010,20 @@ const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: La
       className="bg-white p-2.5 pb-10 md:pb-16 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col gap-3 relative group hover:shadow-lg transition-shadow"
     >
       <div className="aspect-square bg-gray-50 overflow-hidden relative border border-gray-100">
-        <img 
-          src={game.image} 
-          alt={game.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          referrerPolicy="no-referrer"
-        />
+        {!imgError ? (
+          <img 
+            src={game.image} 
+            alt={game.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            referrerPolicy="no-referrer"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <Gamepad2 size={32} className="text-gray-300" />
+          </div>
+        )
         <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/10 transition-colors" />
         
         {/* Steam Link Overlay */}
@@ -1078,20 +1090,25 @@ function SteamExperience({ lang }: { lang: Language }) {
         const data = await res.json();
         
         if (data.games) {
-          // Filtering logic: Remove games without images, matching keywords, specific blacklisted titles, or below 2 hours
+          // Filtering logic: Remove games with issues
           const idleKeywords = ['idle', 'clicker', '放置', '挂机'];
           const eroticaKeywords = ['hentai', 'porn', 'sex', 'erotica', '色情', 'adult', 'mature', '羞辱'];
           const blacklistedTitles = ['bongo cat', 'banana', 'the artisan of glimmith', 'summer memories', 'summer memorise', 'escape from duckov', 'tiny pasture', 'cato: buttered cat', 'squeakross', 'wallpaper engine'];
+          // 可能有问题的游戏名（封面异常）
+          const problematicNames = ['apex legends', 'genshin impact', 'pubg', 'destiny 2', 'lost ark'];
           
           const filteredGames = data.games.filter((g: any) => {
             const lowName = (g.name || "").toLowerCase();
-            const hasImage = g.image && g.image.includes('steamstatic');
+            const hasValidImage = g.image && 
+              g.image.includes('steamstatic') && 
+              !g.image.includes('_placeholder');
             const isIdle = idleKeywords.some(k => lowName.includes(k));
             const isErotica = eroticaKeywords.some(k => lowName.includes(k));
             const isBlacklisted = blacklistedTitles.some(t => lowName.includes(t));
+            const isProblematic = problematicNames.some(n => lowName.includes(n));
             const hours = parseFloat(String(g.hours).replace(/,/g, '')) || 0;
             const isBelow2Hours = hours < 2;
-            return hasImage && !isIdle && !isErotica && !isBlacklisted && !isBelow2Hours;
+            return hasValidImage && !isIdle && !isErotica && !isBlacklisted && !isBelow2Hours && !isProblematic;
           });
 
           const processedGames = filteredGames.map((g: any) => {
@@ -1759,18 +1776,21 @@ export default function App() {
               />
 
               <div className="absolute inset-0 z-0">
-                <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ antialias: false, stencil: false, alpha: true }}>
+                <Canvas 
+                  camera={{ position: [0, 0, 5], fov: 45 }} 
+                  gl={{ antialias: false, stencil: false, alpha: true, powerPreference: 'low-graphics' }}
+                  dpr={[1, 1.5]}
+                >
                   <color attach="background" args={["#030303"]} />
                   <ambientLight intensity={0.3} />
                   <pointLight position={[10, 10, 10]} intensity={1.2} color="#ED2224" />
                   <pointLight position={[-10, 5, -5]} intensity={0.4} color="#600000" />
                   <InteractiveCore />
-                  <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+                  <OrbitControls enableZoom={false} enablePan={false} />
                   
                   <EffectComposer multisampling={0}>
-                    <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.7} mipmapBlur intensity={0.8} />
-                    <Noise opacity={0.03} />
-                    <Vignette eskil={false} offset={0.2} darkness={1.2} />
+                    <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.7} mipmapBlur intensity={0.6} />
+                    <Vignette eskil={false} offset={0.2} darkness={1.0} />
                   </EffectComposer>
                 </Canvas>
               </div>
