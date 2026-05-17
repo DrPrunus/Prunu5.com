@@ -1072,63 +1072,80 @@ function SteamExperience({ lang }: { lang: Language }) {
     const fetchSteam = async () => {
       try {
         setError(null);
-        const apiKey = (typeof __STEAM_API_KEY__ !== 'undefined' ? __STEAM_API_KEY__ : '') as string;
-        const vanityId = "prunu5h3ad";
         
-        if (!apiKey) {
-          throw new Error('Steam API Key not configured');
-        }
+        // 本地开发走后端代理，生产环境走前端直接调用
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        let data: any;
+        
+        if (isLocalhost) {
+          // 本地开发：使用后端代理 /api/steam
+          const res = await fetch('/api/steam');
+          if (!res.ok) {
+            const errData = await res.json();
+            throw new Error(errData.error || 'Failed to fetch Steam data');
+          }
+          data = await res.json();
+        } else {
+          // 生产环境：前端直接调用 Steam API
+          const apiKey = (typeof __STEAM_API_KEY__ !== 'undefined' ? __STEAM_API_KEY__ : '') as string;
+          const vanityId = "prunu5h3ad";
+          
+          if (!apiKey) {
+            throw new Error('Steam API Key not configured');
+          }
 
-        // 1. Resolve Vanity URL to SteamID
-        const resolveRes = await fetch(
-          `https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${apiKey}&vanityurl=${vanityId}`
-        );
-        const resolveData = await resolveRes.json();
-        const steamId = resolveData.response?.steamid;
-        if (!steamId) {
-          throw new Error('Could not resolve SteamID from vanity URL.');
-        }
-
-        // 2. Get Player Summary
-        const summaryRes = await fetch(
-          `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=${steamId}`
-        );
-        const summaryData = await summaryRes.json();
-        const player = summaryData.response?.players?.[0];
-
-        // 3. Get Steam Level
-        let level = "??";
-        try {
-          const levelRes = await fetch(
-            `https://api.steampowered.com/IPlayerService/GetSteamLevel/v0001/?key=${apiKey}&steamid=${steamId}`
+          // 1. Resolve Vanity URL to SteamID
+          const resolveRes = await fetch(
+            `https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${apiKey}&vanityurl=${vanityId}`
           );
-          const levelData = await levelRes.json();
-          level = String(levelData.response?.player_level ?? "??");
-        } catch (e) {
-          console.error("Level Fetch Error:", e);
+          const resolveData = await resolveRes.json();
+          const steamId = resolveData.response?.steamid;
+          if (!steamId) {
+            throw new Error('Could not resolve SteamID from vanity URL.');
+          }
+
+          // 2. Get Player Summary
+          const summaryRes = await fetch(
+            `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=${steamId}`
+          );
+          const summaryData = await summaryRes.json();
+          const player = summaryData.response?.players?.[0];
+
+          // 3. Get Steam Level
+          let level = "??";
+          try {
+            const levelRes = await fetch(
+              `https://api.steampowered.com/IPlayerService/GetSteamLevel/v0001/?key=${apiKey}&steamid=${steamId}`
+            );
+            const levelData = await levelRes.json();
+            level = String(levelData.response?.player_level ?? "??");
+          } catch (e) {
+            console.error("Level Fetch Error:", e);
+          }
+
+          // 4. Get Owned Games
+          const gamesRes = await fetch(
+            `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${apiKey}&steamid=${steamId}&format=json&include_appinfo=1&include_played_free_games=1`
+          );
+          const gamesData = await gamesRes.json();
+
+          const stats = {
+            avatar: player?.avatarfull || null,
+            level: level,
+            status: player?.personastate === 1 ? "ONLINE" : "OFFLINE"
+          };
+
+          const games = (gamesData.response?.games || []).map((g: any) => ({
+            name: g.name,
+            appid: String(g.appid),
+            image: `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${g.appid}/header.jpg`,
+            hours: (g.playtime_forever / 60).toFixed(1),
+            categories: []
+          }));
+
+          data = { games, stats };
         }
-
-        // 4. Get Owned Games
-        const gamesRes = await fetch(
-          `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${apiKey}&steamid=${steamId}&format=json&include_appinfo=1&include_played_free_games=1`
-        );
-        const gamesData = await gamesRes.json();
-
-        const stats = {
-          avatar: player?.avatarfull || null,
-          level: level,
-          status: player?.personastate === 1 ? "ONLINE" : "OFFLINE"
-        };
-
-        const games = (gamesData.response?.games || []).map((g: any) => ({
-          name: g.name,
-          appid: String(g.appid),
-          image: `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${g.appid}/header.jpg`,
-          hours: (g.playtime_forever / 60).toFixed(1),
-          categories: []
-        }));
-
-        const data = { games, stats };
+        
         if (data.games) {
           // Filtering logic: Remove games without images, matching keywords, or specific blacklisted titles
           const idleKeywords = ['idle', 'clicker', '放置', '挂机'];
