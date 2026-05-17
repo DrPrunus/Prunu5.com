@@ -1000,6 +1000,10 @@ const STEAM_GAMES_FALLBACK: SteamGame[] = [
 
 const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: Language }) => {
   const [imgError, setImgError] = React.useState(false);
+  const [showUrlTooltip, setShowUrlTooltip] = React.useState(false);
+  
+  // 如果图片加载失败，直接不渲染这个卡片
+  if (imgError) return null;
   
   return (
     <motion.div
@@ -1010,20 +1014,14 @@ const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: La
       className="bg-white p-2.5 pb-10 md:pb-16 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col gap-3 relative group hover:shadow-lg transition-shadow"
     >
       <div className="aspect-square bg-gray-50 overflow-hidden relative border border-gray-100">
-        {!imgError ? (
-          <img 
-            src={game.image} 
-            alt={game.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-            referrerPolicy="no-referrer"
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-100">
-            <Gamepad2 size={32} className="text-gray-300" />
-          </div>
-        )
+        <img 
+          src={game.image} 
+          alt={game.name}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={() => setImgError(true)}
+        />
         <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/10 transition-colors" />
         
         {/* Steam Link Overlay */}
@@ -1032,10 +1030,17 @@ const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: La
           target="_blank"
           rel="noopener noreferrer"
           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+          onMouseEnter={() => setShowUrlTooltip(true)}
+          onMouseLeave={() => setShowUrlTooltip(false)}
         >
            <div className="w-12 h-12 rounded-full bg-white/95 flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
               <ExternalLink size={20} className="text-brand-black" />
            </div>
+           {showUrlTooltip && (
+             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-brand-black text-white px-3 py-1.5 text-[10px] font-mono font-black uppercase tracking-tighter whitespace-nowrap z-20">
+               store.steampowered.com/app/{game.appid}
+             </div>
+           )}
         </a>
       </div>
 
