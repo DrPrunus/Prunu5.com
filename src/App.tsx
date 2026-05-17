@@ -991,7 +991,7 @@ const STEAM_GAMES_FALLBACK: SteamGame[] = [
   { name: "Outer Wilds", appid: "753640", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/753640/header.jpg", hours: "48", categories: ['indie'] },
 ];
 
-const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: Language }) => {
+const SteamGameCard = ({ game, i }: { game: SteamGame; i: number }) => {
   const [imgError, setImgError] = React.useState(false);
   const [showUrlTooltip, setShowUrlTooltip] = React.useState(false);
   
@@ -1004,7 +1004,7 @@ const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: La
       whileInView={{ opacity: 1 }}
       transition={{ delay: Math.min(i * 0.02, 0.5), duration: 0.3 }}
       viewport={{ once: true }}
-      className="bg-white p-2.5 pb-10 md:pb-16 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col gap-3 relative group hover:shadow-lg transition-shadow"
+      className="bg-white p-1.5 pb-6 shadow-[0_2px_10px_rgba(0,0,0,0.06)] border border-gray-100 flex flex-col gap-1.5 relative group hover:shadow-lg transition-shadow"
     >
       <div className="aspect-square bg-gray-50 overflow-hidden relative border border-gray-100">
         <img 
@@ -1026,41 +1026,29 @@ const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: La
           onMouseEnter={() => setShowUrlTooltip(true)}
           onMouseLeave={() => setShowUrlTooltip(false)}
         >
-           <div className="w-12 h-12 rounded-full bg-white/95 flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
-              <ExternalLink size={20} className="text-brand-black" />
+           <div className="w-8 h-8 rounded-full bg-white/95 flex items-center justify-center shadow-lg">
+              <ExternalLink size={14} className="text-brand-black" />
            </div>
            {showUrlTooltip && (
-             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-brand-black text-white px-3 py-1.5 text-[10px] font-mono font-black uppercase tracking-tighter whitespace-nowrap z-20">
+             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-brand-black text-white px-2 py-1 text-[8px] font-mono font-black uppercase tracking-tighter whitespace-nowrap z-20">
                store.steampowered.com/app/{game.appid}
              </div>
            )}
         </a>
       </div>
 
-      <div className="flex flex-col items-center text-center">
-        <h4 className="text-brand-black font-display font-black text-xs md:text-sm leading-tight mb-0.5 truncate w-full px-2">
+      <div className="flex flex-col items-center text-center px-1">
+        <h4 className="text-brand-black font-display font-black text-[10px] leading-tight mb-0.5 truncate w-full">
           {game.name}
         </h4>
-        <p className="text-[10px] md:text-xs font-bold text-brand-primary tracking-tight mb-2">
-          {game.hours} {lang === 'zh' ? '小时' : 'HOURS'}
+        <p className="text-[9px] font-bold text-brand-primary tracking-tight">
+          {game.hours}h
         </p>
-        
-        {/* Minimal Tags */}
-        <div className="flex flex-wrap justify-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
-          {(game.categories || ['Game']).slice(0, 2).map((catId) => {
-            const cat = STEAM_CATEGORIES.find(c => c.id === catId);
-            return (
-              <span key={catId} className="text-[7px] md:text-[9px] font-black bg-brand-bg px-2 py-0.5 rounded-sm text-brand-black/40 uppercase tracking-tighter">
-                {cat ? (lang === 'zh' ? cat.zh : cat.en) : catId}
-              </span>
-            );
-          })}
-        </div>
       </div>
 
       {/* Hand-written style number */}
-      <div className="absolute bottom-3 left-4 text-[7px] font-mono text-gray-200 select-none">
-        00{i + 1} // S_ID_{game.appid}
+      <div className="absolute bottom-1 left-2 text-[6px] font-mono text-gray-200 select-none">
+        {i + 1}
       </div>
     </motion.div>
   );
@@ -1238,10 +1226,10 @@ function SteamExperience({ lang }: { lang: Language }) {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-10">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-4">
           <AnimatePresence mode="popLayout">
             {displayedGames.map((game, i) => (
-              <SteamGameCard key={game.appid || game.name} game={game} i={i} lang={lang} />
+              <SteamGameCard key={game.appid || game.name} game={game} i={i} />
             ))}
           </AnimatePresence>
         </div>
