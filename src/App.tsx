@@ -1093,7 +1093,11 @@ function SteamExperience({ lang }: { lang: Language }) {
           const eroticaKeywords = ['hentai', 'porn', 'sex', 'erotica', '色情', 'adult', 'mature', '羞辱'];
           const blacklistedTitles = ['bongo cat', 'banana', 'the artisan of glimmith', 'summer memories', 'summer memorise', 'escape from duckov', 'tiny pasture', 'cato: buttered cat', 'squeakross', 'wallpaper engine'];
           // 可能有问题的游戏名（封面异常）
-          const problematicNames = ['apex legends', 'genshin impact', 'pubg', 'destiny 2', 'lost ark', 'shelldiver', 'peak', '乌合之众', 'resident evil requiem'];
+          const problematicNames = [
+            'apex legends', 'genshin impact', 'pubg', 'destiny 2', 'lost ark',
+            'shelldiver', 'shell diver', 'peak', '乌合之众', 'resident evil requiem',
+            'shell', 'diver', 'residen', 'requiem'
+          ];
           
           const filteredGames = data.games.filter((g: any) => {
             const lowName = (g.name || "").toLowerCase();
