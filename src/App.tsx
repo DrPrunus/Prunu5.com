@@ -1677,42 +1677,6 @@ export default function App() {
               </motion.div>
             </div>
             <div className="flex flex-col gap-8 md:gap-12 relative max-w-4xl py-4">
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
-                className="relative pl-12 border-l-2 border-brand-black/10"
-              >
-                {/* Timeline Node */}
-                <div className="absolute left-[-11px] top-0 w-5 h-5 rounded-full bg-brand-black border-4 border-white shadow-md" />
-                
-                <div className="bg-white brutalist-border p-6 hover:translate-x-1 transition-all group brutalist-shadow-small relative">
-                   {/* Education Badge */}
-                  <div className="absolute -top-3 -right-3 bg-brand-black text-white px-3 py-1 text-[11px] font-mono font-black uppercase brutalist-shadow-small z-10">
-                    教育背景
-                  </div>
-
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
-                    <h3 className="text-xl md:text-2xl font-display font-black text-brand-black group-hover:text-brand-primary transition-colors">
-                      {t.hero.education.school}
-                    </h3>
-                    <span className="text-[10px] md:text-sm font-black text-brand-black/50 font-mono">
-                      {t.hero.education.date}
-                    </span>
-                  </div>
-                  
-                  <p className="text-xs md:text-base font-black text-brand-black/70 mb-3 flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-brand-primary opacity-60" />
-                    {t.hero.education.major}
-                  </p>
-
-                  <p className="text-[10px] md:text-sm font-black text-brand-black/40 leading-relaxed max-w-2xl">
-                    {t.hero.education.courses}
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-
             {/* New Quote Section */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -1725,6 +1689,42 @@ export default function App() {
                 "{t.hero.quote}"
               </p>
             </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6 }}
+              className="relative pl-12 border-l-2 border-brand-black/10"
+            >
+              {/* Timeline Node */}
+              <div className="absolute left-[-11px] top-0 w-5 h-5 rounded-full bg-brand-black border-4 border-white shadow-md" />
+              
+              <div className="bg-white brutalist-border p-6 hover:translate-x-1 transition-all group brutalist-shadow-small relative">
+                {/* Education Badge */}
+                <div className="absolute -top-3 -right-3 bg-brand-black text-white px-3 py-1 text-[11px] font-mono font-black uppercase brutalist-shadow-small z-10">
+                  教育背景
+                </div>
+
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+                  <h3 className="text-xl md:text-2xl font-display font-black text-brand-black group-hover:text-brand-primary transition-colors">
+                    {t.hero.education.school}
+                  </h3>
+                  <span className="text-[10px] md:text-sm font-black text-brand-black/50 font-mono">
+                    {t.hero.education.date}
+                  </span>
+                </div>
+                
+                <p className="text-xs md:text-base font-black text-brand-black/70 mb-3 flex items-center gap-2">
+                  <span className="w-1 h-1 rounded-full bg-brand-primary opacity-60" />
+                  {t.hero.education.major}
+                </p>
+
+                <p className="text-[10px] md:text-sm font-black text-brand-black/40 leading-relaxed max-w-2xl">
+                  {t.hero.education.courses}
+                </p>
+              </div>
+            </motion.div>
+            </div>
 
             <div className="flex flex-wrap gap-4 md:gap-6 pt-4">
               <div className="relative group">
