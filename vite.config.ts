@@ -4,9 +4,10 @@ import path from 'path';
 import {defineConfig} from 'vite';
 import fs from 'fs';
 
+// 优先从 .env 文件读取（本地开发），否则从 process.env 读取（Vercel 构建）
 const envPath = path.resolve(process.cwd(), '.env');
-let steamApiKey = '';
-let geminiApiKey = '';
+let steamApiKey = process.env.STEAM_API_KEY || '';
+let geminiApiKey = process.env.GEMINI_API_KEY || '';
 
 if (fs.existsSync(envPath)) {
   const envContent = fs.readFileSync(envPath, 'utf-8');
