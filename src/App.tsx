@@ -1168,7 +1168,7 @@ function SteamExperience({ lang }: { lang: Language }) {
                 />
               </div>
               <div className="absolute -bottom-2 -left-2 bg-brand-primary text-white text-[10px] font-mono px-2 py-0.5 font-black z-10 shadow-sm">
-                LVL_{stats.level}
+                DrPrunus
               </div>
             </motion.div>
           )}
@@ -1181,7 +1181,7 @@ function SteamExperience({ lang }: { lang: Language }) {
                     <Gamepad2 size={12} className="text-white" />
                  </div>
                  <span className="text-xs font-black text-brand-black/60 font-mono tracking-tight uppercase">
-                   {stats?.status === 'ONLINE' ? 'ONLINE_READY' : 'STEAM_PROFILE'}
+                   {stats?.status === 'ONLINE' ? 'ONLINE_READY' : 'Steam Gallery'}
                  </span>
               </div>
             </h2>
