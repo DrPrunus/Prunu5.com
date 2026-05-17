@@ -45,6 +45,13 @@ import * as THREE from 'three';
 import * as Tone from 'tone';
 import { translations, Language } from './translations';
 
+// --- Steam Icon Component ---
+const SteamIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.49 0 4.524 2.031 4.524 4.527s-2.034 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.533 2.715-.096 3.173-1.413.232-.668.234-1.4.006-2.069l1.511.628c.695.29 1.205.947 1.305 1.681.176 1.307-.789 2.494-2.154 2.651-.554.062-1.098-.05-1.567-.345-.468-.29-.79-.734-.937-1.266-.145-.528-.086-1.067.17-1.538l1.478.614c-.657 1.23-.22 2.757 1.015 3.527.6.374 1.32.479 1.997.3.678-.18 1.25-.632 1.573-1.237.326-.605.363-1.309.105-1.938-.26-.63-.79-1.127-1.46-1.358-.67-.227-1.38-.183-1.965.123-.59.312-1.05.85-1.264 1.48-.213.627-.16 1.305.15 1.868l-1.847-.77z"/>
+  </svg>
+);
+
 // --- Types ---
 interface Project {
   id: string;
@@ -1244,8 +1251,8 @@ function SteamExperience({ lang }: { lang: Language }) {
           >
             <div className="bg-white border-2 border-brand-black px-8 py-2 md:py-3 font-display font-black uppercase text-xs md:text-sm tracking-widest hover:bg-brand-black hover:text-white transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.1)] group-hover:shadow-none group-hover:translate-x-1 group-hover:translate-y-1">
               {isExpanded 
-                ? (lang === 'zh' ? '收起库' : 'COLLAPSE LIBRARY') 
-                : (lang === 'zh' ? `展示更多 (${filteredGames.length - 10}+)` : `SHOW MORE (${filteredGames.length - 10}+)`)}
+                ? (lang === 'zh' ? '收起' : 'COLLAPSE') 
+                : (lang === 'zh' ? `展开 (${filteredGames.length - 10}+)` : `EXPAND (${filteredGames.length - 10}+)`)}
             </div>
             <motion.div
               animate={{ y: isExpanded ? -2 : 2 }}
@@ -1266,7 +1273,7 @@ function SteamExperience({ lang }: { lang: Language }) {
           className="bg-brand-black text-white px-8 py-4 rounded-xl flex items-center gap-4 shadow-xl hover:translate-y-1 transition-transform group"
          >
             <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-               <Joystick size={20} />
+               <SteamIcon className="w-5 h-5" />
             </div>
             <span className="font-display font-black uppercase text-base tracking-widest">
               {lang === 'zh' ? '在 Steam 上查看更多' : 'View More on Steam'}
