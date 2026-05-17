@@ -21,16 +21,11 @@ if (fs.existsSync(envPath)) {
   });
 }
 
-// 构建时日志，确认环境变量是否读取成功
-console.log('[Vite Config] STEAM_API_KEY exists:', !!steamApiKey);
-console.log('[Vite Config] STEAM_API_KEY length:', steamApiKey.length);
-
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(geminiApiKey),
-      '__STEAM_API_KEY__': JSON.stringify(steamApiKey),
     },
     resolve: {
       alias: {

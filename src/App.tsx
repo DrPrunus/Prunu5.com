@@ -996,22 +996,20 @@ const STEAM_GAMES_FALLBACK: SteamGame[] = [
 ];
 
 const SteamGameCard = ({ game, i, lang }: { game: SteamGame, i: number, lang: Language }) => {
-  const rotation = (i % 3 === 0) ? -1.5 : (i % 3 === 1) ? 1.2 : -0.8;
-  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, rotate: rotation * 2 }}
-      whileInView={{ opacity: 1, y: 0, rotate: rotation }}
-      whileHover={{ scale: 1.02, rotate: 0, zIndex: 10 }}
-      transition={{ delay: i * 0.05, type: "spring", stiffness: 80 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ delay: Math.min(i * 0.02, 0.5), duration: 0.3 }}
       viewport={{ once: true }}
-      className="bg-white p-2.5 pb-10 md:pb-16 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col gap-3 relative group"
+      className="bg-white p-2.5 pb-10 md:pb-16 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col gap-3 relative group hover:shadow-lg transition-shadow"
     >
       <div className="aspect-square bg-gray-50 overflow-hidden relative border border-gray-100">
         <img 
           src={game.image} 
           alt={game.name}
-          className="w-full h-full object-cover transition-all duration-700"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/10 transition-colors" />
@@ -1080,7 +1078,7 @@ function SteamExperience({ lang }: { lang: Language }) {
         const data = await res.json();
         
         if (data.games) {
-          // Filtering logic: Remove games without images, matching keywords, or specific blacklisted titles
+          // Filtering logic: Remove games without images, matching keywords, specific blacklisted titles, or below 2 hours
           const idleKeywords = ['idle', 'clicker', '放置', '挂机'];
           const eroticaKeywords = ['hentai', 'porn', 'sex', 'erotica', '色情', 'adult', 'mature', '羞辱'];
           const blacklistedTitles = ['bongo cat', 'banana', 'the artisan of glimmith', 'summer memories', 'summer memorise', 'escape from duckov', 'tiny pasture', 'cato: buttered cat', 'squeakross', 'wallpaper engine'];
@@ -1091,7 +1089,9 @@ function SteamExperience({ lang }: { lang: Language }) {
             const isIdle = idleKeywords.some(k => lowName.includes(k));
             const isErotica = eroticaKeywords.some(k => lowName.includes(k));
             const isBlacklisted = blacklistedTitles.some(t => lowName.includes(t));
-            return hasImage && !isIdle && !isErotica && !isBlacklisted;
+            const hours = parseFloat(String(g.hours).replace(/,/g, '')) || 0;
+            const isBelow2Hours = hours < 2;
+            return hasImage && !isIdle && !isErotica && !isBlacklisted && !isBelow2Hours;
           });
 
           const processedGames = filteredGames.map((g: any) => {

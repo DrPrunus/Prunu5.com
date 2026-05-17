@@ -1,10 +1,24 @@
 // Vercel Serverless Function - Steam API Proxy
+// 简单的内存缓存，减少 API 调用
+let cache = null;
+let cacheTime = 0;
+const CACHE_DURATION = 15 * 60 * 1000; // 15分钟缓存
+
 export default async function handler(req, res) {
   const apiKey = process.env.STEAM_API_KEY;
   const vanityId = "prunu5h3ad";
 
+  // 返回 JSON，启用缓存头
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 'public, max-age=900'); // 15分钟
+
   if (!apiKey) {
     return res.status(500).json({ error: "STEAM_API_KEY not configured" });
+  }
+
+  // 检查缓存
+  if (cache && (Date.now() - cacheTime < CACHE_DURATION)) {
+    return res.status(200).json(cache);
   }
 
   try {
@@ -19,26 +33,18 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: "Could not resolve SteamID" });
     }
 
-    // 2. Get Player Summary
-    const summaryRes = await fetch(
-      `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=${steamId}`
-    );
+    // 2. Get Player Summary + Steam Level 并行请求
+    const [summaryRes, levelRes] = await Promise.all([
+      fetch(`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${apiKey}&steamids=${steamId}`),
+      fetch(`https://api.steampowered.com/IPlayerService/GetSteamLevel/v0001/?key=${apiKey}&steamid=${steamId}`)
+    ]);
+
     const summaryData = await summaryRes.json();
+    const levelData = await levelRes.json();
     const player = summaryData.response?.players?.[0];
+    const level = String(levelData.response?.player_level ?? "??");
 
-    // 3. Get Steam Level
-    let level = "??";
-    try {
-      const levelRes = await fetch(
-        `https://api.steampowered.com/IPlayerService/GetSteamLevel/v0001/?key=${apiKey}&steamid=${steamId}`
-      );
-      const levelData = await levelRes.json();
-      level = String(levelData.response?.player_level ?? "??");
-    } catch (e) {
-      console.error("Level Fetch Error:", e);
-    }
-
-    // 4. Get Owned Games
+    // 3. Get Owned Games
     const gamesRes = await fetch(
       `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${apiKey}&steamid=${steamId}&format=json&include_appinfo=1&include_played_free_games=1`
     );
@@ -58,7 +64,13 @@ export default async function handler(req, res) {
       categories: []
     }));
 
-    return res.status(200).json({ games, stats });
+    const result = { games, stats };
+    
+    // 更新缓存
+    cache = result;
+    cacheTime = Date.now();
+
+    return res.status(200).json(result);
 
   } catch (error) {
     console.error("Steam API Error:", error);
