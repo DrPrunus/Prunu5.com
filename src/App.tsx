@@ -1093,9 +1093,6 @@ const SteamGameCard = ({ game, i }: { game: SteamGame; i: number }) => {
         <h4 className="text-brand-black font-display font-black text-[10px] leading-tight mb-0.5 truncate w-full">
           {game.name}
         </h4>
-        <p className="text-[9px] font-bold text-brand-primary tracking-tight">
-          {game.hours}h
-        </p>
       </div>
 
       {/* Hand-written style number */}
