@@ -114,7 +114,7 @@ export const translations = {
         roleLabel: 'Project Role',
         visitBtn: 'Visit Site',
         categories: {
-          '游戏拆解': 'Game Deconstruction',
+          '游戏拆解': 'Game Analysis',
           'PC': 'PC',
         }
       },
@@ -172,7 +172,7 @@ export const translations = {
     hero: {
       roleGame: 'ゲームプランナー',
       roleMusic: '音乐・編曲',
-      subtitleGame: 'システム設計、バランス調整、レベルデザインに特化し、論理的かつ没入感のあるプレイ体验を構築。',
+      subtitleGame: 'システム設計、バランス調整、レベルデザインに特化し、論理的かつ没入感のあるプレイ体験を構築。',
       subtitleMusic: '情绪的なメロディで空間を彩り、旋律によって仮想世界に魂を吹き込む。',
       btnRepo: 'アーカイブ閲覧',
       btnContact: '通信開始',
@@ -194,7 +194,7 @@ export const translations = {
         roleLabel: 'プロジェクト役割',
         visitBtn: 'サイトへ',
         categories: {
-          '游戏拆解': 'ゲーム分析',
+          '游戏拆解': 'ゲームリサーチ',
           'PC': 'PC版',
         }
       },
@@ -226,7 +226,7 @@ export const translations = {
         btnGmail: 'prunu5h3ad@gmail.com',
       },
       steam: {
-        title: 'ゲーム体验',
+        title: 'ゲーム体験',
         subtitle: '設計思想に影響を与えたゲーム',
         level: 'レベル',
         games: 'ゲーム数',
