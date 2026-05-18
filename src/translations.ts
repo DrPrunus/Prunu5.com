@@ -74,11 +74,23 @@ export const translations = {
         played: '累计时长',
         hours: '小时',
         viewMore: '在 Steam 上查看完整档案',
-        viewLibrary: '查看我的完整 Steam 库',
+        viewLibrary: '查看我的完整 Steam library',
         all: '全部游玩',
         toggleShow: '显示档案',
         toggleHide: '隐藏档案'
       }
+    },
+    projectTags: {
+      '策划': '策划',
+      '程序': '程序',
+      '音乐': '音乐',
+      'Unity': 'Unity',
+      '关卡设计': '关卡设计',
+      '奖励系统': '奖励系统',
+      '拆解分析': '拆解分析',
+      '社交系统': '社交系统',
+      '战斗系统': '战斗系统',
+      '数值系统': '数值系统'
     }
   },
   en: {
@@ -159,6 +171,18 @@ export const translations = {
         toggleShow: 'Show Experience',
         toggleHide: 'Hide Experience'
       }
+    },
+    projectTags: {
+      '策划': 'Design',
+      '程序': 'Program',
+      '音乐': 'Music',
+      'Unity': 'Unity',
+      '关卡设计': 'Level Design',
+      '奖励系统': 'Reward System',
+      '拆解分析': 'Analysis',
+      '社交系统': 'Social System',
+      '战斗系统': 'Combat System',
+      '数值系统': 'Economy System'
     }
   },
   ja: {
@@ -239,6 +263,18 @@ export const translations = {
         toggleShow: 'アーカイブを表示',
         toggleHide: 'アーカイブを非表示'
       }
+    },
+    projectTags: {
+      '策划': '企画',
+      '程序': '開発',
+      '音乐': '音楽',
+      'Unity': 'Unity',
+      '关卡设计': 'レベルデザイン',
+      '奖励系统': '報酬システム',
+      '拆解分析': 'リサーチ',
+      '社交系统': 'ソーシャルシステム',
+      '战斗系统': '戦闘システム',
+      '数值系统': '数値システム'
     }
   }
 };

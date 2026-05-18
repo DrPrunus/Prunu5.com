@@ -850,7 +850,7 @@ const ProjectCard = ({ project, lang, className }: { project: Project; lang: Lan
             <div className="flex flex-wrap gap-2">
               {project.tags.map(tag => (
                 <span key={tag} className="text-[10px] font-black bg-brand-black text-white px-2 py-0.5 uppercase tracking-tighter shadow-[2px_2px_0px_rgba(0,0,0,0.2)]">
-                  {tag}
+                  {(translations[lang] as any).projectTags?.[tag] || tag}
                 </span>
               ))}
             </div>
