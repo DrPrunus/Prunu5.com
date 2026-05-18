@@ -2138,7 +2138,7 @@ export default function App() {
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
                           <img 
-                            src="/FL.png" 
+                            src="/projects/FL.png" 
                             alt="FL Studio" 
                             className="w-full h-full object-contain"
                           />
