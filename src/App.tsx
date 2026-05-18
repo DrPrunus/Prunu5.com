@@ -81,7 +81,7 @@ const PROJECTS: Project[] = [
       en: 'HD2D Exploration Puzzle Game developed in Unity for 2025 TapTap Spotlight GameJam 21-day challenge. A meta-narrative adventure about a hero fixing system bugs to find a non-existent princess. Roles: Design, Dev, Music.',
       ja: 'Unityで制作されたHD2D探索パズルゲーム。2025 TapTap Spotlight GameJam 21日間チャレンジ参加作品。勇者がバグを修正しながら存在しない王女を探すメタフィクション。役割：企画、開発、音楽。'
     },
-    image: '/covers/404.jpg', // Path: /covers/404.jpg
+    image: '/projects/404princessnotfound.jpg', // Path: /projects/404princessnotfound.jpg
     tags: ['策划', '程序', '音乐', 'Unity'],
     link: 'https://www.taptap.cn/app/779210?os=pc',
     github: '#'
@@ -99,7 +99,7 @@ const PROJECTS: Project[] = [
       en: 'Life sim & vn for 2026 thatgamejam. 5 daily action points across 20 semesters. Guide your daughter from childhood to teen through 8 unique endings.',
       ja: 'ライフシミュレーション&ビジュアルノベル|2026 thatgamejam出品。每日5つの行動ポイントで20学期を過ごし、娘を成長させて8つのエンディングへ導きます。'
     },
-    image: '/covers/c.jpg',
+    image: '/projects/connection.png',
     tags: ['策划', '音乐', 'Unity'],
     link: 'https://tzzsleep.itch.io/connection',
     github: '#'
@@ -117,7 +117,7 @@ const PROJECTS: Project[] = [
       en: 'Developed for the 2026 Singularity Rhythm Vol2 GameJam, this game focuses on "inflation/deflation" mechanics. Although short, it demonstrates the scalability of its abilities.',
       ja: '2026 奇点律動Vol2 GameJam向けに制作された作品。「膨張・収縮」の能力を核としたゲームプレイ。短いながらも、各能力の拡張性を示しています。'
     },
-    image: '/covers/gnbl.png',
+    image: '/projects/跟你爆了.png',
     tags: ['策划', '音乐', '关卡设计', 'Unity'],
     link: 'https://www.bilibili.com/video/BV1QoFNzUETM/',
     github: '#'
@@ -135,7 +135,7 @@ const PROJECTS: Project[] = [
       en: '2D Puzzle Web Game developed in Unity for 2025 Brackeys Jam 7-day challenge. Features "Ghost eating cookies" core gameplay, deeply optimized for H5 platforms. Roles: Design, Development, Music & Sound.',
       ja: 'Unityで制作された2Dパズルウェブゲーム。2025 Brackeys Jam 7日間ジャム参加作品。「幽霊がクッキーを食べる」核心的な遊び。H5プラットフォーム向けに最適化。役割：企画、開発、音楽、効果音。'
     },
-    image: '/covers/gc.png', // Path: /covers/gc.png
+    image: '/projects/ghostcookies.png', // Path: /projects/ghostcookies.png
     tags: ['策划', '程序', '音乐', 'Unity'],
     link: 'https://volticx.itch.io/ghostcookies',
     github: '#'
@@ -153,7 +153,7 @@ const PROJECTS: Project[] = [
       en: 'Clearing the level is just the beginning. Use items strategically to achieve a "Perfect Clear"! A puzzle game focused on path planning and item management.',
       ja: 'クリアは終わりではありません。アイテムを駆使して「パーフェクトクリア」を目指しましょう！パスプランニングとアイテム使用が鍵となるパズルゲーム。'
     },
-    image: '/covers/pc.png',
+    image: '/projects/perfect_pass.png',
     tags: ['策划', '音乐', '关卡设计', 'Unity'],
     awards: {
       zh: '最魂like的顶级游戏',
@@ -177,7 +177,7 @@ const PROJECTS: Project[] = [
       en: 'Focuses on Deep Rock Galactic\'s "switchable permanent seasons + linear progress + non-linear reward tree" design, analyzing how it achieves long-term player friendly experience through high autonomy.',
       ja: '「Deep Rock Galactic」の「いつでも切り替え可能な永久赛季＋线形进捗＋非线形報酬ツリー」のコア设计に焦点を当て、时间制约の排除和高い自主性による长期的なプレイヤー体验を分析。'
     },
-    image: '/covers/dr.png',
+    image: '/projects/deeprock.png',
     tags: ['奖励系统', '拆解分析'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/BnVjfi28ulUhZkdw4NIcoFimnid',
     github: '#'
@@ -195,7 +195,7 @@ const PROJECTS: Project[] = [
       en: 'Deeply analyzes Sky: Children of the Light\'s social system focused on "emotional connection," exploring non-verbal communication, lightweight cooperation, and the design trade-offs of the anonymity mechanism.',
       ja: '「Sky 星を紡ぐ子どもたち」の「情緒的な繋がり」を核心としたソーシャルシステムを深く解析。非言語コミュニケーション、軽量な協調、匿名メカニズムの設計上の选择を剖析。'
     },
-    image: '/covers/gy.png',
+    image: '/projects/guangyu.png',
     tags: ['社交系统', '拆解分析'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/UwMOfYpM0lgN9LdkJc3cpRronph',
     github: '#'
@@ -213,7 +213,7 @@ const PROJECTS: Project[] = [
       en: 'Deep analysis of Slay the Spire\'s combat, map, and relic systems. Explores infinite replayability under minimalist rules and investigates how system coupling affects strategic depth.',
       ja: '「Slay the Spire」の戦闘、マップ、レリックシステムを深く解析。ミニマルなルール下での無限のリプレイ性を探求し、システム間の結合が戦略的深みに与える影響を調査。'
     },
-    image: '/covers/sts.png',
+    image: '/projects/slaythespire.png',
     tags: ['战斗系统', '数值系统', '拆解分析'],
     link: 'https://xcnselbxoekt.feishu.cn/drive/folder/VZLQfKfxhlBxHkdw3ykcwPCwn7g',
     github: '#'
@@ -1170,7 +1170,8 @@ function SteamExperience({ lang }: { lang: Language }) {
         }
       } catch (err: any) {
         console.error("Steam Error:", err);
-        setError(err.message || 'Steam Library Offline');
+        setError(null); // Clear error to allow fallback games to show
+        setGames([]); // Ensure games is empty so fallback kicks in
       } finally {
         setLoading(false);
       }
@@ -2157,7 +2158,7 @@ export default function App() {
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform">
                           <img 
-                            src="/axure.png" 
+                            src="/projects/axure.png" 
                             alt="Axure" 
                             className="w-full h-full object-contain"
                           />
@@ -2167,7 +2168,7 @@ export default function App() {
                       <li className="flex items-center gap-3 p-2 bg-brand-bg/50 brutalist-border-small group hover:bg-white transition-colors">
                         <div className="w-8 h-8 bg-white brutalist-border-small flex items-center justify-center p-1 group-hover:rotate-3 transition-transform">
                           <img 
-                            src="/xmind.png" 
+                            src="/projects/xmind.png" 
                             alt="XMind" 
                             className="w-full h-full object-contain"
                           />
