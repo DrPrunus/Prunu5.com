@@ -67,7 +67,7 @@ export const translations = {
       },
       steam: {
         title: '游戏经历',
-        subtitle: '游戏偏好',
+        subtitle: '启发我设计哲学的游戏',
         level: '等级',
         games: '游戏数量',
         recent: '最近游玩',
@@ -159,7 +159,7 @@ export const translations = {
       },
       steam: {
         title: 'Gaming Experience',
-        subtitle: 'Gaming Experience',
+        subtitle: 'Games that inspire my design philosophy',
         level: 'LEVEL',
         games: 'GAMES',
         recent: 'RECENTLY PLAYED',
@@ -251,7 +251,7 @@ export const translations = {
       },
       steam: {
         title: 'ゲーム体験',
-        subtitle: '設計思想に影響を与えたゲーム',
+        subtitle: '私のデザイン哲学を刺激したゲーム',
         level: 'レベル',
         games: 'ゲーム数',
         recent: '最近のプレイ',

@@ -1104,6 +1104,7 @@ const SteamGameCard = ({ game, i }: { game: SteamGame; i: number }) => {
 };
 
 function SteamExperience({ lang }: { lang: Language }) {
+  const t = translations[lang];
   const [games, setGames] = useState<SteamGame[]>([]);
   const [stats, setStats] = useState<SteamStats | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
@@ -1231,7 +1232,7 @@ function SteamExperience({ lang }: { lang: Language }) {
 
           <div className="flex flex-col items-center md:items-start gap-1">
             <h2 className="text-3xl md:text-5xl font-display font-black text-brand-black tracking-tight flex flex-wrap items-center justify-center gap-4">
-              {lang === 'zh' ? '游戏经历' : (lang === 'en' ? 'GAMING EXPERIENCE' : 'ゲーム体験')}
+              {t.sections.steam.title}
               <motion.a 
                 href="https://steamcommunity.com/id/prunu5h3ad"
                 target="_blank"
@@ -1244,12 +1245,12 @@ function SteamExperience({ lang }: { lang: Language }) {
                     <SteamIcon className="w-3 h-3 text-white" />
                  </div>
                  <span className="text-xs font-bold text-white font-mono tracking-tight uppercase">
-                   {stats?.status === 'ONLINE' ? (lang === 'zh' ? '在 Steam 上查看更多' : 'View More on Steam') : 'Steam Gallery'}
+                   {stats?.status === 'ONLINE' ? t.sections.steam.viewMore : 'Steam Gallery'}
                  </span>
               </motion.a>
             </h2>
             <p className="text-brand-black/60 font-medium text-lg text-center md:text-left">
-              启发我设计哲学的游戏
+              {t.sections.steam.subtitle}
             </p>
           </div>
         </div>
