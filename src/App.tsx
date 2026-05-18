@@ -2189,25 +2189,25 @@ export default function App() {
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
                           <Sword className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">{lang === 'zh' ? 'RPG' : 'RPG'}</span>
+                        <span className="leading-tight">{lang === 'zh' ? 'RPG' : 'RPG'}</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
                           <Zap className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">{lang === 'zh' ? '平台跳跃' : 'Platformer'}</span>
+                        <span className="leading-tight">{lang === 'zh' ? '平台跳跃' : 'Platformer'}</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:rotate-3 transition-transform brutalist-border-small border-black">
                           <Users className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">{lang === 'zh' ? '社交 / 在线 / 竞技' : 'Social / Online / Competitive'}</span>
+                        <span className="leading-tight">{lang === 'zh' ? '社交 / 在线 / 竞技' : 'Social / Online / Competitive'}</span>
                       </li>
                       <li className="flex items-center gap-3 p-2 bg-white/10 brutalist-border-small group hover:bg-white/20 transition-colors border-white/20">
                         <div className="w-8 h-8 bg-brand-accent flex items-center justify-center p-1 group-hover:-rotate-3 transition-transform brutalist-border-small border-black">
                           <Target className="w-5 h-5 text-black" />
                         </div>
-                        <span className="whitespace-nowrap">{lang === 'zh' ? '策略类' : 'Strategy'}</span>
+                        <span className="leading-tight">{lang === 'zh' ? '策略类' : 'Strategy'}</span>
                       </li>
                     </ul>
                   </div>
