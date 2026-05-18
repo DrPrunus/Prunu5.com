@@ -1669,19 +1669,6 @@ export default function App() {
               </motion.div>
             </div>
             <div className="flex flex-col gap-8 md:gap-12 relative max-w-4xl py-4">
-            {/* New Quote Section */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="-mb-4 relative"
-            >
-              <div className="absolute -left-4 top-0 w-1 h-full bg-brand-primary/20" />
-              <p className="text-xl md:text-2xl font-display font-black italic text-brand-black/60 tracking-tight leading-relaxed">
-                "{t.hero.quote}"
-              </p>
-            </motion.div>
-
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -1694,7 +1681,7 @@ export default function App() {
               <div className="bg-white brutalist-border p-4 hover:translate-x-1 transition-all group brutalist-shadow-small relative">
                 {/* Education Badge */}
                 <div className="absolute -top-3 -right-3 bg-brand-black text-white px-3 py-1 text-[11px] font-mono font-black uppercase brutalist-shadow-small z-10">
-                  教育背景
+                   {t.hero.education.title}
                 </div>
 
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-1 mb-1">
@@ -1715,6 +1702,19 @@ export default function App() {
                   {t.hero.education.courses}
                 </p>
               </div>
+            </motion.div>
+
+            {/* New Quote Section */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="-mb-4 relative"
+            >
+              <div className="absolute -left-4 top-0 w-1 h-full bg-brand-primary/20" />
+              <p className="text-xl md:text-2xl font-display font-black italic text-brand-black/60 tracking-tight leading-relaxed">
+                "{t.hero.quote}"
+              </p>
             </motion.div>
             </div>
 
