@@ -1346,80 +1346,89 @@ function SteamExperience({ lang }: { lang: Language }) {
 // --- Suprematist Background Component ---
 function SuprematistBackground() {
   return (
-    <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none bg-brand-bg">
+    <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none bg-[#fafafa]/80">
       {/* Brutalist Grid */}
-      <div className="absolute inset-0 brutalist-grid opacity-[0.1]" />
+      <div className="absolute inset-0 brutalist-grid opacity-[0.05]" />
       
-      {/* Huge floating plane */}
+      {/* Huge floating plane - More intense Red */}
       <motion.div 
-        className="absolute w-[80vw] h-[2px] bg-brand-black opacity-[0.03] top-1/2 left-0 -rotate-12"
-        animate={{ y: [0, 40, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Suprematist Shapes - Primary Red Square */}
-      <motion.div 
-        className="absolute w-[25vw] h-[25vw] bg-brand-primary opacity-[0.03] top-[10%] -left-[5%]"
-        animate={{ 
-          rotate: [15, 10, 15],
-          x: [0, 15, 0],
-        }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute w-[80vw] h-[4px] bg-brand-primary opacity-[0.1] top-[15%] left-0 -rotate-[15deg] suprematist-floating"
+        animate={{ y: [0, 40, 0], x: [0, 20, 0] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
       />
       
-      {/* Black Rectangle Dynamic */}
+      {/* Heavy Black Bar */}
       <motion.div 
-        className="absolute w-[60vw] h-[60px] bg-brand-black opacity-[0.04] top-[60%] -right-10"
+        className="absolute w-[60vw] h-[10vw] bg-brand-black opacity-[0.05] top-[60%] -right-10 suprematist-floating"
         animate={{ 
-          rotate: [-12, -18, -12],
-          x: [0, -60, 0]
+          rotate: [-8, -12, -8],
+          x: [0, -30, 0]
         }}
         transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
       />
 
-      {/* Yellow Square Segment */}
+      {/* Floating Shapes - Primary Red Square */}
       <motion.div 
-        className="absolute w-[12vw] h-[12vw] bg-brand-accent opacity-[0.04] bottom-[15%] left-[20%]"
+        className="absolute w-[30vw] h-[30vw] bg-brand-primary opacity-[0.05] -top-10 -left-10 suprematist-floating"
         animate={{ 
-          rotate: [30, 60, 30],
-          y: [0, -40, 0]
+          rotate: [15, 12, 15],
+          x: [0, 10, 0],
+          y: [0, 10, 0]
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      />
+      
+      {/* Pure Floating Yellow Square */}
+      <motion.div 
+        className="absolute w-[15vw] h-[15vw] bg-brand-accent opacity-[0.05] bottom-[5%] left-[10%] suprematist-floating z-10"
+        animate={{ 
+          rotate: [-15, -10, -15],
+          y: [0, -30, 0]
         }}
         transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
       />
 
-      {/* Large Black Circle - Classic Suprematism */}
+      {/* Absolute Black Circle */}
       <motion.div 
-        className="absolute w-[40vw] h-[40vw] rounded-full border-[1px] border-brand-black opacity-[0.02] top-[30%] left-[20%]"
-        animate={{ scale: [1, 1.05, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-[45vw] h-[45vw] rounded-full bg-brand-black opacity-[0.04] -bottom-20 -right-20 suprematist-floating"
+        animate={{ scale: [1, 1.02, 1] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Floating Small Squares Cluster */}
-      {[...Array(4)].map((_, i) => (
-        <motion.div 
-          key={i}
-          className="absolute w-8 h-8 bg-brand-black opacity-[0.05]"
-          style={{ 
-            top: `${20 + i * 15}%`, 
-            left: `${80 - i * 5}%`,
-            rotate: `${i * 15}deg`
-          }}
-          animate={{ 
-            y: [0, 20, 0],
-            rotate: [i * 15, i * 15 + 10, i * 15]
-          }}
-          transition={{ duration: 10 + i * 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      ))}
+      {/* Floating Small Squares Cluster - Visible Contrast but Small */}
+      {[...Array(12)].map((_, i) => {
+        const topPos = (i * 17) % 95;
+        const leftPos = (i * 23) % 95;
+        return (
+          <motion.div 
+            key={i}
+            className="absolute w-2 h-2 md:w-6 md:h-6 bg-brand-black opacity-[0.06] suprematist-floating"
+            style={{ 
+              top: `${topPos}%`, 
+              left: `${leftPos}%`,
+              rotate: `${i * 30}deg`
+            }}
+            animate={{ 
+              y: [0, (i % 2 ? 40 : -40), 0],
+              x: [0, (i % 3 === 0 ? 30 : -30), 0],
+              rotate: [i * 30, i * 30 + 90, i * 30]
+            }}
+            transition={{ 
+              duration: 15 + i * 3, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+          />
+        );
+      })}
 
-      {/* Distant Cross */}
-      <div className="absolute top-[25%] right-[15%] opacity-[0.03] scale-150">
-        <div className="w-[120px] h-1 bg-brand-black" />
-        <div className="w-1 h-[120px] bg-brand-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      {/* Crosshairs & Lines */}
+      <div className="absolute top-[30%] left-[25%] opacity-[0.05] scale-150">
+        <div className="w-[200px] h-1 bg-brand-black" />
+        <div className="w-1 h-[200px] bg-brand-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      {/* Noise / Grain Polish */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none halftone mix-blend-multiply" />
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none halftone-big mix-blend-multiply" />
     </div>
   );
 }
@@ -1743,39 +1752,40 @@ export default function App() {
                 </span>
               </span>
             </div>
-            <div className="flex flex-col mb-8 md:mb-12 relative group max-w-full">
-              {/* Mechanical extension lines */}
-              <div className="absolute -left-12 top-0 h-full w-[1px] bg-brand-primary opacity-30 hidden md:block" />
-              <div className="absolute -left-16 top-1/2 w-4 h-[1px] bg-brand-primary opacity-30 hidden md:block" />
+            <div className="flex flex-col mb-8 md:mb-12 relative group max-w-full overflow-visible">
+              {/* Floating Small Squares for Hero - Behind text, extremely subtle */}
+              <motion.div 
+                className="absolute -top-10 -left-12 w-6 h-6 bg-brand-black opacity-[0.03] suprematist-floating z-[-1]"
+                animate={{ rotate: [0, 90, 0], y: [0, -40, 0], x: [0, 20, 0] }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div 
+                className="absolute bottom-4 -right-12 w-4 h-4 bg-brand-black opacity-[0.04] suprematist-floating z-[-1]"
+                animate={{ rotate: [15, -45, 15], x: [0, 40, 0], y: [0, 20, 0] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div 
+                className="absolute top-1/2 -right-16 w-3 h-3 bg-brand-primary opacity-[0.05] suprematist-floating z-[-1]"
+                animate={{ scale: [1, 1.3, 1], y: [0, -60, 0] }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              />
               
-              {/* Fake measurement annotations */}
-              <div className="absolute -left-20 top-0 text-[8px] font-mono text-brand-black/20 vertical-text origin-top-left -rotate-90 hidden md:block">112.50mm</div>
-              <div className="absolute right-0 -top-8 text-[8px] font-mono text-brand-black/20 flex gap-2">
-                <div className="w-12 md:w-16 h-[1px] bg-brand-black/10" />
-                <span>ANG_REF/45.0°</span>
-              </div>
-
               <motion.h1 
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-2xl sm:text-4xl md:text-[4rem] lg:text-[5rem] font-display font-black leading-tight md:leading-none tracking-tighter uppercase text-brand-black whitespace-nowrap relative select-none"
+                className="brutalist-text-huge text-brand-black whitespace-nowrap relative select-none mb-2"
               >
                 {t.hero.roleGame}
-                {/* Baseline extension line */}
-                <div className="absolute bottom-1 left-0 w-full h-[1px] bg-brand-black/10 origin-left" />
               </motion.h1>
               <motion.div 
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="flex items-center gap-4 md:gap-8 -mt-1 md:-mt-2 ml-0 sm:ml-4 md:ml-8 relative"
+                className="flex items-center gap-4 md:gap-8 relative ml-8 md:ml-16"
               >
-                <div className="absolute top-1/2 left-0 -translate-x-full w-8 md:w-32 h-[1px] bg-brand-primary opacity-20 pointer-events-none hidden sm:block" />
-                <h2 className="text-xl sm:text-3xl md:text-[3rem] lg:text-[4rem] font-display font-black leading-tight md:leading-none tracking-tighter uppercase text-brand-primary italic drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] md:drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] whitespace-nowrap relative select-none">
+                <h2 className="brutalist-text-huge bg-brand-primary text-white px-8 py-2 md:py-4 -rotate-2 brutalist-shadow-small !text-4xl md:!text-7xl">
                   {t.hero.roleMusic}
-                  {/* Extension line from cap-height */}
-                  <div className="absolute top-0 right-0 w-12 md:w-32 h-[1px] bg-brand-primary/20 translate-x-full origin-left hidden md:block" />
                 </h2>
               </motion.div>
             </div>
@@ -2068,7 +2078,6 @@ export default function App() {
             </AnimatePresence>
           </div>
         </section>
-
         {/* About */}
         <section id="about" className="relative pt-8">
           {/* Section Auxiliary Lines */}
@@ -2283,7 +2292,7 @@ export default function App() {
         </section>
 
         {/* Steam Gaming Experience */}
-        <section id="steam" className="relative pt-16 pb-8">
+        <section id="steam" className="relative pt-12 pb-0">
           {/* Decorative Plane */}
           <div className="absolute -left-20 top-40 font-mono text-[100px] font-black opacity-[0.02] select-none pointer-events-none -rotate-90 origin-top-left">GAMING_LOG</div>
           
@@ -2293,107 +2302,66 @@ export default function App() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="relative py-8 overflow-hidden">
-          <div className="absolute inset-0 bg-brand-black/5 -z-10" />
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 layered-grid w-full h-1/2 text-brand-black opacity-[0.02] select-none pointer-events-none -z-10" />
-          
+        <section id="contact" className="relative py-4 overflow-hidden">
           <div className="max-w-[1600px] mx-auto px-6">
-            <SectionHeading icon={Rocket} subtitle={t.sections.contact.subtitle}>
+            <SectionHeading icon={Mail} subtitle={t.sections.contact.subtitle}>
               {t.sections.contact.title}
             </SectionHeading>
-            
-            {/* Tactical Divider */}
-            <div className="h-4 w-full caution-stripes opacity-20 mb-12 -rotate-1 brutalist-border-small border-brand-black/10" />
 
-            <div className="max-w-4xl mx-auto mt-12 bg-white brutalist-border p-6 md:p-16 relative shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] md:shadow-[20px_20px_0px_0px_rgba(0,0,0,1)]">
-              {/* Decorative Warning Element */}
-              <div className="absolute -top-6 -right-6 md:-top-8 md:-right-8 w-16 h-16 md:w-20 md:h-20 bg-brand-accent rounded-full border-4 border-brand-black flex items-center justify-center font-black text-2xl md:text-3xl z-20 brutalist-shadow rotate-12">!</div>
-              
-              {t.sections.contact.text && (
-                <div className="mb-12 md:mb-16">
-                  <p className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] italic text-left border-l-4 md:border-l-8 border-brand-primary pl-4 md:pl-6">
-                    "{t.sections.contact.text}"
-                  </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 mt-12">
+              {/* Email 1 */}
+              <a 
+                href={`mailto:${t.sections.contact.btnEmail}`} 
+                className="group relative bg-white brutalist-border-small p-6 flex flex-col justify-between hover:bg-brand-primary hover:text-white transition-all min-h-[120px]"
+              >
+                <div className="flex justify-between items-start">
+                  <span className="text-[10px] font-mono uppercase tracking-widest font-black opacity-30 group-hover:opacity-100">Primary Channel</span>
+                  <Mail size={16} />
                 </div>
-              )}
+                <span className="text-xl font-black tracking-tighter truncate mt-4">
+                  {t.sections.contact.btnEmail}
+                </span>
+              </a>
 
-              <div className="flex flex-col gap-6 md:gap-12">
-                {/* Email Channels */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <a href={`mailto:${t.sections.contact.btnEmail}`} className="group relative bg-brand-primary text-white p-6 md:p-8 brutalist-border brutalist-shadow hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all overflow-hidden flex flex-col justify-between min-h-[140px] md:min-h-[180px]">
-                    <div className="absolute inset-0 halftone opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none" />
-                    <div className="flex items-center justify-between mb-4 md:mb-6">
-                      <div className="flex flex-col gap-1">
-                        <div className="flex gap-0.5">
-                           <div className="w-2 h-2 bg-white" />
-                           <div className="w-2 h-2 bg-white/20" />
-                        </div>
-                        <span className="text-[10px] md:text-base font-mono opacity-100 uppercase tracking-widest font-black">QQ Email</span>
-                      </div>
-                      <Mail size={20} className="md:w-6 md:h-6 group-hover:rotate-12 transition-transform" />
-                    </div>
-                    <div className="text-left">
-                      <span className="text-lg md:text-xl lg:text-2xl font-black whitespace-nowrap tracking-tighter block truncate">
-                        {t.sections.contact.btnEmail}
-                      </span>
-                    </div>
-                  </a>
-
-                  <a href={`mailto:${t.sections.contact.btnGmail}`} className="group relative bg-brand-accent text-brand-black p-6 md:p-8 brutalist-border brutalist-shadow hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all overflow-hidden flex flex-col justify-between min-h-[140px] md:min-h-[180px]">
-                    <div className="absolute inset-0 halftone opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none" />
-                    <div className="flex items-center justify-between mb-4 md:mb-6">
-                      <div className="flex flex-col gap-1">
-                        <div className="flex gap-0.5">
-                           <div className="w-2 h-2 bg-brand-black" />
-                           <div className="w-2 h-2 bg-brand-black/20" />
-                        </div>
-                        <span className="text-[10px] md:text-base font-mono opacity-100 uppercase tracking-widest font-black">Gmail</span>
-                      </div>
-                      <Mail size={20} className="md:w-6 md:h-6 group-hover:rotate-12 transition-transform" />
-                    </div>
-                    <div className="text-left">
-                      <span className="text-lg md:text-xl lg:text-2xl font-black whitespace-nowrap tracking-tighter block truncate">
-                        {t.sections.contact.btnGmail}
-                      </span>
-                    </div>
-                  </a>
+              {/* Email 2 */}
+              <a 
+                href={`mailto:${t.sections.contact.btnGmail}`} 
+                className="group relative bg-white brutalist-border-small p-6 flex flex-col justify-between hover:bg-brand-accent transition-all min-h-[120px]"
+              >
+                <div className="flex justify-between items-start">
+                  <span className="text-[10px] font-mono uppercase tracking-widest font-black opacity-30 group-hover:opacity-100">Backup</span>
+                  <Mail size={16} />
                 </div>
+                <span className="text-xl font-black tracking-tighter truncate mt-4">
+                  {t.sections.contact.btnGmail}
+                </span>
+              </a>
 
-                {/* WeChat Channel - Full Width */}
-                <button 
-                  onClick={handleCopyWeChat}
-                  className="w-full bg-brand-black text-white p-6 md:p-12 brutalist-border brutalist-shadow relative overflow-hidden group hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,0.1)] md:hover:shadow-[12px_12px_0px_0px_rgba(255,255,255,0.1)] transition-all cursor-pointer"
-                >
-                  <div className="absolute top-0 right-0 w-48 h-full bg-brand-accent/10 skew-x-[-20deg] translate-x-24" />
-                  
-                  <AnimatePresence>
-                    {copied && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="absolute inset-0 flex items-center justify-center bg-brand-accent/90 z-30"
-                      >
-                        <span className="text-brand-black text-2xl md:text-4xl font-black uppercase tracking-widest flex items-center gap-4">
-                          <Rocket className="animate-bounce" /> {lang === 'zh' ? '已复制！' : 'COPIED!'}
-                        </span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-brand-accent flex items-center justify-center brutalist-border rotate-3 group-hover:rotate-0 transition-transform">
-                      <MessageSquare size={32} className="md:w-10 md:h-10 text-brand-black" />
-                    </div>
-                    <div className="text-center md:text-left">
-                      <span className="block text-[10px] md:text-sm text-brand-accent font-mono uppercase tracking-[0.3em] mb-2 font-black group-hover:text-white transition-colors">WeChat (Click to Copy)</span>
-                      <p className="text-2xl sm:text-4xl md:text-6xl font-black font-mono tracking-tighter text-white truncate max-w-full">
-                        {t.sections.contact.btnWechat}
-                      </p>
-                    </div>
-                  </div>
-                </button>
-              </div>
+              {/* WeChat */}
+              <button 
+                onClick={handleCopyWeChat}
+                className="group relative bg-brand-black text-white p-6 flex flex-col justify-between hover:bg-brand-primary transition-all min-h-[120px] overflow-hidden"
+              >
+                <AnimatePresence>
+                  {copied && (
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 flex items-center justify-center bg-brand-accent z-20"
+                    >
+                      <span className="text-brand-black text-sm font-black uppercase tracking-widest">{lang === 'zh' ? '已复制' : 'COPIED'}</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                <div className="flex justify-between items-start relative z-10">
+                  <span className="text-[10px] font-mono uppercase tracking-widest font-black text-brand-accent group-hover:text-white">WeChat ID</span>
+                  <MessageSquare size={16} />
+                </div>
+                <span className="text-xl font-black tracking-tighter truncate mt-4 relative z-10">
+                  {t.sections.contact.btnWechat}
+                </span>
+              </button>
             </div>
           </div>
         </section>

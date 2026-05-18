@@ -405,7 +405,62 @@
   background-size: 100% 100%;
 }
 
-/* Y2K Aesthetics */
+/* Suprematist Elements */
+.suprematist-square {
+  @apply bg-brand-black w-24 h-24;
+}
+
+.suprematist-rect-red {
+  @apply bg-brand-primary h-8 w-64;
+}
+
+.suprematist-rect-yellow {
+  @apply bg-brand-accent h-4 w-48;
+}
+
+.suprematist-circle {
+  @apply bg-brand-black rounded-full w-16 h-16;
+}
+
+.suprematist-line-long {
+  @apply bg-brand-black h-[1px] w-full;
+}
+
+.suprematist-floating {
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0.1));
+}
+
+@keyframes float-suprematist {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(10px, -15px) rotate(2deg); }
+  66% { transform: translate(-5px, 10px) rotate(-1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.animate-suprematist {
+  animation: float-suprematist 8s infinite ease-in-out;
+}
+
+.brutalist-text-huge {
+  @apply font-display font-black uppercase text-6xl md:text-9xl leading-[0.8] tracking-tighter;
+}
+
+.brutalist-text-outline {
+  -webkit-text-stroke: 1.5px var(--color-brand-black);
+  color: transparent;
+}
+
+.brutalist-divider {
+  @apply h-2 bg-brand-black w-full my-12 relative overflow-hidden;
+}
+
+.brutalist-divider::after {
+  content: '';
+  @apply absolute top-0 left-0 h-full w-[20%] bg-brand-primary;
+  animation: scan 1.5s linear infinite;
+}
+
+/* Y2K Aesthetics - Keep but maybe de-emphasize if leading away from request */
 .y2k-glass {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(12px) saturate(180%);
