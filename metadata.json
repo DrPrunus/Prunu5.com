@@ -2,5 +2,5 @@
   "name": "DrPrunus的个人网站",
   "description": "A professional and high-energy portfolio for game developers, featuring technical showcases and project highlights.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
