@@ -941,8 +941,18 @@ function MouseCodeStream() {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const mouseRef = React.useRef({ x: 0, y: 0 });
   const [code, setCode] = React.useState<string[]>([]);
+  const [isVisible, setIsVisible] = React.useState(false);
 
   React.useEffect(() => {
+    const checkVisibility = () => {
+      // Check if the device uses a fine pointer (mouse/trackpad) which usually identifies PC/Desktop
+      const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+      setIsVisible(isFinePointer);
+    };
+
+    checkVisibility();
+    window.addEventListener('resize', checkVisibility);
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
@@ -964,16 +974,19 @@ function MouseCodeStream() {
     }, 120);
 
     return () => {
+      window.removeEventListener('resize', checkVisibility);
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationId);
       clearInterval(interval);
     };
   }, []);
 
+  if (!isVisible) return null;
+
   return (
     <div 
       ref={containerRef}
-      className="fixed pointer-events-none z-[2100] top-0 left-0 flex flex-col font-mono text-[8px] text-gray-800/60 transition-opacity duration-300 will-change-transform"
+      className="fixed pointer-events-none z-[2100] top-0 left-0 hidden lg:flex flex-col font-mono text-[8px] text-gray-800/60 transition-opacity duration-300 will-change-transform"
       style={{ 
         paddingLeft: '18px', 
         paddingTop: '18px',
@@ -1994,7 +2007,7 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-[1600px] mx-auto px-6 space-y-12">
+      <main className="max-w-[1600px] mx-auto px-4 md:px-6 space-y-12">
         
         {/* Projects */}
         <section id="works" className="relative pt-8">
@@ -2042,7 +2055,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, idx) => (
                 <ProjectCard 
