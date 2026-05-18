@@ -62,8 +62,28 @@
 
 @layer base {
   body {
-    @apply bg-brand-bg text-brand-black font-sans antialiased;
+    @apply bg-brand-bg text-brand-black font-sans antialiased relative;
   }
+  
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.transparenttextures.com/patterns/p6.png");
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1000;
+  }
+}
+
+.brutalist-grid {
+  background-size: 60px 60px;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.07) 1px, transparent 1px);
 }
 
 .brutalist-border {

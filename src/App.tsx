@@ -591,7 +591,7 @@ function CoreParticles({ count = 100 }) {
 }
 
 const SectionHeading = ({ children, icon: Icon, subtitle }: { children: React.ReactNode, icon?: any, subtitle?: string }) => (
-  <div className="mb-8 md:mb-12 relative flex flex-col items-start group pt-6">
+  <div className="mb-6 md:mb-8 relative flex flex-col items-start group pt-4">
     {/* Drafting Line Extensions */}
     <div className="absolute top-0 left-0 w-full flex items-center gap-2 pointer-events-none">
       <div className="w-8 md:w-12 h-[1px] bg-brand-primary" />
@@ -1191,10 +1191,10 @@ function SteamExperience({ lang }: { lang: Language }) {
     activeCategory === 'all' || (g.categories && g.categories.includes(activeCategory))
   );
 
-  const displayedGames = isExpanded ? filteredGames : filteredGames.slice(0, 10);
+  const displayedGames = isExpanded ? filteredGames : filteredGames.slice(0, 16);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-6 mb-24">
+    <div className="max-w-[1600px] mx-auto px-4 md:px-6 mb-24">
       {/* Title Area */}
       <div className="flex flex-col items-center text-center mb-12">
         <div className="flex flex-wrap items-center justify-center gap-6 mb-4">
@@ -1279,7 +1279,7 @@ function SteamExperience({ lang }: { lang: Language }) {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:gap-4">
           <AnimatePresence mode="popLayout">
             {displayedGames.map((game, i) => (
               <SteamGameCard key={game.appid || game.name} game={game} i={i} />
@@ -1289,7 +1289,7 @@ function SteamExperience({ lang }: { lang: Language }) {
       )}
 
       {/* Expand/Collapse Toggle */}
-      {filteredGames.length > 10 && (
+      {filteredGames.length > 16 && (
         <div className="mt-12 flex justify-center">
           <button
             onClick={() => setIsExpanded(!isExpanded)}
@@ -1298,7 +1298,7 @@ function SteamExperience({ lang }: { lang: Language }) {
             <div className="bg-white border-2 border-brand-black px-8 py-2 md:py-3 font-display font-black uppercase text-xs md:text-sm tracking-widest hover:bg-brand-black hover:text-white transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.1)] group-hover:shadow-none group-hover:translate-x-1 group-hover:translate-y-1">
               {isExpanded 
                 ? (lang === 'zh' ? '收起' : 'COLLAPSE') 
-                : (lang === 'zh' ? `展开 (${filteredGames.length - 10}+)` : `EXPAND (${filteredGames.length - 10}+)`)}
+                : (lang === 'zh' ? `展开 (${filteredGames.length - 16}+)` : `EXPAND (${filteredGames.length - 16}+)`)}
             </div>
             <motion.div
               animate={{ y: isExpanded ? -2 : 2 }}
@@ -1326,6 +1326,87 @@ function SteamExperience({ lang }: { lang: Language }) {
             </span>
          </a>
       </div>
+    </div>
+  );
+}
+
+// --- Suprematist Background Component ---
+function SuprematistBackground() {
+  return (
+    <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none bg-brand-bg">
+      {/* Brutalist Grid */}
+      <div className="absolute inset-0 brutalist-grid opacity-[0.1]" />
+      
+      {/* Huge floating plane */}
+      <motion.div 
+        className="absolute w-[80vw] h-[2px] bg-brand-black opacity-[0.03] top-1/2 left-0 -rotate-12"
+        animate={{ y: [0, 40, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Suprematist Shapes - Primary Red Square */}
+      <motion.div 
+        className="absolute w-[25vw] h-[25vw] bg-brand-primary opacity-[0.03] top-[10%] -left-[5%]"
+        animate={{ 
+          rotate: [15, 10, 15],
+          x: [0, 15, 0],
+        }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      />
+      
+      {/* Black Rectangle Dynamic */}
+      <motion.div 
+        className="absolute w-[60vw] h-[60px] bg-brand-black opacity-[0.04] top-[60%] -right-10"
+        animate={{ 
+          rotate: [-12, -18, -12],
+          x: [0, -60, 0]
+        }}
+        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+      />
+
+      {/* Yellow Square Segment */}
+      <motion.div 
+        className="absolute w-[12vw] h-[12vw] bg-brand-accent opacity-[0.04] bottom-[15%] left-[20%]"
+        animate={{ 
+          rotate: [30, 60, 30],
+          y: [0, -40, 0]
+        }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+      />
+
+      {/* Large Black Circle - Classic Suprematism */}
+      <motion.div 
+        className="absolute w-[40vw] h-[40vw] rounded-full border-[1px] border-brand-black opacity-[0.02] top-[30%] left-[20%]"
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Floating Small Squares Cluster */}
+      {[...Array(4)].map((_, i) => (
+        <motion.div 
+          key={i}
+          className="absolute w-8 h-8 bg-brand-black opacity-[0.05]"
+          style={{ 
+            top: `${20 + i * 15}%`, 
+            left: `${80 - i * 5}%`,
+            rotate: `${i * 15}deg`
+          }}
+          animate={{ 
+            y: [0, 20, 0],
+            rotate: [i * 15, i * 15 + 10, i * 15]
+          }}
+          transition={{ duration: 10 + i * 2, repeat: Infinity, ease: "easeInOut" }}
+        />
+      ))}
+
+      {/* Distant Cross */}
+      <div className="absolute top-[25%] right-[15%] opacity-[0.03] scale-150">
+        <div className="w-[120px] h-1 bg-brand-black" />
+        <div className="w-1 h-[120px] bg-brand-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      </div>
+
+      {/* Noise / Grain Polish */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none halftone mix-blend-multiply" />
     </div>
   );
 }
@@ -1382,36 +1463,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* Background Decor */}
-      <div className="fixed inset-0 pointer-events-none -z-10 bg-brand-bg" />
-      <div className="fixed inset-0 pointer-events-none -z-[9] y2k-mesh-bg" />
-      
-      {/* Y2K Floating Blobs */}
-      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] rounded-full bg-[#00f2ff] opacity-[0.05] blur-[100px] animate-blob" />
-        <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] rounded-full bg-[#ff00ea] opacity-[0.05] blur-[80px] animate-blob [animation-delay:2s]" />
-        <div className="absolute top-[60%] left-[40%] w-[300px] h-[300px] rounded-full bg-[#7000ff] opacity-[0.03] blur-[90px] animate-blob [animation-delay:4s]" />
-      </div>
-
-      {/* Retro Tech Decorations */}
-      <div className="fixed inset-0 pointer-events-none -z-[8] overflow-hidden opacity-20">
-        <div className="absolute top-40 -left-10 rotate-12 p-4 y2k-glass border border-white/20 rounded-2xl scale-75">
-           <Gamepad2 className="text-[#00f2ff]" size={48} />
-        </div>
-        <div className="absolute bottom-60 -right-8 -rotate-12 p-3 y2k-glass border border-white/20 rounded-xl">
-           <CassetteTape className="text-[#ff00ea]" size={40} />
-        </div>
-        <div className="absolute top-1/2 left-4 -translate-y-1/2 opacity-40">
-           <Cpu className="text-white/20" size={120} />
-        </div>
-        <div className="absolute top-[20%] right-10 p-2 y2k-glass border border-white/20 rounded-full animate-pulse">
-           <Joystick className="text-white/40" size={24} />
-        </div>
-      </div>
-
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] -z-10 tactical-grid" />
-      
-      <div className="fixed inset-0 pointer-events-none opacity-[0.2] -z-10 scanlines" />
+      <SuprematistBackground />
 
       {/* Global Drafting Lines */}
       <div className="fixed left-4 md:left-6 top-0 bottom-0 w-[1px] dashed-line-vertical text-brand-black/5 -z-10" />
@@ -1457,7 +1509,7 @@ export default function App() {
         {/* Nav Scanline Effect */}
         <div className="absolute inset-x-0 bottom-0 h-[100%] bg-gradient-to-t from-brand-primary/10 to-transparent pointer-events-none" />
         
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center text-sm font-mono tracking-widest font-black">
+        <div className="max-w-[1600px] mx-auto w-full flex justify-between items-center text-sm font-mono tracking-widest font-black">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -1595,7 +1647,7 @@ export default function App() {
       </nav>
 
       {/* Hero */}
-      <header id="intro" className="relative pt-4 md:pt-8 pb-6 px-4 md:px-6 max-w-7xl mx-auto">
+      <header id="intro" className="relative pt-4 md:pt-8 pb-6 px-4 md:px-6 max-w-[1600px] mx-auto">
         {/* HUD Frame Angles */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-30">
           <div className="hud-angle hud-angle-tl text-brand-primary" />
@@ -1942,7 +1994,7 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 space-y-16">
+      <main className="max-w-[1600px] mx-auto px-6 space-y-12">
         
         {/* Projects */}
         <section id="works" className="relative pt-8">
@@ -1990,7 +2042,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, idx) => (
                 <ProjectCard 
@@ -2014,7 +2066,7 @@ export default function App() {
 
           <div className="absolute -right-20 top-40 font-mono text-[120px] font-black opacity-[0.02] select-none pointer-events-none rotate-90 origin-bottom-right">CURRICULUM</div>
           <div className="absolute top-0 left-0 w-full h-full diagonal-line opacity-5 -z-10" />
-          <div className="max-w-7xl mx-auto relative ">
+          <div className="max-w-[1600px] mx-auto relative ">
             {/* HUD Corner accents */}
             <div className="absolute -top-10 -left-10 w-24 h-24 border-t-2 border-l-2 border-brand-primary/20" />
             <div className="absolute -bottom-10 -right-10 w-24 h-24 border-b-2 border-r-2 border-brand-primary/20" />
@@ -2218,11 +2270,11 @@ export default function App() {
         </section>
 
         {/* Steam Gaming Experience */}
-        <section id="steam" className="relative pt-24 pb-12">
+        <section id="steam" className="relative pt-16 pb-8">
           {/* Decorative Plane */}
           <div className="absolute -left-20 top-40 font-mono text-[100px] font-black opacity-[0.02] select-none pointer-events-none -rotate-90 origin-top-left">GAMING_LOG</div>
           
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-[1600px] mx-auto">
              <SteamExperience lang={lang} />
           </div>
         </section>
@@ -2232,7 +2284,7 @@ export default function App() {
           <div className="absolute inset-0 bg-brand-black/5 -z-10" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 layered-grid w-full h-1/2 text-brand-black opacity-[0.02] select-none pointer-events-none -z-10" />
           
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-[1600px] mx-auto px-6">
             <SectionHeading icon={Rocket} subtitle={t.sections.contact.subtitle}>
               {t.sections.contact.title}
             </SectionHeading>
@@ -2340,7 +2392,7 @@ export default function App() {
         {/* Warning Stripe */}
         <div className="absolute top-0 left-0 w-full h-1 caution-stripes opacity-40" />
         
-        <div className="max-w-7xl mx-auto text-center relative z-10 pt-4">
+        <div className="max-w-[1600px] mx-auto text-center relative z-10 pt-4">
            <div className="flex justify-center gap-1 mb-4">
               {[...Array(8)].map((_, i) => <div key={i} className="w-4 h-1 bg-brand-primary/20" />)}
            </div>
