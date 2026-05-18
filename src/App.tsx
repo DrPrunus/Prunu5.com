@@ -1235,11 +1235,13 @@ function SteamExperience({ lang }: { lang: Language }) {
           <div className="flex flex-col items-center md:items-start gap-1">
             <h2 className="text-3xl md:text-5xl font-display font-black text-brand-black tracking-tight flex flex-wrap items-center justify-center gap-4">
               {lang === 'zh' ? '游戏经历' : (lang === 'en' ? 'GAMING EXPERIENCE' : 'ゲーム体験')}
-              <a 
+              <motion.a 
                 href="https://steamcommunity.com/id/prunu5h3ad"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-brand-black px-4 py-2 rounded-full border border-brand-black hover:bg-brand-primary transition-all group/steam-btn no-underline"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 bg-brand-black px-4 py-2 rounded-full border border-brand-black group/steam-btn no-underline transition-shadow hover:shadow-lg"
               >
                  <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center group-hover/steam-btn:bg-white/40 transition-colors">
                     <SteamIcon className="w-3 h-3 text-white" />
@@ -1247,7 +1249,7 @@ function SteamExperience({ lang }: { lang: Language }) {
                  <span className="text-xs font-bold text-white font-mono tracking-tight uppercase">
                    {stats?.status === 'ONLINE' ? (lang === 'zh' ? '在 Steam 上查看更多' : 'View More on Steam') : 'Steam Gallery'}
                  </span>
-              </a>
+              </motion.a>
             </h2>
             <p className="text-brand-black/60 font-medium text-lg text-center md:text-left">
               启发我设计哲学的游戏
@@ -2281,7 +2283,7 @@ export default function App() {
         </section>
 
         {/* Steam Gaming Experience */}
-        <section id="steam" className="relative pt-12 pb-0">
+        <section id="steam" className="relative pt-6 pb-0">
           {/* Decorative Plane */}
           <div className="absolute -left-20 top-40 font-mono text-[100px] font-black opacity-[0.02] select-none pointer-events-none -rotate-90 origin-top-left">GAMING_LOG</div>
           
@@ -2291,7 +2293,7 @@ export default function App() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="relative py-4 overflow-hidden">
+        <section id="contact" className="relative pt-0 pb-12 overflow-hidden">
           <div className="max-w-[1600px] mx-auto px-6">
             <SectionHeading icon={Mail} subtitle={t.sections.contact.subtitle}>
               {t.sections.contact.title}
