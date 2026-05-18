@@ -1108,10 +1108,23 @@ function SteamExperience({ lang }: { lang: Language }) {
         
         // 统一使用 /api/steam 代理（本地用 server.ts，Vercel 用 api/steam.js）
         const res = await fetch('/api/steam');
+        
+        const contentType = res.headers.get('content-type');
         if (!res.ok) {
-          const errData = await res.json();
-          throw new Error(errData.error || 'Failed to fetch Steam data');
+          if (contentType && contentType.includes('application/json')) {
+            const errData = await res.json();
+            throw new Error(errData.error || `Server Error: ${res.status}`);
+          } else {
+            const text = await res.text();
+            throw new Error(`API Error (${res.status}): ${text.substring(0, 50)}...`);
+          }
         }
+        
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await res.text();
+          throw new Error(`Invalid content type: ${contentType}. Body: ${text.substring(0, 50)}...`);
+        }
+        
         const data = await res.json();
         
         if (data.games) {
