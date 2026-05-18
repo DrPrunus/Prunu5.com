@@ -1234,15 +1234,20 @@ function SteamExperience({ lang }: { lang: Language }) {
 
           <div className="flex flex-col items-center md:items-start gap-1">
             <h2 className="text-3xl md:text-5xl font-display font-black text-brand-black tracking-tight flex flex-wrap items-center justify-center gap-4">
-              游戏经历
-              <div className="flex items-center gap-2 bg-brand-bg px-3 py-1 rounded-full border border-gray-200">
-                 <div className="w-5 h-5 bg-brand-black rounded-full flex items-center justify-center">
-                    <Gamepad2 size={12} className="text-white" />
+              {lang === 'zh' ? '游戏经历' : (lang === 'en' ? 'GAMING EXPERIENCE' : 'ゲーム体験')}
+              <a 
+                href="https://steamcommunity.com/id/prunu5h3ad"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-brand-black px-4 py-2 rounded-full border border-brand-black hover:bg-brand-primary transition-all group/steam-btn no-underline"
+              >
+                 <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center group-hover/steam-btn:bg-white/40 transition-colors">
+                    <SteamIcon className="w-3 h-3 text-white" />
                  </div>
-                 <span className="text-xs font-black text-brand-black/60 font-mono tracking-tight uppercase">
-                   {stats?.status === 'ONLINE' ? 'ONLINE_READY' : 'Steam Gallery'}
+                 <span className="text-xs font-bold text-white font-mono tracking-tight uppercase">
+                   {stats?.status === 'ONLINE' ? (lang === 'zh' ? '在 Steam 上查看更多' : 'View More on Steam') : 'Steam Gallery'}
                  </span>
-              </div>
+              </a>
             </h2>
             <p className="text-brand-black/60 font-medium text-lg text-center md:text-left">
               启发我设计哲学的游戏
@@ -1323,22 +1328,6 @@ function SteamExperience({ lang }: { lang: Language }) {
         </div>
       )}
 
-      {/* Footer Link */}
-      <div className="mt-20 flex justify-center">
-         <a 
-          href="https://steamcommunity.com/id/prunu5h3ad/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-brand-black text-white px-8 py-4 rounded-xl flex items-center gap-4 shadow-xl hover:translate-y-1 transition-transform group"
-         >
-            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-               <SteamIcon className="w-5 h-5" />
-            </div>
-            <span className="font-display font-black uppercase text-base tracking-widest">
-              {lang === 'zh' ? '在 Steam 上查看更多' : 'View More on Steam'}
-            </span>
-         </a>
-      </div>
     </div>
   );
 }
@@ -2312,13 +2301,13 @@ export default function App() {
               {/* Email 1 */}
               <a 
                 href={`mailto:${t.sections.contact.btnEmail}`} 
-                className="group relative bg-white brutalist-border-small p-6 flex flex-col justify-between hover:bg-brand-primary hover:text-white transition-all min-h-[120px]"
+                className="group relative bg-white brutalist-border-small p-6 flex flex-col justify-between hover:bg-brand-primary hover:text-white transition-all min-h-[140px]"
               >
                 <div className="flex justify-between items-start">
-                  <span className="text-[10px] font-mono uppercase tracking-widest font-black opacity-30 group-hover:opacity-100">Primary Channel</span>
+                  <span className="text-lg font-mono uppercase tracking-widest font-black opacity-30 group-hover:opacity-100">QQ Mail</span>
                   <Mail size={16} />
                 </div>
-                <span className="text-xl font-black tracking-tighter truncate mt-4">
+                <span className="text-2xl md:text-3xl font-black tracking-tighter truncate mt-4">
                   {t.sections.contact.btnEmail}
                 </span>
               </a>
@@ -2326,13 +2315,13 @@ export default function App() {
               {/* Email 2 */}
               <a 
                 href={`mailto:${t.sections.contact.btnGmail}`} 
-                className="group relative bg-white brutalist-border-small p-6 flex flex-col justify-between hover:bg-brand-accent transition-all min-h-[120px]"
+                className="group relative bg-white brutalist-border-small p-6 flex flex-col justify-between hover:bg-brand-accent transition-all min-h-[140px]"
               >
                 <div className="flex justify-between items-start">
-                  <span className="text-[10px] font-mono uppercase tracking-widest font-black opacity-30 group-hover:opacity-100">Backup</span>
+                  <span className="text-lg font-mono uppercase tracking-widest font-black opacity-30 group-hover:opacity-100">Gmail</span>
                   <Mail size={16} />
                 </div>
-                <span className="text-xl font-black tracking-tighter truncate mt-4">
+                <span className="text-2xl md:text-3xl font-black tracking-tighter truncate mt-4">
                   {t.sections.contact.btnGmail}
                 </span>
               </a>
@@ -2340,7 +2329,7 @@ export default function App() {
               {/* WeChat */}
               <button 
                 onClick={handleCopyWeChat}
-                className="group relative bg-brand-black text-white p-6 flex flex-col justify-between hover:bg-brand-primary transition-all min-h-[120px] overflow-hidden"
+                className="group relative bg-brand-black text-white p-6 flex flex-col justify-between hover:bg-brand-primary transition-all min-h-[140px] overflow-hidden"
               >
                 <AnimatePresence>
                   {copied && (
@@ -2355,10 +2344,10 @@ export default function App() {
                   )}
                 </AnimatePresence>
                 <div className="flex justify-between items-start relative z-10">
-                  <span className="text-[10px] font-mono uppercase tracking-widest font-black text-brand-accent group-hover:text-white">WeChat ID</span>
+                  <span className="text-lg font-mono uppercase tracking-widest font-black text-brand-accent group-hover:text-white">WeChat ID</span>
                   <MessageSquare size={16} />
                 </div>
-                <span className="text-xl font-black tracking-tighter truncate mt-4 relative z-10">
+                <span className="text-2xl md:text-3xl font-black tracking-tighter truncate mt-4 relative z-10">
                   {t.sections.contact.btnWechat}
                 </span>
               </button>
