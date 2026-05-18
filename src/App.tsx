@@ -109,7 +109,7 @@ const PROJECTS: Project[] = [
     title: {
       zh: '跟你豹了',
       en: 'Leopard with You',
-      ja: '跟你豹了'
+      ja: '君とヒョウ'
     },
     category: 'PC',
     description: {
